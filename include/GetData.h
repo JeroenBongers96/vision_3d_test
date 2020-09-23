@@ -9,6 +9,7 @@
 #include <pcl/common/transforms.h>
 #include <pcl/visualization/pcl_visualizer.h>
 #include "ImageData.h"
+#include "SaveData.h"
 
 using namespace std;
 

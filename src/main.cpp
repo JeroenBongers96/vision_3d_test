@@ -10,7 +10,7 @@ using namespace std;
 
 bool debug = true;
 bool create_data = true; //True = create, false = load
-bool save_data = false;
+bool save_data = true;
 
 pcl::PointCloud<pcl::PointXYZRGB>::Ptr newCloud (new pcl::PointCloud<pcl::PointXYZRGB>);
 

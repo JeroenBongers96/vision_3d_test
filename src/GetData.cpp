@@ -149,6 +149,12 @@ void GetData::getData(ImageData &my_data)
     {
         cout << "Create data from realsense camera ...." << endl;
         createData(my_data);
+
+        if(save_data == true)
+        {
+            SaveData save_data(my_data);
+            save_data.saveData(my_data);
+        }
     }
 
     //Add cloud to visualizer

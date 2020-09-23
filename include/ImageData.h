@@ -5,7 +5,7 @@
 #include <pcl/common/common_headers.h>
 
 struct ImageData {
-    std::string folder_path;
+    std::string folder_path, save_name;
     pcl::PointCloud<pcl::PointXYZRGB>::Ptr original_cloud;
 };
 
