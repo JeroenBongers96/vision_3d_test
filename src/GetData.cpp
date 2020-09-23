@@ -50,11 +50,9 @@ std::tuple<int, int, int>  GetData::rgbTexture(rs2::video_frame texture, rs2::te
 /**
  * 
  */
-pcl::PointCloud<pcl::PointXYZRGB>::Ptr GetData::pclConversion(const rs2::points& points, const rs2::video_frame& color)
+void GetData::pclConversion(const rs2::points& points, const rs2::video_frame& color, pcl::PointCloud<pcl::PointXYZRGB>::Ptr &original_cloud)
 {
-    // Object Declaration (Point Cloud)
     pcl::PointCloud<pcl::PointXYZRGB>::Ptr cloud(new pcl::PointCloud<pcl::PointXYZRGB>);
-
     // Declare Tuple for RGB value Storage (<t0>, <t1>, <t2>)
     std::tuple<uint8_t, uint8_t, uint8_t> rgb_color;
     //================================
@@ -90,25 +88,21 @@ pcl::PointCloud<pcl::PointXYZRGB>::Ptr GetData::pclConversion(const rs2::points&
         cloud->points[i].r = get<2>(rgb_color); // Reference tuple<2>
         cloud->points[i].g = get<1>(rgb_color); // Reference tuple<1>
         cloud->points[i].b = get<0>(rgb_color); // Reference tuple<0>
-
     }
-      
- return cloud; // PCL RGB Point Cloud generated
+
+    original_cloud = cloud;
 }
+
 
 // ----------------------------------------------------------------------------------------------------
 
 /**
- * 
+ * Creates data from Realsense cameras
+ * NOTE: that the software takes 30 frames to let the camera auto tune. 
+ * THIS COSTS EXTR PROCESSING TIME!
  */
-void GetData::getData()
+void GetData::createData(ImageData &my_data)
 {
-    pcl::visualization::PCLVisualizer viewer("Cloud Viewer");
-    // Set background of viewer to black
-    viewer.setBackgroundColor (0, 0, 0); 
-    // Viewer Properties
-    viewer.initCameraParameters();  // Camera Parameters for ease of viewing
-
     //Contruct a pipeline which abstracts the device
     rs2::pipeline pipe;
 
@@ -128,11 +122,11 @@ void GetData::getData()
 
     // Camera warmup - dropping several first frames to let auto-exposure stabilize
     rs2::frameset frames;
-    /*for(int i = 0; i < 30; i++)
+    for(int i = 0; i < 30; i++)
     {
         //Wait for all configured streams to produce a frame
         auto frames = pipe.wait_for_frames();
-    }*/
+    }
 
     frames = pipe.wait_for_frames();
     auto depth = frames.get_depth_frame();
@@ -140,11 +134,31 @@ void GetData::getData()
 
     pc.map_to(color);
 	points = pc.calculate(depth);
-    pcl::PointCloud<pcl::PointXYZRGB>::Ptr end_cloud = pclConversion(points, color);
+    pclConversion(points, color, my_data.original_cloud);
+}
 
-    //pcl::io::savePCDFile(argv[1], *end_Cloud);
+// ----------------------------------------------------------------------------------------------------
 
-    viewer.addPointCloud (end_cloud,"pcd");
+/**
+ * Create or load data
+ */
+void GetData::getData(ImageData &my_data)
+{
+    //Create or load data
+    if(create_data == true)
+    {
+        cout << "Create data from realsense camera ...." << endl;
+        createData(my_data);
+    }
+
+    //Add cloud to visualizer
+    pcl::visualization::PCLVisualizer viewer("Cloud Viewer");
+    // Set background of viewer to black
+    viewer.setBackgroundColor (0, 0, 0); 
+    // Viewer Properties
+    viewer.initCameraParameters();  // Camera Parameters for ease of viewing
+
+    viewer.addPointCloud (my_data.original_cloud,"pcd");
 
     // Default size for rendered points
     //viewer.setPointCloudRenderingProperties (pcl::visualization::PCL_VISUALIZER_POINT_SIZE, 1, "pcd");
