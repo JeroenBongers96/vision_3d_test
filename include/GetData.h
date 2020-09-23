@@ -20,6 +20,7 @@ class GetData
         std::tuple<int, int, int> rgbTexture(rs2::video_frame texture, rs2::texture_coordinate Texture_XY);
         void pclConversion(const rs2::points& points, const rs2::video_frame& color, pcl::PointCloud<pcl::PointXYZRGB>::Ptr &cloud);
         void createData(ImageData &my_data);
+        void loadData(ImageData &my_data);
     public:
         GetData(bool debug, bool create_data, bool save_data);
         void getData(ImageData &my_data);

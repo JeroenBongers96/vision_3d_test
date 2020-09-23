@@ -140,6 +140,32 @@ void GetData::createData(ImageData &my_data)
 // ----------------------------------------------------------------------------------------------------
 
 /**
+ * Load data from file
+ */
+void GetData::loadData(ImageData &my_data)
+{
+    string folder_name;
+    cout << "Please enter the name of desired folder: ";
+    cin >> folder_name;
+
+    string loading_name = my_data.folder_path + folder_name;
+
+    // string file_name = "/cv_color_show.png";    
+    // string input = loading_name + file_name;
+    // my_data.cv_color_show = cv::imread(input, cv::IMREAD_UNCHANGED);
+
+    pcl::PointCloud<pcl::PointXYZRGB>::Ptr cloud(new pcl::PointCloud<pcl::PointXYZRGB>);
+    string file_name = "/point_cloud.pcd";
+    string input = loading_name + file_name;
+    pcl::io::loadPCDFile<pcl::PointXYZRGB> (input, *cloud);
+    my_data.original_cloud = cloud;
+
+    cout << "Finished loading data from: " << my_data.folder_path + folder_name << endl;
+}
+
+// ----------------------------------------------------------------------------------------------------
+
+/**
  * Create or load data
  */
 void GetData::getData(ImageData &my_data)
@@ -156,6 +182,12 @@ void GetData::getData(ImageData &my_data)
             save_data.saveData(my_data);
         }
     }
+    else
+    {
+        my_data.folder_path = "/home/jeroen/workspace/vision_imgs/";
+        loadData(my_data);
+    }
+    
 
     //Add cloud to visualizer
     pcl::visualization::PCLVisualizer viewer("Cloud Viewer");
