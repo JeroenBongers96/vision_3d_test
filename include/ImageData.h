@@ -6,6 +6,7 @@
 
 struct ImageData {
     std::string folder_path, save_name;
+    cv::Mat cv_img;
     pcl::PointCloud<pcl::PointXYZRGB>::Ptr original_cloud;
 };
 

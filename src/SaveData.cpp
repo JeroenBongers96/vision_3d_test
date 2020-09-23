@@ -45,10 +45,10 @@ void SaveData::saveData(ImageData &my_data)
             {
                 cout << "Created folder data: " << saving_folder_path << endl;
                 
-                // string save_name = saving_folder_path + "/cv_color_show.png";
-                // cv::imwrite(save_name, data.cv_color_show);
+                string save_name = saving_folder_path + "/cv_img.png";
+                cv::imwrite(save_name, my_data.cv_img);
 
-                string save_name = saving_folder_path + "/point_cloud.pcd";
+                save_name = saving_folder_path + "/point_cloud.pcd";
                 pcl::io::savePCDFileASCII (save_name, *my_data.original_cloud);
 
                 cout << "Saved data to: " << saving_folder_path << endl;

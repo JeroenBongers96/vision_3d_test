@@ -132,6 +132,11 @@ void GetData::createData(ImageData &my_data)
     auto depth = frames.get_depth_frame();
 	auto color = frames.get_color_frame();
 
+    //Create cv::Mat img
+    cv::Mat img(cv::Size(640, 480), CV_8UC3, (void*)color.get_data(), cv::Mat::AUTO_STEP);
+    my_data.cv_img = img;
+
+    //Create colored pc
     pc.map_to(color);
 	points = pc.calculate(depth);
     pclConversion(points, color, my_data.original_cloud);
@@ -150,13 +155,13 @@ void GetData::loadData(ImageData &my_data)
 
     string loading_name = my_data.folder_path + folder_name;
 
-    // string file_name = "/cv_color_show.png";    
-    // string input = loading_name + file_name;
-    // my_data.cv_color_show = cv::imread(input, cv::IMREAD_UNCHANGED);
+    string file_name = "/cv_img.png";    
+    string input = loading_name + file_name;
+    my_data.cv_img = cv::imread(input, cv::IMREAD_UNCHANGED);
 
     pcl::PointCloud<pcl::PointXYZRGB>::Ptr cloud(new pcl::PointCloud<pcl::PointXYZRGB>);
-    string file_name = "/point_cloud.pcd";
-    string input = loading_name + file_name;
+    file_name = "/point_cloud.pcd";
+    input = loading_name + file_name;
     pcl::io::loadPCDFile<pcl::PointXYZRGB> (input, *cloud);
     my_data.original_cloud = cloud;
 
@@ -187,7 +192,11 @@ void GetData::getData(ImageData &my_data)
         my_data.folder_path = "/home/jeroen/workspace/vision_imgs/";
         loadData(my_data);
     }
-    
+
+    // Display cv img in a GUI
+    cv::namedWindow("Display Image", cv::WINDOW_AUTOSIZE );
+    cv::imshow("Display Image", my_data.cv_img);
+    cv::waitKey(0);
 
     //Add cloud to visualizer
     pcl::visualization::PCLVisualizer viewer("Cloud Viewer");
