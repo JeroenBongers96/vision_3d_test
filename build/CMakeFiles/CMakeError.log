@@ -1,22 +1,22 @@
 Determining if the pthread_create exist failed with the following output:
 Change Dir: /home/jeroen/workspace/vision_3d_test/build/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/make" "cmTC_50798/fast"
-/usr/bin/make -f CMakeFiles/cmTC_50798.dir/build.make CMakeFiles/cmTC_50798.dir/build
+Run Build Command:"/usr/bin/make" "cmTC_66d57/fast"
+/usr/bin/make -f CMakeFiles/cmTC_66d57.dir/build.make CMakeFiles/cmTC_66d57.dir/build
 make[1]: Entering directory '/home/jeroen/workspace/vision_3d_test/build/CMakeFiles/CMakeTmp'
-Building C object CMakeFiles/cmTC_50798.dir/CheckSymbolExists.c.o
-/usr/bin/cc    -o CMakeFiles/cmTC_50798.dir/CheckSymbolExists.c.o   -c /home/jeroen/workspace/vision_3d_test/build/CMakeFiles/CMakeTmp/CheckSymbolExists.c
-Linking C executable cmTC_50798
-/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_50798.dir/link.txt --verbose=1
-/usr/bin/cc      -rdynamic CMakeFiles/cmTC_50798.dir/CheckSymbolExists.c.o  -o cmTC_50798 
-CMakeFiles/cmTC_50798.dir/CheckSymbolExists.c.o: In function `main':
+Building C object CMakeFiles/cmTC_66d57.dir/CheckSymbolExists.c.o
+/usr/bin/cc    -o CMakeFiles/cmTC_66d57.dir/CheckSymbolExists.c.o   -c /home/jeroen/workspace/vision_3d_test/build/CMakeFiles/CMakeTmp/CheckSymbolExists.c
+Linking C executable cmTC_66d57
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_66d57.dir/link.txt --verbose=1
+/usr/bin/cc      -rdynamic CMakeFiles/cmTC_66d57.dir/CheckSymbolExists.c.o  -o cmTC_66d57 
+CMakeFiles/cmTC_66d57.dir/CheckSymbolExists.c.o: In function `main':
 CheckSymbolExists.c:(.text+0x1b): undefined reference to `pthread_create'
 collect2: error: ld returned 1 exit status
-CMakeFiles/cmTC_50798.dir/build.make:97: recipe for target 'cmTC_50798' failed
-make[1]: *** [cmTC_50798] Error 1
+CMakeFiles/cmTC_66d57.dir/build.make:97: recipe for target 'cmTC_66d57' failed
+make[1]: *** [cmTC_66d57] Error 1
 make[1]: Leaving directory '/home/jeroen/workspace/vision_3d_test/build/CMakeFiles/CMakeTmp'
-Makefile:126: recipe for target 'cmTC_50798/fast' failed
-make: *** [cmTC_50798/fast] Error 2
+Makefile:126: recipe for target 'cmTC_66d57/fast' failed
+make: *** [cmTC_66d57/fast] Error 2
 
 File /home/jeroen/workspace/vision_3d_test/build/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
 /* */
@@ -36,20 +36,20 @@ int main(int argc, char** argv)
 Determining if the function pthread_create exists in the pthreads failed with the following output:
 Change Dir: /home/jeroen/workspace/vision_3d_test/build/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/make" "cmTC_ea8f0/fast"
-/usr/bin/make -f CMakeFiles/cmTC_ea8f0.dir/build.make CMakeFiles/cmTC_ea8f0.dir/build
+Run Build Command:"/usr/bin/make" "cmTC_a790d/fast"
+/usr/bin/make -f CMakeFiles/cmTC_a790d.dir/build.make CMakeFiles/cmTC_a790d.dir/build
 make[1]: Entering directory '/home/jeroen/workspace/vision_3d_test/build/CMakeFiles/CMakeTmp'
-Building C object CMakeFiles/cmTC_ea8f0.dir/CheckFunctionExists.c.o
-/usr/bin/cc   -DCHECK_FUNCTION_EXISTS=pthread_create   -o CMakeFiles/cmTC_ea8f0.dir/CheckFunctionExists.c.o   -c /usr/share/cmake-3.10/Modules/CheckFunctionExists.c
-Linking C executable cmTC_ea8f0
-/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_ea8f0.dir/link.txt --verbose=1
-/usr/bin/cc  -DCHECK_FUNCTION_EXISTS=pthread_create    -rdynamic CMakeFiles/cmTC_ea8f0.dir/CheckFunctionExists.c.o  -o cmTC_ea8f0 -lpthreads 
+Building C object CMakeFiles/cmTC_a790d.dir/CheckFunctionExists.c.o
+/usr/bin/cc   -DCHECK_FUNCTION_EXISTS=pthread_create   -o CMakeFiles/cmTC_a790d.dir/CheckFunctionExists.c.o   -c /usr/share/cmake-3.10/Modules/CheckFunctionExists.c
+Linking C executable cmTC_a790d
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_a790d.dir/link.txt --verbose=1
+/usr/bin/cc  -DCHECK_FUNCTION_EXISTS=pthread_create    -rdynamic CMakeFiles/cmTC_a790d.dir/CheckFunctionExists.c.o  -o cmTC_a790d -lpthreads 
 /usr/bin/ld: cannot find -lpthreads
 collect2: error: ld returned 1 exit status
-CMakeFiles/cmTC_ea8f0.dir/build.make:97: recipe for target 'cmTC_ea8f0' failed
-make[1]: *** [cmTC_ea8f0] Error 1
+CMakeFiles/cmTC_a790d.dir/build.make:97: recipe for target 'cmTC_a790d' failed
+make[1]: *** [cmTC_a790d] Error 1
 make[1]: Leaving directory '/home/jeroen/workspace/vision_3d_test/build/CMakeFiles/CMakeTmp'
-Makefile:126: recipe for target 'cmTC_ea8f0/fast' failed
-make: *** [cmTC_ea8f0/fast] Error 2
+Makefile:126: recipe for target 'cmTC_a790d/fast' failed
+make: *** [cmTC_a790d/fast] Error 2
 
 

@@ -1,5 +1,6 @@
 file(REMOVE_RECURSE
   "CMakeFiles/visionTest.dir/src/GetData.cpp.o"
+  "CMakeFiles/visionTest.dir/src/SaveData.cpp.o"
   "CMakeFiles/visionTest.dir/src/main.cpp.o"
   "visionTest.pdb"
   "visionTest"

@@ -150,6 +150,33 @@ src/GetData.cpp.s:
 	$(MAKE) -f CMakeFiles/visionTest.dir/build.make CMakeFiles/visionTest.dir/src/GetData.cpp.s
 .PHONY : src/GetData.cpp.s
 
+src/SaveData.o: src/SaveData.cpp.o
+
+.PHONY : src/SaveData.o
+
+# target to build an object file
+src/SaveData.cpp.o:
+	$(MAKE) -f CMakeFiles/visionTest.dir/build.make CMakeFiles/visionTest.dir/src/SaveData.cpp.o
+.PHONY : src/SaveData.cpp.o
+
+src/SaveData.i: src/SaveData.cpp.i
+
+.PHONY : src/SaveData.i
+
+# target to preprocess a source file
+src/SaveData.cpp.i:
+	$(MAKE) -f CMakeFiles/visionTest.dir/build.make CMakeFiles/visionTest.dir/src/SaveData.cpp.i
+.PHONY : src/SaveData.cpp.i
+
+src/SaveData.s: src/SaveData.cpp.s
+
+.PHONY : src/SaveData.s
+
+# target to generate assembly for a file
+src/SaveData.cpp.s:
+	$(MAKE) -f CMakeFiles/visionTest.dir/build.make CMakeFiles/visionTest.dir/src/SaveData.cpp.s
+.PHONY : src/SaveData.cpp.s
+
 src/main.o: src/main.cpp.o
 
 .PHONY : src/main.o
@@ -189,6 +216,9 @@ help:
 	@echo "... src/GetData.o"
 	@echo "... src/GetData.i"
 	@echo "... src/GetData.s"
+	@echo "... src/SaveData.o"
+	@echo "... src/SaveData.i"
+	@echo "... src/SaveData.s"
 	@echo "... src/main.o"
 	@echo "... src/main.i"
 	@echo "... src/main.s"
