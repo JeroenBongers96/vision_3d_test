@@ -194,9 +194,9 @@ void GetData::getData(ImageData &my_data)
     }
 
     // Display cv img in a GUI
-    cv::namedWindow("Display Image", cv::WINDOW_AUTOSIZE );
-    cv::imshow("Display Image", my_data.cv_img);
-    cv::waitKey(0);
+    // cv::namedWindow("Display Image", cv::WINDOW_AUTOSIZE );
+    // cv::imshow("Display Image", my_data.cv_img);
+    // cv::waitKey(0);
 
     //Add cloud to visualizer
     pcl::visualization::PCLVisualizer viewer("Cloud Viewer");
