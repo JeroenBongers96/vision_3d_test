@@ -80,22 +80,12 @@ void SaveData::saveData(ImageData &my_data)
                 exit(1);
             }
             else
-            {
-
-                cout << "OpenCV version : " << CV_VERSION << endl;
-                // cout << "Major version : " << cv::MAJOR_VERSION << endl;
-                // cout << "Minor version : " << cv::MINOR_VERSION << endl;
-                // cout << "Subminor version : " << cv::SUBMINOR_VERSION << endl;
-                // cout << "Created folder data: " << saving_folder_path << endl;
-                
+            {                
                 vector<int> compression_params;
                 compression_params.push_back(cv::IMWRITE_PNG_COMPRESSION);
                 compression_params.push_back(9);
-
-                string save_name = saving_folder_path + "/cv_img";
+                string save_name = saving_folder_path + "/cv_img.png";
                 cv::imwrite(save_name, my_data.cv_img, compression_params);
-                // write Mat to file
-                //bool check = saveMatBinary(save_name, my_data.cv_img);
 
                 save_name = saving_folder_path + "/point_cloud.pcd";
                 pcl::io::savePCDFileASCII (save_name, *my_data.original_cloud);

@@ -134,7 +134,7 @@ void GetData::createData(ImageData &my_data)
 
     //Create cv::Mat img
     cv::Mat img(cv::Size(640, 480), CV_8UC3, (void*)color.get_data(), cv::Mat::AUTO_STEP);
-    my_data.cv_img = img;
+    my_data.cv_img = img.clone();
 
     //Create colored pc
     pc.map_to(color);
@@ -192,27 +192,4 @@ void GetData::getData(ImageData &my_data)
         my_data.folder_path = "/home/jeroen/workspace/vision_imgs/";
         loadData(my_data);
     }
-
-    // Display cv img in a GUI
-    // cv::namedWindow("Display Image", cv::WINDOW_AUTOSIZE );
-    // cv::imshow("Display Image", my_data.cv_img);
-    // cv::waitKey(0);
-
-    //Add cloud to visualizer
-    pcl::visualization::PCLVisualizer viewer("Cloud Viewer");
-    // Set background of viewer to black
-    viewer.setBackgroundColor (0, 0, 0); 
-    // Viewer Properties
-    viewer.initCameraParameters();  // Camera Parameters for ease of viewing
-
-    viewer.addPointCloud (my_data.original_cloud,"pcd");
-
-    // Default size for rendered points
-    //viewer.setPointCloudRenderingProperties (pcl::visualization::PCL_VISUALIZER_POINT_SIZE, 1, "pcd");
-
-    while(!viewer.wasStopped ())
-    {
-        viewer.spinOnce(100);
-        boost::this_thread::sleep (boost::posix_time::microseconds (100000));        
-    }    
 }
