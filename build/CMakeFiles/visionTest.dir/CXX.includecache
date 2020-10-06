@@ -25,6 +25,10 @@ ImageData.h
 ../include/ImageData.h
 SaveData.h
 ../include/SaveData.h
+ImageData.h
+../include/ImageData.h
+unistd.h
+-
 
 ../include/ImageData.h
 opencv2/opencv.hpp
@@ -65,8 +69,6 @@ iostream
 -
 GetData.h
 /home/jeroen/workspace/vision_3d_test/src/GetData.h
-ImageData.h
-/home/jeroen/workspace/vision_3d_test/src/ImageData.h
 
 /usr/include/eigen3/Eigen/Cholesky
 Core
