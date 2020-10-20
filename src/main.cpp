@@ -10,13 +10,14 @@ using namespace std;
 
 bool debug = true;
 bool create_data = true; //True = create, false = load
-bool save_data = true;
+bool save_data = false;
 
 pcl::PointCloud<pcl::PointXYZRGB>::Ptr newCloud (new pcl::PointCloud<pcl::PointXYZRGB>);
 
 int main()
 {
     cout << "main started" << endl;
+
     ImageData my_data;
 
     GetData get_data(debug, create_data, save_data);
