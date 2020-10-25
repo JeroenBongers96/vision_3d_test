@@ -7,7 +7,7 @@
  */
 SaveData::SaveData(ImageData &my_data)
 {
-    my_data.folder_path = "/home/jeroen/workspace/vision_imgs/";
+    my_data.folder_path = "/home/mark/catkin_ws/visionImages/";
 }
 
 //! Write cv::Mat as binary

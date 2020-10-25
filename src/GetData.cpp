@@ -189,7 +189,7 @@ void GetData::getData(ImageData &my_data)
     }
     else
     {
-        my_data.folder_path = "/home/jeroen/workspace/vision_imgs/";
+        my_data.folder_path = "/home/mark/catkin_ws/visionImages/";
         loadData(my_data);
     }
 }

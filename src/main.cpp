@@ -5,24 +5,29 @@
 #include <iostream>
 #include "GetData.h"
 #include "ImageData.h"
+#include "GetRoi.h"
 
 using namespace std;
 
 bool debug = true;
-bool create_data = true; //True = create, false = load
+bool create_data = false; //True = create, false = load
 bool save_data = false;
 
 pcl::PointCloud<pcl::PointXYZRGB>::Ptr newCloud (new pcl::PointCloud<pcl::PointXYZRGB>);
 
-int main()
+int main(int argc, char** argv)
 {
     cout << "main started" << endl;
 
     ImageData my_data;
+    
+    GetRoi img_roi;
 
     GetData get_data(debug, create_data, save_data);
     
     get_data.getData(my_data);
+
+    img_roi.Yolo(argc, argv, my_data.cv_img, debug);
 
     // Display cv img in a GUI
     cv::namedWindow("Display Image", cv::WINDOW_AUTOSIZE );
