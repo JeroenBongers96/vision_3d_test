@@ -13,6 +13,8 @@ bool debug = true;
 bool create_data = false; //True = create, false = load
 bool save_data = false;
 
+vector<int> roiVect;
+
 pcl::PointCloud<pcl::PointXYZRGB>::Ptr newCloud (new pcl::PointCloud<pcl::PointXYZRGB>);
 
 int main(int argc, char** argv)
@@ -20,14 +22,15 @@ int main(int argc, char** argv)
     cout << "main started" << endl;
 
     ImageData my_data;
-    
+
     GetRoi img_roi;
 
     GetData get_data(debug, create_data, save_data);
     
     get_data.getData(my_data);
 
-    img_roi.Yolo(argc, argv, my_data.cv_img, debug);
+    roiVect = img_roi.Yolo(argc, argv, my_data.cv_img, debug);
+    cv::rectangle(my_data.cv_img, Point(roiVect[1], roiVect[2]), Point(roiVect[3], roiVect[4]), (0,255,0), 3);
 
     // Display cv img in a GUI
     cv::namedWindow("Display Image", cv::WINDOW_AUTOSIZE );

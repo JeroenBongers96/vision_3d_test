@@ -174,7 +174,7 @@ void GetData::loadData(ImageData &my_data)
  * Create or load data
  */
 void GetData::getData(ImageData &my_data)
-{
+{   
     //Create or load data
     if(create_data == true)
     {
