@@ -5,24 +5,35 @@
 #include <iostream>
 #include "GetData.h"
 #include "ImageData.h"
+#include "GetRoi.h"
+#include "ProcessData.h"
 
 using namespace std;
 
 bool debug = true;
-bool create_data = true; //True = create, false = load
+bool create_data = false; //True = create, false = load
 bool save_data = false;
 
-pcl::PointCloud<pcl::PointXYZRGB>::Ptr newCloud (new pcl::PointCloud<pcl::PointXYZRGB>);
+vector<int> roi_vect;
 
-int main()
+pcl::PointCloud<pcl::PointXYZRGB>::Ptr object (new pcl::PointCloud<pcl::PointXYZRGB>);
+
+int main(int argc, char** argv)
 {
     cout << "main started" << endl;
 
     ImageData my_data;
-
+    GetRoi img_roi;
     GetData get_data(debug, create_data, save_data);
-    
+    ProcessData process;
+
     get_data.getData(my_data);
+
+    //Use Yolo and draw rectangle around ROI
+    roi_vect = img_roi.Yolo(argc, argv, my_data.cv_img, debug);
+    cv::rectangle(my_data.cv_img, Point(roi_vect[1], roi_vect[2]), Point(roi_vect[3], roi_vect[4]), (0,255,0), 3);
+
+    object = process.cutROI(my_data, roi_vect);
 
     // Display cv img in a GUI
     cv::namedWindow("Display Image", cv::WINDOW_AUTOSIZE );
@@ -36,7 +47,8 @@ int main()
     // Viewer Properties
     viewer.initCameraParameters();  // Camera Parameters for ease of viewing
 
-    viewer.addPointCloud (my_data.original_cloud,"pcd");
+//    viewer.addPointCloud (my_data.original_cloud,"pcd");
+    viewer.addPointCloud (object,"pcd");
 
     // Default size for rendered points
     //viewer.setPointCloudRenderingProperties (pcl::visualization::PCL_VISUALIZER_POINT_SIZE, 1, "pcd");
