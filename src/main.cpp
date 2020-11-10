@@ -14,7 +14,7 @@ bool debug = true;
 bool create_data = false; //True = create, false = load
 bool save_data = false;
 
-vector<int> roi_vect;
+// vector<int> roi_vect;
 
 pcl::PointCloud<pcl::PointXYZRGB>::Ptr object (new pcl::PointCloud<pcl::PointXYZRGB>);
 
@@ -30,7 +30,10 @@ int main(int argc, char** argv)
     get_data.getData(my_data);
 
     //Use Yolo and draw rectangle around ROI
-    roi_vect = img_roi.Yolo(argc, argv, my_data.cv_img, debug);
+    //roi_vect = img_roi.Yolo(argc, argv, my_data.cv_img, debug);
+    cout << "CV mat rows: " << my_data.cv_img.rows << endl;
+    cout << "CV mat cols: " << my_data.cv_img.cols << endl;
+    vector<int> roi_vect{180, 250, 300, 390};
     cv::rectangle(my_data.cv_img, Point(roi_vect[1], roi_vect[2]), Point(roi_vect[3], roi_vect[4]), (0,255,0), 3);
 
     object = process.cutROI(my_data, roi_vect);
@@ -47,7 +50,7 @@ int main(int argc, char** argv)
     // Viewer Properties
     viewer.initCameraParameters();  // Camera Parameters for ease of viewing
 
-//    viewer.addPointCloud (my_data.original_cloud,"pcd");
+    // viewer.addPointCloud (my_data.original_cloud,"pcd");
     viewer.addPointCloud (object,"pcd");
 
     // Default size for rendered points

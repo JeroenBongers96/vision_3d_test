@@ -18,19 +18,29 @@ pcl::PointCloud<pcl::PointXYZRGB>::Ptr ProcessData::cutROI(const ImageData &my_d
     object->height = my_data.original_cloud->height;
     object->points.resize (object->width * object->height);
 
-    int i = 0;
-    for(int y = 0; y < 480; ++y)
+
+    // int i = 0;
+    for(int y = 0; y < object->width; ++y)
     {
-        for(int x = 0; x < 640; ++x)
+        for(int x = 0; x < object->height; ++x)
         {
-            if(x >= roi_vec[1] && x <= roi_vec[3] && y >= roi_vec[2] && y <= roi_vec[4])
+            if(x >= roi_vec[0] && x <= roi_vec[2] && y >= roi_vec[1] && y <= roi_vec[3])
             {
-                object->points[i].x = my_data.original_cloud->points[i].x;
-                object->points[i].y = my_data.original_cloud->points[i].y;
-                object->points[i].z = my_data.original_cloud->points[i].z;
-                object->points[i].rgb = my_data.original_cloud->points[i].rgb;
+
+                
+                object->at(y, x).x = my_data.original_cloud->at(y, x).x;
+                object->at(y, x).y = my_data.original_cloud->at(y, x).y;
+                object->at(y, x).z = my_data.original_cloud->at(y, x).z;
+                object->at(y, x).rgb = my_data.original_cloud->at(y, x).rgb;
+
+                std::cout << "------" << std::endl;
+                std::cout << object->at(y, x).x << std::endl;
+                std::cout << object->at(y, x).y << std::endl;
+                std::cout << object->at(y, x).z << std::endl;
+                std::cout << object->at(y, x).rgb << std::endl;
+                std::cout << my_data.original_cloud->at(y, x).rgb << std::endl;
+
             }
-            ++i;
         }
     }
 

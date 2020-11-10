@@ -168,6 +168,33 @@ void GetData::loadData(ImageData &my_data)
     cout << "Finished loading data from: " << my_data.folder_path + folder_name << endl;
 }
 
+// // ----------------------------------------------------------------------------------------------------
+
+// /**
+//  * Create CV image from PCL colored point cloud
+//  */
+// cv::Mat GetData::cvFromPcl(pcl::PointCloud<pcl::PointXYZRGB>::Ptr cloud)
+// {
+//     cv::Mat img = cv::Mat::zeros(cv::Size(cloud->height,cloud->rows), CV_8UC1);
+
+//     int i = 0;
+//     for(int y = 0; y < cloud->height; ++y)
+//     {
+//         for(int x = 0; x < cloud->width; ++x)
+//         {
+//             if(x >= roi_vec[1] && x <= roi_vec[3] && y >= roi_vec[2] && y <= roi_vec[4])
+//             {
+//                 object->points[i].x = my_data.original_cloud->points[i].x;
+//                 object->points[i].y = my_data.original_cloud->points[i].y;
+//                 object->points[i].z = my_data.original_cloud->points[i].z;
+//                 object->points[i].rgb = my_data.original_cloud->points[i].rgb;
+//             }
+//             ++i;
+//         }
+//     }
+
+// }
+
 // ----------------------------------------------------------------------------------------------------
 
 /**
@@ -189,7 +216,7 @@ void GetData::getData(ImageData &my_data)
     }
     else
     {
-        my_data.folder_path = "/home/mark/catkin_ws/visionImages/";
+        my_data.folder_path = "/home/jeroen/workspaces/vision_images";
         loadData(my_data);
     }
 }

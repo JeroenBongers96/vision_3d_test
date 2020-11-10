@@ -21,6 +21,7 @@ class GetData
         void pclConversion(const rs2::points& points, const rs2::video_frame& color, pcl::PointCloud<pcl::PointXYZRGB>::Ptr &cloud);
         void createData(ImageData &my_data);
         void loadData(ImageData &my_data);
+        cv::Mat cvFromPcl(pcl::PointCloud<pcl::PointXYZRGB>::Ptr cloud);
     public:
         GetData(bool debug, bool create_data, bool save_data);
         void getData(ImageData &my_data);
