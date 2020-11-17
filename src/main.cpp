@@ -30,11 +30,12 @@ int main(int argc, char** argv)
     get_data.getData(my_data);
 
     //Use Yolo and draw rectangle around ROI
-    //roi_vect = img_roi.Yolo(argc, argv, my_data.cv_img, debug);
+    // roi_vect = img_roi.Yolo(argc, argv, my_data.cv_img, debug);
+    // print(roi_vect);
     cout << "CV mat rows: " << my_data.cv_img.rows << endl;
     cout << "CV mat cols: " << my_data.cv_img.cols << endl;
     vector<int> roi_vect{180, 250, 300, 390};
-    cv::rectangle(my_data.cv_img, Point(roi_vect[1], roi_vect[2]), Point(roi_vect[3], roi_vect[4]), (0,255,0), 3);
+    cv::rectangle(my_data.cv_img, Point(roi_vect[0], roi_vect[1]), Point(roi_vect[2], roi_vect[3]), (0,255,0), 3);
 
     object = process.cutROI(my_data, roi_vect);
 

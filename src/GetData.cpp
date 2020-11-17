@@ -149,9 +149,9 @@ void GetData::createData(ImageData &my_data)
  */
 void GetData::loadData(ImageData &my_data)
 {
-    string folder_name;
-    cout << "Please enter the name of desired folder: ";
-    cin >> folder_name;
+    string folder_name = "/g20x20/g20x20_6";
+    // cout << "Please enter the name of desired folder: ";
+    // cin >> folder_name;
 
     string loading_name = my_data.folder_path + folder_name;
 

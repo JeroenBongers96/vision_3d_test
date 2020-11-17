@@ -18,7 +18,6 @@ pcl::PointCloud<pcl::PointXYZRGB>::Ptr ProcessData::cutROI(const ImageData &my_d
     object->height = my_data.original_cloud->height;
     object->points.resize (object->width * object->height);
 
-
     // int i = 0;
     for(int y = 0; y < object->width; ++y)
     {
