@@ -7,6 +7,7 @@
 #include "ImageData.h"
 #include "GetRoi.h"
 #include "ProcessData.h"
+#include <pcl/pcl_config.h>
 
 using namespace std;
 
@@ -21,6 +22,7 @@ pcl::PointCloud<pcl::PointXYZRGB>::Ptr object (new pcl::PointCloud<pcl::PointXYZ
 int main(int argc, char** argv)
 {
     cout << "main started" << endl;
+    std::cout << "PCL version: " << PCL_VERSION << std::endl;
 
     ImageData my_data;
     GetRoi img_roi;
@@ -34,7 +36,7 @@ int main(int argc, char** argv)
     // print(roi_vect);
     cout << "CV mat rows: " << my_data.cv_img.rows << endl;
     cout << "CV mat cols: " << my_data.cv_img.cols << endl;
-    vector<int> roi_vect{180, 250, 300, 390};
+    vector<int> roi_vect{100, 100, 400, 400};
     cv::rectangle(my_data.cv_img, Point(roi_vect[0], roi_vect[1]), Point(roi_vect[2], roi_vect[3]), (0,255,0), 3);
 
     object = process.cutROI(my_data, roi_vect);
