@@ -158,7 +158,7 @@ void GetData::loadData(ImageData &my_data)
     string file_name = "/cv_img.png";    
     string input = loading_name + file_name;
     string test_img = "/home/jeroen/cv_img.png";
-    my_data.cv_img = cv::imread(test_img, cv::IMREAD_UNCHANGED);
+    // my_data.cv_img = cv::imread(test_img, cv::IMREAD_UNCHANGED);
 
     pcl::PointCloud<pcl::PointXYZRGB>::Ptr cloud(new pcl::PointCloud<pcl::PointXYZRGB>);
     file_name = "/point_cloud.pcd";
@@ -166,35 +166,38 @@ void GetData::loadData(ImageData &my_data)
     pcl::io::loadPCDFile<pcl::PointXYZRGB> (input, *cloud);
     my_data.original_cloud = cloud;
 
+    my_data.cv_img = cvFromPcl(cloud);
+
     cout << "Finished loading data from: " << my_data.folder_path + folder_name << endl;
 }
 
-// // ----------------------------------------------------------------------------------------------------
+// ----------------------------------------------------------------------------------------------------
 
-// /**
-//  * Create CV image from PCL colored point cloud
-//  */
-// cv::Mat GetData::cvFromPcl(pcl::PointCloud<pcl::PointXYZRGB>::Ptr cloud)
-// {
-//     cv::Mat img = cv::Mat::zeros(cv::Size(cloud->height,cloud->rows), CV_8UC1);
+/**
+ * Create CV image from PCL colored point cloud
+ */
+cv::Mat GetData::cvFromPcl(const pcl::PointCloud<pcl::PointXYZRGB>::Ptr &cloud)
+{    
+    cv::Mat cv_img = cv::Mat::zeros(cv::Size(cloud->width,cloud->height),CV_8UC3);
 
-//     int i = 0;
-//     for(int y = 0; y < cloud->height; ++y)
-//     {
-//         for(int x = 0; x < cloud->width; ++x)
-//         {
-//             if(x >= roi_vec[1] && x <= roi_vec[3] && y >= roi_vec[2] && y <= roi_vec[4])
-//             {
-//                 object->points[i].x = my_data.original_cloud->points[i].x;
-//                 object->points[i].y = my_data.original_cloud->points[i].y;
-//                 object->points[i].z = my_data.original_cloud->points[i].z;
-//                 object->points[i].rgb = my_data.original_cloud->points[i].rgb;
-//             }
-//             ++i;
-//         }
-//     }
+    for(int y = 0; y < cloud->height; ++y)
+    {
+        for(int x = 0; x < cloud->width; ++x)
+        {
+            pcl::PointXYZRGB point = cloud->at(x, y);
 
-// }
+            cv_img.at<cv::Vec3b>(y,x)[0] = (int)point.b;
+            cv_img.at<cv::Vec3b>(y,x)[1] = (int)point.g;
+            cv_img.at<cv::Vec3b>(y,x)[2] = (int)point.r;
+        }
+    }
+
+    // cv::namedWindow("PCL image", cv::WINDOW_AUTOSIZE );
+    // cv::imshow("PCL image", cv_img);
+    // cv::waitKey(0);
+
+    return cv_img;
+}
 
 // ----------------------------------------------------------------------------------------------------
 
