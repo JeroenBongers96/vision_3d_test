@@ -3,7 +3,7 @@ import cv2
 import time
 import numpy
 #from processing import PostProcessing
-from suii_3d_vision_ros.srv import GetRoi, GetRoiResponse
+from vision_3d_test.srv import GetRoi
 from std_msgs.msg import String
 from sensor_msgs.msg import Image
 from network import NetworkClient

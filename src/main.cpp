@@ -16,7 +16,6 @@ bool create_data = false; //True = create, false = load
 bool save_data = false;
 
 // vector<int> roi_vect;
-
 pcl::PointCloud<pcl::PointXYZRGB>::Ptr object (new pcl::PointCloud<pcl::PointXYZRGB>);
 
 int main(int argc, char** argv)
