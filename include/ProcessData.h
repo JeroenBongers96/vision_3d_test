@@ -11,6 +11,7 @@
 #include <pcl/sample_consensus/method_types.h>
 #include <pcl/sample_consensus/model_types.h>
 #include <pcl/segmentation/sac_segmentation.h>
+#include <pcl/filters/extract_indices.h>
 
 class ProcessData
 {
@@ -19,7 +20,7 @@ class ProcessData
     public:
         ProcessData();
         pcl::PointCloud<pcl::PointXYZRGB>::Ptr cutROI(const ImageData &my_data, std::vector<int> roi_vec);
-        // pcl::PointCloud<pcl::PointXYZRGB>::Ptr getPlainRANSAC(const pcl::PointCloud<pcl::PointXYZRGB>::Ptr &cloud);
+        pcl::PointCloud<pcl::PointXYZRGB>::Ptr getPlainRANSAC(const pcl::PointCloud<pcl::PointXYZRGB>::Ptr &cloud);
 };
 
 #endif

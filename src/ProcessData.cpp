@@ -68,55 +68,54 @@ pcl::PointCloud<pcl::PointXYZRGB>::Ptr ProcessData::cutROI(const ImageData &my_d
 	return object;
 }
 
-// // ----------------------------------------------------------------------------------------------------
+// ----------------------------------------------------------------------------------------------------
 
-// /**
-//  * Plane model segmentation extracts the planes of a point cloud using the RANSAC method as the robust estimator. * 
-//  */
-// pcl::PointCloud<pcl::PointXYZRGB>::Ptr Segmentation::getPlainRANSAC(const pcl::PointCloud<pcl::PointXYZRGB>::Ptr &cloud)
-// {
-//     std::vector<pcl::PointCloud<pcl::PointXYZRGB>::Ptr> vec, filtered_vec;
-    
-//     pcl::ModelCoefficients::Ptr coefficients (new pcl::ModelCoefficients ());
-//     pcl::PointIndices::Ptr inliers (new pcl::PointIndices ());
-//     // Create the segmentation object
-//     pcl::SACSegmentation<pcl::PointXYZRGB> seg;
-//     // Optional
-//     seg.setOptimizeCoefficients (true);
-//     // Mandatory
-//     seg.setModelType (pcl::SACMODEL_PLANE);
-//     seg.setMethodType (pcl::SAC_RANSAC);
-//     //seg.setMaxIterations (10000);
-//     seg.setOptimizeCoefficients(true);
-//     seg.setDistanceThreshold (0.01); //0.01
+/**
+ * Plane model segmentation extracts the planes of a point cloud using the RANSAC method as the robust estimator. * 
+ */
+// Segmentation member function
+pcl::PointCloud<pcl::PointXYZRGB>::Ptr ProcessData::getPlainRANSAC(const pcl::PointCloud<pcl::PointXYZRGB>::Ptr &cloud)
+{
+    pcl::PointCloud<pcl::PointXYZRGB>::Ptr cloud_plane (new pcl::PointCloud<pcl::PointXYZRGB> ());
+    pcl::PointCloud<pcl::PointXYZRGB>::Ptr cloud_object (new pcl::PointCloud<pcl::PointXYZRGB>);
 
-//     // Create the filtering object
-//     pcl::ExtractIndices<pcl::PointXYZRGB> extract;
+    // Create the segmentation object for the planar model and set all the parameters
+    pcl::SACSegmentation<pcl::PointXYZRGB> seg;
+    pcl::PointIndices::Ptr inliers (new pcl::PointIndices);
+    pcl::ModelCoefficients::Ptr coefficients (new pcl::ModelCoefficients);
+    pcl::PCDWriter writer;
+    seg.setOptimizeCoefficients (true);
+    seg.setModelType (pcl::SACMODEL_PLANE);
+    seg.setMethodType (pcl::SAC_RANSAC);
+    // seg.setMaxIterations (100);
+    seg.setDistanceThreshold (0.005); // Original: 0.02
 
-//     int i = 0, nr_points = (int) cloud->points.size ();
-//     // While 30% of the original cloud is still there
-//     while (cloud->points.size () > 0.3 * nr_points)
-//     {
-//         pcl::PointCloud<pcl::PointXYZRGB>::Ptr cloud_p (new pcl::PointCloud<pcl::PointXYZRGB>);
+    // int i=0, nr_points = (int) cloud->points.size ();
+    // while (cloud->points.size () > 0.3 * nr_points)
+    // {
+    // Segment the largest planar component from the remaining cloud
+    seg.setInputCloud (cloud);
+    seg.segment (*inliers, *coefficients);
+    // if (inliers->indices.size () == 0)
+    // {
+    //     break;
+    // }
 
-//         // Segment the largest planar component from the remaining cloud
-//         seg.setInputCloud (cloud);
-//         seg.segment (*inliers, *coefficients);
-//         if (inliers->indices.size () == 0)
-//         {
-//         std::cerr << "Could not estimate a planar model for the given dataset." << std::endl;
-//         break;
-//         }
+    // Extract the planar inliers from the input cloud
+    pcl::ExtractIndices<pcl::PointXYZRGB> extract;
+    extract.setInputCloud (cloud);
+    extract.setIndices (inliers);
+    extract.setNegative (false);
 
-//         // Extract the inliers
-//         extract.setInputCloud (cloud);
-//         extract.setIndices (inliers);
-//         extract.setNegative (false);
-//         extract.filter (*cloud_p);
-//         std::cerr << "PointCloud representing the planar component: " << cloud_p->width * cloud_p->height << " data points." << std::endl;    
-        
-//         i++;
-//     }   
-    
-//     return(cloud_p);
-// }
+    // Get the points associated with the planar surface
+    extract.filter (*cloud_plane);
+    //std::cout << "PointCloud representing the planar component: " << cloud_plane->points.size () << " data points." << std::endl;
+    // Remove the planar inliers, extract the rest
+    extract.setNegative (true);
+    extract.filter (*cloud_object);
+    //std::cout << "PointCloud representing the segmented component: " << cloud_f->points.size () << " data points." << std::endl;
+    // *cloud = *cloud_f;
+    // }
+
+    return cloud_plane;
+}

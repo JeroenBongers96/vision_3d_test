@@ -17,6 +17,7 @@ bool save_data = false;
 
 // vector<int> roi_vect;
 pcl::PointCloud<pcl::PointXYZRGB>::Ptr object (new pcl::PointCloud<pcl::PointXYZRGB>);
+pcl::PointCloud<pcl::PointXYZRGB>::Ptr table (new pcl::PointCloud<pcl::PointXYZRGB>);
 
 int main(int argc, char** argv)
 {
@@ -38,7 +39,11 @@ int main(int argc, char** argv)
     vector<int> roi_vect{100, 100, 400, 400};
     cv::rectangle(my_data.cv_img, Point(roi_vect[0], roi_vect[1]), Point(roi_vect[2], roi_vect[3]), (0,255,0), 3);
 
-    object = process.cutROI(my_data, roi_vect);
+    // Cut out ROI
+    // object = process.cutROI(my_data, roi_vect);
+
+    // Get table
+    table = process.getPlainRANSAC(my_data.original_cloud);
 
     // Display cv img in a GUI
     cv::namedWindow("Display Image", cv::WINDOW_AUTOSIZE );
@@ -53,7 +58,8 @@ int main(int argc, char** argv)
     viewer.initCameraParameters();  // Camera Parameters for ease of viewing
 
     // viewer.addPointCloud (my_data.original_cloud,"pcd");
-    viewer.addPointCloud (object,"pcd");
+    // viewer.addPointCloud (object,"pcd");
+    viewer.addPointCloud (table,"pcd");
 
     // Default size for rendered points
     //viewer.setPointCloudRenderingProperties (pcl::visualization::PCL_VISUALIZER_POINT_SIZE, 1, "pcd");
