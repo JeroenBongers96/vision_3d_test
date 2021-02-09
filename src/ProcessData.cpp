@@ -79,6 +79,14 @@ pcl::PointCloud<pcl::PointXYZRGB>::Ptr ProcessData::getPlainRANSAC(const pcl::Po
     pcl::PointCloud<pcl::PointXYZRGB>::Ptr cloud_plane (new pcl::PointCloud<pcl::PointXYZRGB> ());
     pcl::PointCloud<pcl::PointXYZRGB>::Ptr cloud_object (new pcl::PointCloud<pcl::PointXYZRGB>);
 
+    cloud_plane->width = cloud->width;
+    cloud_plane->height = cloud->height;
+    cloud_plane->points.resize (cloud_plane->width * cloud_plane->height);
+
+    cloud_object->width = cloud->width;
+    cloud_object->height = cloud->height;
+    cloud_object->points.resize (cloud_object->width * cloud_object->height);
+
     // Create the segmentation object for the planar model and set all the parameters
     pcl::SACSegmentation<pcl::PointXYZRGB> seg;
     pcl::PointIndices::Ptr inliers (new pcl::PointIndices);
@@ -115,6 +123,13 @@ pcl::PointCloud<pcl::PointXYZRGB>::Ptr ProcessData::getPlainRANSAC(const pcl::Po
     extract.filter (*cloud_object);
     //std::cout << "PointCloud representing the segmented component: " << cloud_f->points.size () << " data points." << std::endl;
     // *cloud = *cloud_f;
+    // }
+
+    std::cout << "Object cloud widht: " << cloud_object->width << std::endl;
+    std::cout << "Object cloud height: " << cloud_object->height << std::endl;
+
+    // for (int x = 0; inliers->size; x = x + 1) {
+    //     inliers[x];
     // }
 
     return cloud_plane;
