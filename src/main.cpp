@@ -7,6 +7,7 @@
 #include "ImageData.h"
 #include "GetRoi.h"
 #include "ProcessData.h"
+#include "ProcessResults.h"
 #include <pcl/pcl_config.h>
 
 using namespace std;
@@ -18,6 +19,10 @@ bool save_data = false;
 // vector<int> roi_vect;
 pcl::PointCloud<pcl::PointXYZRGB>::Ptr object (new pcl::PointCloud<pcl::PointXYZRGB>);
 pcl::PointCloud<pcl::PointXYZRGB>::Ptr table (new pcl::PointCloud<pcl::PointXYZRGB>);
+Eigen::Matrix4f transform = Eigen::Matrix4f::Identity();
+Eigen::Vector3f rpy;
+Eigen::Quaternionf q;
+vector<pcl::PointXYZ> odom;
 
 int main(int argc, char** argv)
 {
@@ -28,6 +33,7 @@ int main(int argc, char** argv)
     GetRoi img_roi;
     GetData get_data(debug, create_data, save_data);
     ProcessData process;
+    ProcessResults res(true);
 
     get_data.getData(my_data);
 
@@ -44,6 +50,8 @@ int main(int argc, char** argv)
 
     // Get table
     table = process.getPlainRANSAC(my_data.original_cloud);
+
+    std::tie(transform, rpy, q, odom) = res.momentOfInertia(talbe);
 
     // Display cv img in a GUI
     cv::namedWindow("Display Image", cv::WINDOW_AUTOSIZE );
