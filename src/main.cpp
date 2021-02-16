@@ -19,21 +19,22 @@ bool save_data = false;
 // vector<int> roi_vect;
 pcl::PointCloud<pcl::PointXYZRGB>::Ptr object (new pcl::PointCloud<pcl::PointXYZRGB>);
 pcl::PointCloud<pcl::PointXYZRGB>::Ptr table (new pcl::PointCloud<pcl::PointXYZRGB>);
-Eigen::Matrix4f transform = Eigen::Matrix4f::Identity();
-Eigen::Vector3f rpy;
-Eigen::Quaternionf q;
-vector<pcl::PointXYZ> odom;
 
 int main(int argc, char** argv)
 {
     cout << "main started" << endl;
     std::cout << "PCL version: " << PCL_VERSION << std::endl;
 
+    Eigen::Matrix4f transform = Eigen::Matrix4f::Identity();
+    Eigen::Vector3f rpy;
+    Eigen::Quaternionf q;
+    vector<pcl::PointXYZ> odom;
+
     ImageData my_data;
     GetRoi img_roi;
     GetData get_data(debug, create_data, save_data);
     ProcessData process;
-    ProcessResults res(true);
+    ProcessResults res;
 
     get_data.getData(my_data);
 
@@ -43,7 +44,7 @@ int main(int argc, char** argv)
     cout << "CV mat rows: " << my_data.cv_img.rows << endl;
     cout << "CV mat cols: " << my_data.cv_img.cols << endl;
     vector<int> roi_vect{100, 100, 400, 400};
-    cv::rectangle(my_data.cv_img, Point(roi_vect[0], roi_vect[1]), Point(roi_vect[2], roi_vect[3]), (0,255,0), 3);
+    cv::rectangle(my_data.cv_img, cv::Point(roi_vect[0], roi_vect[1]), cv::Point(roi_vect[2], roi_vect[3]), (0,255,0), 3);
 
     // Cut out ROI
     // object = process.cutROI(my_data, roi_vect);
@@ -51,7 +52,7 @@ int main(int argc, char** argv)
     // Get table
     table = process.getPlainRANSAC(my_data.original_cloud);
 
-    std::tie(transform, rpy, q, odom) = res.momentOfInertia(talbe);
+    std::tie(transform, rpy, q, odom) = res.momentOfInertia(table);
 
     // Display cv img in a GUI
     cv::namedWindow("Display Image", cv::WINDOW_AUTOSIZE );

@@ -1,8 +1,38 @@
 #include "ProcessResults.h"
 
-ProcessResults::ProcessResults(bool debug)
+ProcessResults::ProcessResults()
 {
-    this->debug = debug;
+    // this->debug = debug;
+    ;
+}
+
+// ----------------------------------------------------------------------------------------------------
+
+/**
+ * Derive roll pitch yaw from 4x4 matrix
+ * Roll around X axis
+ * Pitch around Y aixs
+ * Yaw around Z axis
+ * https://stackoverflow.com/questions/27508242/roll-pitch-and-yaw-from-rotation-matrix-with-eigen-library
+ */
+std::tuple<Eigen::Vector3f, Eigen::Quaternionf> ProcessResults::getRotation(Eigen::Matrix4f mat4)
+{
+    //4*4 to 3*3 matrix
+    Eigen::Matrix3f mat3 = Eigen::Matrix3f::Identity();
+    mat3(0,0) = mat4(0,0);  mat3(0,1) = mat4(0,1);  mat3(0,2) = mat4(0,2);
+    mat3(1,0) = mat4(1,0);  mat3(1,1) = mat4(1,1);  mat3(1,2) = mat4(1,2);
+    mat3(2,0) = mat4(2,0);  mat3(2,1) = mat4(2,1);  mat3(2,2) = mat4(2,2);
+
+    //Get Eulers in radians
+    Eigen::Vector3f rpy = mat3.eulerAngles(0,1,2); //0 = roll, 1 = pitch, 2 = yaw
+    Eigen::Quaternionf q(mat3);
+
+    //Radians to degrees
+    rpy[0] = (rpy[0]*180)/M_PI; 
+    rpy[1] = (rpy[1]*180)/M_PI; 
+    rpy[2] = (rpy[2]*180)/M_PI; 
+
+    return(std::make_tuple(rpy, q));
 }
 
 // ----------------------------------------------------------------------------------------------------
@@ -81,40 +111,11 @@ std::tuple<Eigen::Matrix4f, Eigen::Vector3f, Eigen::Quaternionf, vector<pcl::Poi
         viewer->addLine (center, y_axis, 0.0f, 1.0f, 0.0f, "middle eigen vector");
         viewer->addLine (center, z_axis, 0.0f, 0.0f, 1.0f, "minor eigen vector");
 
-    while(!viewer->wasStopped())
-    {
-      viewer->spinOnce (100);
-    }
+        while(!viewer->wasStopped())
+        {
+            viewer->spinOnce (100);
+        }
     }
 
     return(std::make_tuple(transform_1, rpy, q, visualizer_odom));
-}
-
-// ----------------------------------------------------------------------------------------------------
-
-/**
- * Derive roll pitch yaw from 4x4 matrix
- * Roll around X axis
- * Pitch around Y aixs
- * Yaw around Z axis
- * https://stackoverflow.com/questions/27508242/roll-pitch-and-yaw-from-rotation-matrix-with-eigen-library
- */
-std::tuple<Eigen::Vector3f, Eigen::Quaternionf> ProcessResults::getRotation(Eigen::Matrix4f mat4)
-{
-    //4*4 to 3*3 matrix
-    Eigen::Matrix3f mat3 = Eigen::Matrix3f::Identity();
-    mat3(0,0) = mat4(0,0);  mat3(0,1) = mat4(0,1);  mat3(0,2) = mat4(0,2);
-    mat3(1,0) = mat4(1,0);  mat3(1,1) = mat4(1,1);  mat3(1,2) = mat4(1,2);
-    mat3(2,0) = mat4(2,0);  mat3(2,1) = mat4(2,1);  mat3(2,2) = mat4(2,2);
-
-    //Get Eulers in radians
-    Eigen::Vector3f rpy = mat3.eulerAngles(0,1,2); //0 = roll, 1 = pitch, 2 = yaw
-    Eigen::Quaternionf q(mat3);
-
-    //Radians to degrees
-    rpy[0] = (rpy[0]*180)/M_PI; 
-    rpy[1] = (rpy[1]*180)/M_PI; 
-    rpy[2] = (rpy[2]*180)/M_PI; 
-
-    return(std::make_tuple(rpy, q));
 }
