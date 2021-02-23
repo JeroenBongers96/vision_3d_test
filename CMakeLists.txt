@@ -241,7 +241,7 @@ link_directories(${PCL_LIBRARY_DIRS})
 link_directories(${OpenCV_LIBRARY_DIRS})
 
 FILE(GLOB_RECURSE SRC_FILES src/*.cpp)
-FILE(GLOB_RECURSE HDR_FILES include/*.hpp)
+FILE(GLOB_RECURSE HDR_FILES include/*.h)
 
 add_definitions(${PCL_DEFINITIONS})
 add_definitions(-std=c++14 -O3)

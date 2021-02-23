@@ -7,7 +7,7 @@
 #include "ImageData.h"
 #include "GetRoi.h"
 #include "ProcessData.h"
-#include "ProcessResults.h"
+#include "Visualize.h"
 #include <pcl/pcl_config.h>
 
 using namespace std;
@@ -34,7 +34,6 @@ int main(int argc, char** argv)
     GetRoi img_roi;
     GetData get_data(debug, create_data, save_data);
     ProcessData process;
-    ProcessResults res;
 
     get_data.getData(my_data);
 
@@ -49,35 +48,46 @@ int main(int argc, char** argv)
     // Cut out ROI
     // object = process.cutROI(my_data, roi_vect);
 
-    // Get table
-    table = process.getPlainRANSAC(my_data.original_cloud);
+    // Get table cloud
+    object = process.getPlainRANSAC(my_data.original_cloud);
 
-    std::tie(transform, rpy, q, odom) = res.momentOfInertia(table);
+    // Get transformation
+    std::tie(transform, rpy, q, odom) = process.momentOfInertia(object);
+    
+    //Ros quaternion transformation, this can be broadcaster
+    tf2::Quaternion q_tf(q.x(), q.y(), q.z(), q.w()); 
 
-    // Display cv img in a GUI
-    cv::namedWindow("Display Image", cv::WINDOW_AUTOSIZE );
-    cv::imshow("Display Image", my_data.cv_img);
-    cv::waitKey(0);
+    if(debug)
+        {   
+            cout << endl;
 
-    //Add cloud to visualizer
-    pcl::visualization::PCLVisualizer viewer("Cloud Viewer");
-    // Set background of viewer to black
-    viewer.setBackgroundColor (0, 0, 0); 
-    // Viewer Properties
-    viewer.initCameraParameters();  // Camera Parameters for ease of viewing
+            cout << "===Position==================" << endl;
+            cout << "X axis: " << transform(0,3) << endl;
+            cout << "Y axis: " << transform(1,3) << endl;
+            cout << "Z axis: " << transform(2,3) << endl<< endl;
+            
+            cout << "===Rotations in Euler==================" << endl;
+            cout << "Rotation around X axis (Roll): " << rpy[0] << "°" << endl;
+            cout << "Rotation around Y axis (Pitch): " << rpy[1] << "°" << endl;
+            cout << "Rotation around Z axis (Yaw): " << rpy[2] << "°" << endl<< endl;
 
-    // viewer.addPointCloud (my_data.original_cloud,"pcd");
-    // viewer.addPointCloud (object,"pcd");
-    viewer.addPointCloud (table,"pcd");
+            cout << "===Rotations in Quaternion==================" << endl;
+            cout << "Rotation quaternion x: " << q_tf[0] << endl;
+            cout << "Rotation quaternion y: " << q_tf[1] << endl;
+            cout << "Rotation quaternion z: " << q_tf[2] << endl;
+            cout << "Rotation quaternion w: " << q_tf[3] << endl;
 
-    // Default size for rendered points
-    //viewer.setPointCloudRenderingProperties (pcl::visualization::PCL_VISUALIZER_POINT_SIZE, 1, "pcd");
+            cout << "===Location matrix=====================" << endl;
+            cout << transform << endl;
 
-    while(!viewer.wasStopped ())
-    {
-        viewer.spinOnce(100);
-        boost::this_thread::sleep (boost::posix_time::microseconds (100000));        
-    }    
+            Visualize vis(debug);
+            shared_ptr<pcl::visualization::PCLVisualizer> viewer = vis.createViewer();
+            viewer = vis.addOriginalColorCloud(viewer, my_data.original_cloud);
+            //viewer = vis.addCustomColorCloud(viewer, transformed_cloud);
+            // viewer = vis.addCustomColorCloud(viewer, object);
+            viewer = vis.addOdom(viewer, odom);
+            vis.visualizePCL(viewer);
+        }
 
     return 0;
 };
