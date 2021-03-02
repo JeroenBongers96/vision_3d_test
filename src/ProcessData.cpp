@@ -124,7 +124,7 @@ pcl::PointCloud<pcl::PointXYZRGB>::Ptr ProcessData::getPlainRANSAC(const pcl::Po
     //std::cout << "PointCloud representing the segmented component: " << cloud_f->points.size () << " data points." << std::endl;
     // *cloud = *cloud_f;
     // }
-    return cloud_object;
+    return cloud_plane;
 }
 
 // ----------------------------------------------------------------------------------------------------

@@ -37,26 +37,29 @@ int main(int argc, char** argv)
 
     get_data.getData(my_data);
 
-    //Use Yolo and draw rectangle around ROI
+    // Use Yolo and draw rectangle around ROI
     // roi_vect = img_roi.Yolo(argc, argv, my_data.cv_img, debug);
     // print(roi_vect);
-    cout << "CV mat rows: " << my_data.cv_img.rows << endl;
-    cout << "CV mat cols: " << my_data.cv_img.cols << endl;
-    vector<int> roi_vect{100, 100, 400, 400};
-    cv::rectangle(my_data.cv_img, cv::Point(roi_vect[0], roi_vect[1]), cv::Point(roi_vect[2], roi_vect[3]), (0,255,0), 3);
+
+    // Create own rectangle to bypass Yolo. Purely for testing.
+    // cout << "CV mat rows: " << my_data.cv_img.rows << endl;
+    // cout << "CV mat cols: " << my_data.cv_img.cols << endl;
+    // vector<int> roi_vect{100, 100, 400, 400};
+    // cv::rectangle(my_data.cv_img, cv::Point(roi_vect[0], roi_vect[1]), cv::Point(roi_vect[2], roi_vect[3]), (0,255,0), 3);
 
     // Cut out ROI
     // object = process.cutROI(my_data, roi_vect);
 
     // Get table cloud
-    object = process.getPlainRANSAC(my_data.original_cloud);
+    table = process.getPlainRANSAC(my_data.original_cloud);
 
     // Get transformation
-    std::tie(transform, rpy, q, odom) = process.momentOfInertia(object);
+    std::tie(transform, rpy, q, odom) = process.momentOfInertia(table);
     
-    //Ros quaternion transformation, this can be broadcaster
+    // Ros quaternion transformation, this can be broadcaster
     tf2::Quaternion q_tf(q.x(), q.y(), q.z(), q.w()); 
 
+    // Show result
     if(debug)
         {   
             cout << endl;
@@ -83,7 +86,7 @@ int main(int argc, char** argv)
             Visualize vis(debug);
             shared_ptr<pcl::visualization::PCLVisualizer> viewer = vis.createViewer();
             viewer = vis.addOriginalColorCloud(viewer, my_data.original_cloud);
-            viewer = vis.addCustomColorCloud(viewer, object);
+            viewer = vis.addCustomColorCloud(viewer, table);
             // viewer = vis.addCustomColorCloud(viewer, object);
             viewer = vis.addOdom(viewer, odom);
             vis.visualizePCL(viewer);
