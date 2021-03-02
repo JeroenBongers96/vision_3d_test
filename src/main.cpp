@@ -83,7 +83,7 @@ int main(int argc, char** argv)
             Visualize vis(debug);
             shared_ptr<pcl::visualization::PCLVisualizer> viewer = vis.createViewer();
             viewer = vis.addOriginalColorCloud(viewer, my_data.original_cloud);
-            //viewer = vis.addCustomColorCloud(viewer, transformed_cloud);
+            viewer = vis.addCustomColorCloud(viewer, object);
             // viewer = vis.addCustomColorCloud(viewer, object);
             viewer = vis.addOdom(viewer, odom);
             vis.visualizePCL(viewer);
