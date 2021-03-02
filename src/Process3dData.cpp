@@ -1,6 +1,6 @@
-#include "ProcessData.h"
+#include "Process3dData.h"
 
-ProcessData::ProcessData()
+Process3dData::Process3dData()
 {
     ;
 }
@@ -10,7 +10,7 @@ ProcessData::ProcessData()
 /**
  * Cut ROI of point clouds
  */
-pcl::PointCloud<pcl::PointXYZRGB>::Ptr ProcessData::cutROI(const ImageData &my_data, std::vector<int> roi_vec)
+pcl::PointCloud<pcl::PointXYZRGB>::Ptr Process3dData::cutROI(const ImageData &my_data, std::vector<int> roi_vec)
 {
     pcl::PointCloud<pcl::PointXYZRGB>::Ptr object (new pcl::PointCloud<pcl::PointXYZRGB>);
     
@@ -74,7 +74,7 @@ pcl::PointCloud<pcl::PointXYZRGB>::Ptr ProcessData::cutROI(const ImageData &my_d
  * Plane model segmentation extracts the planes of a point cloud using the RANSAC method as the robust estimator. * 
  */
 // Segmentation member function
-pcl::PointCloud<pcl::PointXYZRGB>::Ptr ProcessData::getPlainRANSAC(const pcl::PointCloud<pcl::PointXYZRGB>::Ptr &cloud)
+pcl::PointCloud<pcl::PointXYZRGB>::Ptr Process3dData::getPlainRANSAC(const pcl::PointCloud<pcl::PointXYZRGB>::Ptr &cloud)
 {
     pcl::PointCloud<pcl::PointXYZRGB>::Ptr cloud_plane (new pcl::PointCloud<pcl::PointXYZRGB> ());
     pcl::PointCloud<pcl::PointXYZRGB>::Ptr cloud_object (new pcl::PointCloud<pcl::PointXYZRGB>);
@@ -136,7 +136,7 @@ pcl::PointCloud<pcl::PointXYZRGB>::Ptr ProcessData::getPlainRANSAC(const pcl::Po
  * Yaw around Z axis
  * https://stackoverflow.com/questions/27508242/roll-pitch-and-yaw-from-rotation-matrix-with-eigen-library
  */
-std::tuple<Eigen::Vector3f, Eigen::Quaternionf> ProcessData::getRotation(Eigen::Matrix4f mat4)
+std::tuple<Eigen::Vector3f, Eigen::Quaternionf> Process3dData::getRotation(Eigen::Matrix4f mat4)
 {
     //4*4 to 3*3 matrix
     Eigen::Matrix3f mat3 = Eigen::Matrix3f::Identity();
@@ -161,7 +161,7 @@ std::tuple<Eigen::Vector3f, Eigen::Quaternionf> ProcessData::getRotation(Eigen::
 /**
  * Get the transformation of a cloud
  */
-std::tuple<Eigen::Matrix4f, Eigen::Vector3f, Eigen::Quaternionf, std::vector<pcl::PointXYZ>> ProcessData::momentOfInertia(pcl::PointCloud<pcl::PointXYZRGB>::Ptr in_cloud)
+std::tuple<Eigen::Matrix4f, Eigen::Vector3f, Eigen::Quaternionf, std::vector<pcl::PointXYZ>> Process3dData::momentOfInertia(pcl::PointCloud<pcl::PointXYZRGB>::Ptr in_cloud)
 {
     pcl::PointCloud<pcl::PointXYZ>::Ptr cloud (new pcl::PointCloud<pcl::PointXYZ> ());
     copyPointCloud(*in_cloud, *cloud);  // Copy XYZRGB pcd to XYZ pcd ofr momentOfInertia functions

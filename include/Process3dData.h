@@ -1,5 +1,5 @@
-#ifndef PROCESSDATA_H
-#define PROCESSDATA_H
+#ifndef PROCESS3DDATA_H
+#define PROCESS3DDATA_H
 
 #include <iostream>
 #include <pcl/point_cloud.h>
@@ -20,12 +20,12 @@
 #include <tf_conversions/tf_eigen.h>
 #include <tf/transform_broadcaster.h>
 
-class ProcessData
+class Process3dData
 {
     private:
         std::tuple<Eigen::Vector3f, Eigen::Quaternionf> getRotation(Eigen::Matrix4f mat4);
     public:
-        ProcessData();
+        Process3dData();
         pcl::PointCloud<pcl::PointXYZRGB>::Ptr cutROI(const ImageData &my_data, std::vector<int> roi_vec);
         pcl::PointCloud<pcl::PointXYZRGB>::Ptr getPlainRANSAC(const pcl::PointCloud<pcl::PointXYZRGB>::Ptr &cloud);
         std::tuple<Eigen::Matrix4f, Eigen::Vector3f, Eigen::Quaternionf, std::vector<pcl::PointXYZ>> momentOfInertia(pcl::PointCloud<pcl::PointXYZRGB>::Ptr cloud);
