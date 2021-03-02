@@ -6,7 +6,7 @@
 #include "GetData.h"
 #include "ImageData.h"
 #include "GetRoi.h"
-#include "ProcessData.h"
+#include "Process3dData.h"
 #include "Visualize.h"
 #include <pcl/pcl_config.h>
 
@@ -33,7 +33,7 @@ int main(int argc, char** argv)
     ImageData my_data;
     GetRoi img_roi;
     GetData get_data(debug, create_data, save_data);
-    ProcessData process;
+    Process3dData process;
 
     get_data.getData(my_data);
 
@@ -45,7 +45,7 @@ int main(int argc, char** argv)
     // cout << "CV mat rows: " << my_data.cv_img.rows << endl;
     // cout << "CV mat cols: " << my_data.cv_img.cols << endl;
     // vector<int> roi_vect{100, 100, 400, 400};
-    // cv::rectangle(my_data.cv_img, cv::Point(roi_vect[0], roi_vect[1]), cv::Point(roi_vect[2], roi_vect[3]), (0,255,0), 3);
+    // cv::rectangle(my_data.cv_img, cv::Point(roi_vect[0], roi_vect[1]), cv::Point(roi_vect[2], roi_vect[3]), (0,255,0), 3);s
 
     // Cut out ROI
     // object = process.cutROI(my_data, roi_vect);
