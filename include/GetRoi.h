@@ -10,7 +10,6 @@
 #include "vision_3d_test/GetRoi.h"
 
 using namespace std;
-using namespace cv;
 
 class GetRoi
 {
@@ -18,7 +17,7 @@ class GetRoi
 
     public:
         GetRoi();
-        vector<int> Yolo(int argc, char **argv, Mat img, bool debug);
+        vector<int> Yolo(int argc, char **argv, cv::Mat img, bool debug);
 };
 
 #endif

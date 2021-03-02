@@ -7,10 +7,10 @@ GetRoi::GetRoi()
     cout << "GetRoi created" << endl;
 }
 
-vector<int> GetRoi::Yolo(int argc, char **argv, Mat img, bool debug)
+vector<int> GetRoi::Yolo(int argc, char **argv, cv::Mat img, bool debug)
 {
     vector<int> roi_vect;
-    Mat rgb_img = img;
+    cv::Mat rgb_img = img;
 
     ros::init(argc, argv, "get_roi_client");
     ros::NodeHandle n;
