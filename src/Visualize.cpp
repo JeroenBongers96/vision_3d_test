@@ -102,7 +102,6 @@ void Visualize::visualizePCL(shared_ptr<pcl::visualization::PCLVisualizer> viewe
  */
 vector<int> Visualize::color_changer(int count)
 {
-    std::cout << "Count: " << count << std::endl;
     vector<int> color(3);
     switch(count)
     {
@@ -160,6 +159,5 @@ vector<int> Visualize::color_changer(int count)
             break;
     }
 
-    std::cout << "color 0: " << color.at(0) << " color 1: " << color.at(1) << " color 2: " << color.at(2) << std::endl;
     return(color);
 }
