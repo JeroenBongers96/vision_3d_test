@@ -9,7 +9,7 @@ class Process2dData
 {
     private:
         cv::Mat removeNoneRoi(const cv::Mat& original_img, std::vector<int> roi_vect);
-        void edgeDetection(const cv::Mat& img);
+        cv::Mat edgeDetection(const cv::Mat& img, std::vector<int> roi_vect);
     public:
         Process2dData();
         cv::Mat getBinaryImg(const cv::Mat& original_img, std::vector<int> roi_vect);

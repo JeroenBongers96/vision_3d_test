@@ -8,6 +8,38 @@ Process3dData::Process3dData()
 // ----------------------------------------------------------------------------------------------------
 
 /**
+ * Cut objct out of point clouds based on getBinaryImg() from Process2dData 
+ */
+pcl::PointCloud<pcl::PointXYZRGB>::Ptr Process3dData::cutObj(const cv::Mat &cv_img, const pcl::PointCloud<pcl::PointXYZRGB>::Ptr &cloud)
+{
+    int rows = cv_img.rows;
+    int cols = cv_img.cols;
+
+    pcl::PointCloud<pcl::PointXYZRGB>::Ptr object(new pcl::PointCloud<pcl::PointXYZRGB>);
+
+    // object->width = cols;
+    // object->height = rows;
+    // object->points.resize (object->width * object->height);
+    
+    const float bad_point = std::numeric_limits<float>::quiet_NaN();
+
+    for(int y = 0; y < rows; ++y)
+    {
+        for(int x = 0; x < cols; ++x)
+        {
+            if(cv_img.at<uchar>(y,x) == 255 && cloud->at(x, y).z != 0)
+            {
+                object->push_back(cloud->at(x, y));
+            }
+        }
+    }
+
+    return( object ); 
+}
+
+// ----------------------------------------------------------------------------------------------------
+
+/**
  * Cut ROI of point clouds
  */
 pcl::PointCloud<pcl::PointXYZRGB>::Ptr Process3dData::cutROI(const ImageData &my_data, std::vector<int> roi_vec)

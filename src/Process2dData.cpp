@@ -32,50 +32,63 @@ cv::Mat Process2dData::removeNoneRoi(const cv::Mat& original_img, std::vector<in
     return(roi_img);
 }
 
-void Process2dData::edgeDetection(const cv::Mat& img)
+cv::Mat Process2dData::edgeDetection(const cv::Mat& img, std::vector<int> roi_vect)
 {
+    int rows = img.rows;
+    int cols = img.cols;
+
+    cv::Mat res_img = cv::Mat::zeros(cv::Size(cols,rows),CV_8UC1);
     cv::Mat bil_img, gray_img, canny_img;
 
-    // cv::bilateralFilter(img, bil_img, 3, 5, 3);
+    // Blur img
     cv::bilateralFilter(img, bil_img, 6, 30, 30);
 
+    // Convert to grayscale
     cv::cvtColor(bil_img, gray_img, cv::COLOR_BGR2GRAY);
 
+    // Canny edge detection
     cv::Canny(gray_img,canny_img,35,90);
 
-    // ------------NOTE---------------
-    // Check how contours work with their anarchy. find outer contour of canny's results and remove contour of ROI.
-    // Then use fillPoly to fill the object plane
+    // Remove contours of background
+    for(int y = 0; y < rows; ++y)
+    {
+        for(int x = 0; x < cols; ++x)
+        {
+            if(x < roi_vect[0] + 5 || x > roi_vect[2] - 5 || y < roi_vect[1] + 5 || y > roi_vect[3] - 5)
+            {
+                canny_img.at<uchar>(y,x) = 0;
+            }
+        }
 
+    }
+
+    // Get contours
     std::vector<std::vector<cv::Point> > contours;
-    std::vector<cv::Vec4i> hierarchy;
-    cv::findContours( canny_img, contours, hierarchy, cv::RETR_TREE, cv::CHAIN_APPROX_SIMPLE );
+    cv::findContours( canny_img, contours, cv::RETR_TREE, cv::CHAIN_APPROX_SIMPLE );
 
-    cv::namedWindow( "imag", cv::WINDOW_AUTOSIZE );
-    cv::namedWindow( "bil image", cv::WINDOW_AUTOSIZE );
-    cv::namedWindow( "Gray image", cv::WINDOW_AUTOSIZE );
-    cv::namedWindow( "Canny image", cv::WINDOW_AUTOSIZE );
+    // Get convex hull
+    std::vector<std::vector<cv::Point>> hull( contours.size() );
+    for( size_t i = 0; i < contours.size(); i++ )
+    {
+        cv::convexHull( contours[i], hull[i] );
+    }
 
+    // Fill poly
+    cv::fillPoly(res_img, hull, cv::Scalar(255,255,255), 8, 0);
 
-    cv::imshow( "imag", img );
-    cv::imshow( "bil image", bil_img );
-    cv::imshow( "Gray image", gray_img );
-    cv::imshow( "Canny image", canny_img );
-
-    cv::waitKey(0);
+    return( res_img );
 }
 
 cv::Mat Process2dData::getBinaryImg(const cv::Mat& original_img, std::vector<int> roi_vect)
 {
     std::cout << "Get Binary img" << std::endl;
 
-    // Create black img
-    cv::Mat bin_img(480, 640, CV_8UC3, cv::Scalar(0,0,0));
-    
+    // "Cut" out roi of img
     cv::Mat roi_img = removeNoneRoi(original_img, roi_vect);
 
-    edgeDetection(roi_img);
+    // Get binary image of object
+    cv::Mat bin_obj_img = edgeDetection(roi_img, roi_vect);
 
-    return(roi_img);
+    return(bin_obj_img);
 }
 
