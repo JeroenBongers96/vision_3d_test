@@ -26,6 +26,7 @@ class Process3dData
         std::tuple<Eigen::Vector3f, Eigen::Quaternionf> getRotation(Eigen::Matrix4f mat4);
     public:
         Process3dData();
+        pcl::PointCloud<pcl::PointXYZRGB>::Ptr cutObj(const cv::Mat &cv_img, const pcl::PointCloud<pcl::PointXYZRGB>::Ptr &cloud);
         pcl::PointCloud<pcl::PointXYZRGB>::Ptr cutROI(const ImageData &my_data, std::vector<int> roi_vec);
         pcl::PointCloud<pcl::PointXYZRGB>::Ptr getPlainRANSAC(const pcl::PointCloud<pcl::PointXYZRGB>::Ptr &cloud);
         std::tuple<Eigen::Matrix4f, Eigen::Vector3f, Eigen::Quaternionf, std::vector<pcl::PointXYZ>> momentOfInertia(pcl::PointCloud<pcl::PointXYZRGB>::Ptr cloud);
