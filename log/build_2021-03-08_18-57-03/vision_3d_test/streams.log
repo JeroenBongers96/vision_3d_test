@@ -1,0 +1,128 @@
+[0.035s] Invoking command in '/home/robohub/dev_ws/src/vision_3d_test/build/vision_3d_test': /usr/bin/cmake --build /home/robohub/dev_ws/src/vision_3d_test/build/vision_3d_test -- -j2 -l2
+[0.110s] -- Found ament_cmake: 0.9.8 (/opt/ros/foxy/share/ament_cmake/cmake)
+[0.146s] -- Using PYTHON_EXECUTABLE: /usr/bin/python3
+[0.426s] -- Found rclcpp: 2.3.0 (/opt/ros/foxy/share/rclcpp/cmake)
+[0.472s] -- Using all available rosidl_typesupport_c: rosidl_typesupport_fastrtps_c;rosidl_typesupport_introspection_c
+[0.477s] -- Found rosidl_adapter: 1.2.0 (/opt/ros/foxy/share/rosidl_adapter/cmake)
+[0.646s] -- Using all available rosidl_typesupport_cpp: rosidl_typesupport_fastrtps_cpp;rosidl_typesupport_introspection_cpp
+[0.717s] -- Found rmw_implementation_cmake: 1.0.2 (/opt/ros/foxy/share/rmw_implementation_cmake/cmake)
+[0.719s] -- Using RMW implementation 'rmw_fastrtps_cpp' as default
+[0.928s] -- Found rclpy: 1.0.5 (/opt/ros/foxy/share/rclpy/cmake)
+[0.943s] -- Eigen found (include: /usr/include/eigen3, version: 3.3.7)
+[1.074s] -- The imported target "vtkParseOGLExt" references the file
+[1.074s]    "/usr/bin/vtkParseOGLExt-7.1"
+[1.074s] but this file does not exist.  Possible reasons include:
+[1.074s] * The file was deleted, renamed, or moved to another location.
+[1.074s] * An install or uninstall procedure did not complete successfully.
+[1.074s] * The installation package was faulty and contained
+[1.074s]    "/usr/lib/cmake/vtk-7.1/VTKTargets.cmake"
+[1.074s] but not all the files it references.
+[1.074s] 
+[1.081s] -- The imported target "vtkRenderingPythonTkWidgets" references the file
+[1.081s]    "/usr/lib/x86_64-linux-gnu/libvtkRenderingPythonTkWidgets.so"
+[1.081s] but this file does not exist.  Possible reasons include:
+[1.081s] * The file was deleted, renamed, or moved to another location.
+[1.081s] * An install or uninstall procedure did not complete successfully.
+[1.081s] * The installation package was faulty and contained
+[1.081s]    "/usr/lib/cmake/vtk-7.1/VTKTargets.cmake"
+[1.082s] but not all the files it references.
+[1.082s] 
+[1.082s] -- The imported target "vtk" references the file
+[1.083s]    "/usr/bin/vtk"
+[1.083s] but this file does not exist.  Possible reasons include:
+[1.083s] * The file was deleted, renamed, or moved to another location.
+[1.083s] * An install or uninstall procedure did not complete successfully.
+[1.084s] * The installation package was faulty and contained
+[1.084s]    "/usr/lib/cmake/vtk-7.1/VTKTargets.cmake"
+[1.084s] but not all the files it references.
+[1.084s] 
+[1.091s] -- The imported target "pvtk" references the file
+[1.091s]    "/usr/bin/pvtk"
+[1.091s] but this file does not exist.  Possible reasons include:
+[1.091s] * The file was deleted, renamed, or moved to another location.
+[1.091s] * An install or uninstall procedure did not complete successfully.
+[1.091s] * The installation package was faulty and contained
+[1.091s]    "/usr/lib/cmake/vtk-7.1/VTKTargets.cmake"
+[1.092s] but not all the files it references.
+[1.092s] 
+[1.116s] -- Checking for module 'libusb-1.0'
+[1.121s] --   No package 'libusb-1.0' found
+[1.125s] -- Could NOT find USB_10 (missing: USB_10_LIBRARY USB_10_INCLUDE_DIR) 
+[1.125s] -- OpenNI disabled because libusb-1.0 not found.
+[1.126s] ** WARNING ** io features related to openni will be disabled
+[1.136s] -- Checking for module 'libusb-1.0'
+[1.142s] --   No package 'libusb-1.0' found
+[1.148s] -- Could NOT find USB_10 (missing: USB_10_LIBRARY USB_10_INCLUDE_DIR) 
+[1.148s] -- OpenNI 2 disabled because libusb-1.0 not found.
+[1.149s] ** WARNING ** io features related to openni2 will be disabled
+[1.149s] ** WARNING ** io features related to pcap will be disabled
+[1.149s] ** WARNING ** io features related to png will be disabled
+[1.170s] -- LIBUSB_1_LIBRARY (missing: LIBUSB_1_INCLUDE_DIR) 
+[1.170s] ** WARNING ** io features related to libusb-1.0 will be disabled
+[1.178s] -- Checking for module 'libusb-1.0'
+[1.184s] --   No package 'libusb-1.0' found
+[1.189s] -- Could NOT find USB_10 (missing: USB_10_LIBRARY USB_10_INCLUDE_DIR) 
+[1.189s] -- OpenNI disabled because libusb-1.0 not found.
+[1.189s] ** WARNING ** visualization features related to openni will be disabled
+[1.204s] -- Checking for module 'libusb-1.0'
+[1.210s] --   No package 'libusb-1.0' found
+[1.214s] -- Could NOT find USB_10 (missing: USB_10_LIBRARY USB_10_INCLUDE_DIR) 
+[1.214s] -- OpenNI 2 disabled because libusb-1.0 not found.
+[1.214s] ** WARNING ** visualization features related to openni2 will be disabled
+[1.241s] -- QHULL found (include: /usr/include, lib: optimized;/usr/lib/x86_64-linux-gnu/libqhull.so;debug;/usr/lib/x86_64-linux-gnu/libqhull.so)
+[1.248s] -- Checking for module 'libusb-1.0'
+[1.254s] --   No package 'libusb-1.0' found
+[1.257s] -- Could NOT find USB_10 (missing: USB_10_LIBRARY USB_10_INCLUDE_DIR) 
+[1.257s] -- OpenNI disabled because libusb-1.0 not found.
+[1.258s] ** WARNING ** apps features related to openni will be disabled
+[1.278s] -- looking for PCL_COMMON
+[1.279s] -- looking for PCL_KDTREE
+[1.280s] -- looking for PCL_OCTREE
+[1.280s] -- looking for PCL_SEARCH
+[1.281s] -- looking for PCL_SAMPLE_CONSENSUS
+[1.282s] -- looking for PCL_FILTERS
+[1.283s] -- looking for PCL_2D
+[1.284s] -- looking for PCL_GEOMETRY
+[1.284s] -- looking for PCL_IO
+[1.285s] -- looking for PCL_FEATURES
+[1.286s] -- looking for PCL_ML
+[1.287s] -- looking for PCL_SEGMENTATION
+[1.288s] -- looking for PCL_VISUALIZATION
+[1.289s] -- looking for PCL_SURFACE
+[1.290s] -- looking for PCL_REGISTRATION
+[1.291s] -- looking for PCL_KEYPOINTS
+[1.292s] -- looking for PCL_TRACKING
+[1.293s] -- looking for PCL_RECOGNITION
+[1.294s] -- looking for PCL_STEREO
+[1.294s] -- looking for PCL_APPS
+[1.296s] -- looking for PCL_IN_HAND_SCANNER
+[1.297s] -- looking for PCL_POINT_CLOUD_EDITOR
+[1.297s] -- looking for PCL_OUTOFCORE
+[1.298s] -- looking for PCL_PEOPLE
+[1.401s] -- Configuring done
+[1.521s] -- Generating done
+[1.526s] -- Build files have been written to: /home/robohub/dev_ws/src/vision_3d_test/build/vision_3d_test
+[1.568s] [35m[1mScanning dependencies of target cpp_executable[0m
+[1.586s] [ 12%] [32mBuilding CXX object CMakeFiles/cpp_executable.dir/src/GetData.cpp.o[0m
+[1.589s] [ 25%] [32mBuilding CXX object CMakeFiles/cpp_executable.dir/src/GetRoi.cpp.o[0m
+[2.195s] In file included from [01m[K/home/robohub/dev_ws/src/vision_3d_test/src/GetRoi.cpp:1[m[K:
+[2.196s] [01m[K/home/robohub/dev_ws/src/vision_3d_test/include/GetRoi.h:6:10:[m[K [01;31m[Kfatal error: [m[Kros/ros.h: No such file or directory
+[2.196s]     6 | #include [01;31m[K<ros/ros.h>[m[K
+[2.196s]       |          [01;31m[K^~~~~~~~~~~[m[K
+[2.196s] compilation terminated.
+[2.201s] make[2]: *** [CMakeFiles/cpp_executable.dir/build.make:76: CMakeFiles/cpp_executable.dir/src/GetRoi.cpp.o] Error 1
+[2.201s] make[2]: *** Waiting for unfinished jobs....
+[13.074s] [01m[K/home/robohub/dev_ws/src/vision_3d_test/src/GetData.cpp:[m[K In member function ‘[01m[Kvoid GetData::pclConversion(const rs2::points&, const rs2::video_frame&, pcl::PointCloud<pcl::PointXYZRGB>::Ptr&)[m[K’:
+[13.074s] [01m[K/home/robohub/dev_ws/src/vision_3d_test/src/GetData.cpp:74:23:[m[K [01;35m[Kwarning: [m[Kcomparison of integer expressions of different signedness: ‘[01m[Kint[m[K’ and ‘[01m[Ksize_t[m[K’ {aka ‘[01m[Klong unsigned int[m[K’} [[01;35m[K-Wsign-compare[m[K]
+[13.074s]    74 |     for (int i = 0; [01;35m[Ki < points.size()[m[K; i++)
+[13.074s]       |                     [01;35m[K~~^~~~~~~~~~~~~~~[m[K
+[13.086s] [01m[K/home/robohub/dev_ws/src/vision_3d_test/src/GetData.cpp:[m[K In member function ‘[01m[Kcv::Mat GetData::cvFromPcl(const Ptr&)[m[K’:
+[13.086s] [01m[K/home/robohub/dev_ws/src/vision_3d_test/src/GetData.cpp:183:22:[m[K [01;35m[Kwarning: [m[Kcomparison of integer expressions of different signedness: ‘[01m[Kint[m[K’ and ‘[01m[Kuint32_t[m[K’ {aka ‘[01m[Kunsigned int[m[K’} [[01;35m[K-Wsign-compare[m[K]
+[13.086s]   183 |     for(int y = 0; [01;35m[Ky < cloud->height[m[K; ++y)
+[13.086s]       |                    [01;35m[K~~^~~~~~~~~~~~~~~[m[K
+[13.086s] [01m[K/home/robohub/dev_ws/src/vision_3d_test/src/GetData.cpp:185:26:[m[K [01;35m[Kwarning: [m[Kcomparison of integer expressions of different signedness: ‘[01m[Kint[m[K’ and ‘[01m[Kuint32_t[m[K’ {aka ‘[01m[Kunsigned int[m[K’} [[01;35m[K-Wsign-compare[m[K]
+[13.086s]   185 |         for(int x = 0; [01;35m[Kx < cloud->width[m[K; ++x)
+[13.086s]       |                        [01;35m[K~~^~~~~~~~~~~~~~[m[K
+[19.964s] make[1]: *** [CMakeFiles/Makefile2:78: CMakeFiles/cpp_executable.dir/all] Error 2
+[19.964s] make: *** [Makefile:141: all] Error 2
+[19.970s] Invoked command in '/home/robohub/dev_ws/src/vision_3d_test/build/vision_3d_test' returned '2': /usr/bin/cmake --build /home/robohub/dev_ws/src/vision_3d_test/build/vision_3d_test -- -j2 -l2

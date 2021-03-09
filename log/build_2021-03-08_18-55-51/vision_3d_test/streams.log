@@ -1,0 +1,113 @@
+[0.026s] Invoking command in '/home/robohub/dev_ws/src/vision_3d_test/build/vision_3d_test': /usr/bin/cmake --build /home/robohub/dev_ws/src/vision_3d_test/build/vision_3d_test -- -j2 -l2
+[0.070s] -- Found ament_cmake: 0.9.8 (/opt/ros/foxy/share/ament_cmake/cmake)
+[0.104s] -- Using PYTHON_EXECUTABLE: /usr/bin/python3
+[0.378s] -- Found rclcpp: 2.3.0 (/opt/ros/foxy/share/rclcpp/cmake)
+[0.424s] -- Using all available rosidl_typesupport_c: rosidl_typesupport_fastrtps_c;rosidl_typesupport_introspection_c
+[0.428s] -- Found rosidl_adapter: 1.2.0 (/opt/ros/foxy/share/rosidl_adapter/cmake)
+[0.595s] -- Using all available rosidl_typesupport_cpp: rosidl_typesupport_fastrtps_cpp;rosidl_typesupport_introspection_cpp
+[0.669s] -- Found rmw_implementation_cmake: 1.0.2 (/opt/ros/foxy/share/rmw_implementation_cmake/cmake)
+[0.671s] -- Using RMW implementation 'rmw_fastrtps_cpp' as default
+[0.881s] -- Found rclpy: 1.0.5 (/opt/ros/foxy/share/rclpy/cmake)
+[0.896s] -- Eigen found (include: /usr/include/eigen3, version: 3.3.7)
+[1.022s] -- The imported target "vtkParseOGLExt" references the file
+[1.022s]    "/usr/bin/vtkParseOGLExt-7.1"
+[1.022s] but this file does not exist.  Possible reasons include:
+[1.022s] * The file was deleted, renamed, or moved to another location.
+[1.022s] * An install or uninstall procedure did not complete successfully.
+[1.022s] * The installation package was faulty and contained
+[1.022s]    "/usr/lib/cmake/vtk-7.1/VTKTargets.cmake"
+[1.022s] but not all the files it references.
+[1.022s] 
+[1.023s] -- The imported target "vtkRenderingPythonTkWidgets" references the file
+[1.023s]    "/usr/lib/x86_64-linux-gnu/libvtkRenderingPythonTkWidgets.so"
+[1.023s] but this file does not exist.  Possible reasons include:
+[1.023s] * The file was deleted, renamed, or moved to another location.
+[1.023s] * An install or uninstall procedure did not complete successfully.
+[1.023s] * The installation package was faulty and contained
+[1.024s]    "/usr/lib/cmake/vtk-7.1/VTKTargets.cmake"
+[1.024s] but not all the files it references.
+[1.024s] 
+[1.024s] -- The imported target "vtk" references the file
+[1.024s]    "/usr/bin/vtk"
+[1.024s] but this file does not exist.  Possible reasons include:
+[1.024s] * The file was deleted, renamed, or moved to another location.
+[1.025s] * An install or uninstall procedure did not complete successfully.
+[1.025s] * The installation package was faulty and contained
+[1.025s]    "/usr/lib/cmake/vtk-7.1/VTKTargets.cmake"
+[1.025s] but not all the files it references.
+[1.025s] 
+[1.025s] -- The imported target "pvtk" references the file
+[1.025s]    "/usr/bin/pvtk"
+[1.025s] but this file does not exist.  Possible reasons include:
+[1.025s] * The file was deleted, renamed, or moved to another location.
+[1.025s] * An install or uninstall procedure did not complete successfully.
+[1.025s] * The installation package was faulty and contained
+[1.026s]    "/usr/lib/cmake/vtk-7.1/VTKTargets.cmake"
+[1.026s] but not all the files it references.
+[1.026s] 
+[1.055s] -- Checking for module 'libusb-1.0'
+[1.060s] --   No package 'libusb-1.0' found
+[1.064s] -- Could NOT find USB_10 (missing: USB_10_LIBRARY USB_10_INCLUDE_DIR) 
+[1.064s] -- OpenNI disabled because libusb-1.0 not found.
+[1.064s] ** WARNING ** io features related to openni will be disabled
+[1.070s] -- Checking for module 'libusb-1.0'
+[1.074s] --   No package 'libusb-1.0' found
+[1.077s] -- Could NOT find USB_10 (missing: USB_10_LIBRARY USB_10_INCLUDE_DIR) 
+[1.077s] -- OpenNI 2 disabled because libusb-1.0 not found.
+[1.077s] ** WARNING ** io features related to openni2 will be disabled
+[1.078s] ** WARNING ** io features related to pcap will be disabled
+[1.078s] ** WARNING ** io features related to png will be disabled
+[1.097s] -- LIBUSB_1_LIBRARY (missing: LIBUSB_1_INCLUDE_DIR) 
+[1.097s] ** WARNING ** io features related to libusb-1.0 will be disabled
+[1.103s] -- Checking for module 'libusb-1.0'
+[1.107s] --   No package 'libusb-1.0' found
+[1.111s] -- Could NOT find USB_10 (missing: USB_10_LIBRARY USB_10_INCLUDE_DIR) 
+[1.111s] -- OpenNI disabled because libusb-1.0 not found.
+[1.111s] ** WARNING ** visualization features related to openni will be disabled
+[1.118s] -- Checking for module 'libusb-1.0'
+[1.122s] --   No package 'libusb-1.0' found
+[1.126s] -- Could NOT find USB_10 (missing: USB_10_LIBRARY USB_10_INCLUDE_DIR) 
+[1.127s] -- OpenNI 2 disabled because libusb-1.0 not found.
+[1.127s] ** WARNING ** visualization features related to openni2 will be disabled
+[1.146s] -- QHULL found (include: /usr/include, lib: optimized;/usr/lib/x86_64-linux-gnu/libqhull.so;debug;/usr/lib/x86_64-linux-gnu/libqhull.so)
+[1.152s] -- Checking for module 'libusb-1.0'
+[1.156s] --   No package 'libusb-1.0' found
+[1.160s] -- Could NOT find USB_10 (missing: USB_10_LIBRARY USB_10_INCLUDE_DIR) 
+[1.160s] -- OpenNI disabled because libusb-1.0 not found.
+[1.160s] ** WARNING ** apps features related to openni will be disabled
+[1.183s] -- looking for PCL_COMMON
+[1.183s] -- looking for PCL_KDTREE
+[1.184s] -- looking for PCL_OCTREE
+[1.185s] -- looking for PCL_SEARCH
+[1.186s] -- looking for PCL_SAMPLE_CONSENSUS
+[1.187s] -- looking for PCL_FILTERS
+[1.187s] -- looking for PCL_2D
+[1.188s] -- looking for PCL_GEOMETRY
+[1.189s] -- looking for PCL_IO
+[1.190s] -- looking for PCL_FEATURES
+[1.190s] -- looking for PCL_ML
+[1.191s] -- looking for PCL_SEGMENTATION
+[1.192s] -- looking for PCL_VISUALIZATION
+[1.193s] -- looking for PCL_SURFACE
+[1.194s] -- looking for PCL_REGISTRATION
+[1.195s] -- looking for PCL_KEYPOINTS
+[1.196s] -- looking for PCL_TRACKING
+[1.197s] -- looking for PCL_RECOGNITION
+[1.198s] -- looking for PCL_STEREO
+[1.199s] -- looking for PCL_APPS
+[1.201s] -- looking for PCL_IN_HAND_SCANNER
+[1.202s] -- looking for PCL_POINT_CLOUD_EDITOR
+[1.202s] -- looking for PCL_OUTOFCORE
+[1.203s] -- looking for PCL_PEOPLE
+[1.226s] CMake Error at /opt/ros/foxy/share/ament_cmake_target_dependencies/cmake/ament_target_dependencies.cmake:77 (message):
+[1.226s]   ament_target_dependencies() the passed package name
+[1.226s]   'realsense2::realsense2' was not found before
+[1.226s] Call Stack (most recent call first):
+[1.227s]   CMakeLists.txt:29 (ament_target_dependencies)
+[1.227s] 
+[1.227s] 
+[1.228s] -- Configuring incomplete, errors occurred!
+[1.228s] See also "/home/robohub/dev_ws/src/vision_3d_test/build/vision_3d_test/CMakeFiles/CMakeOutput.log".
+[1.228s] See also "/home/robohub/dev_ws/src/vision_3d_test/build/vision_3d_test/CMakeFiles/CMakeError.log".
+[1.240s] make: *** [Makefile:446: cmake_check_build_system] Error 1
+[1.246s] Invoked command in '/home/robohub/dev_ws/src/vision_3d_test/build/vision_3d_test' returned '2': /usr/bin/cmake --build /home/robohub/dev_ws/src/vision_3d_test/build/vision_3d_test -- -j2 -l2

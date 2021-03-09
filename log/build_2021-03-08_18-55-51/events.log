@@ -1,0 +1,133 @@
+[0.000000] (-) TimerEvent: {}
+[0.001324] (vision_3d_test) JobQueued: {'identifier': 'vision_3d_test', 'dependencies': OrderedDict()}
+[0.001404] (vision_3d_test) JobStarted: {'identifier': 'vision_3d_test'}
+[0.015698] (vision_3d_test) JobProgress: {'identifier': 'vision_3d_test', 'progress': 'cmake'}
+[0.017589] (vision_3d_test) JobProgress: {'identifier': 'vision_3d_test', 'progress': 'build'}
+[0.018679] (vision_3d_test) Command: {'cmd': ['/usr/bin/cmake', '--build', '/home/robohub/dev_ws/src/vision_3d_test/build/vision_3d_test', '--', '-j2', '-l2'], 'cwd': '/home/robohub/dev_ws/src/vision_3d_test/build/vision_3d_test', 'env': OrderedDict([('GJS_DEBUG_TOPICS', 'JS ERROR;JS LOG'), ('LESSOPEN', '| /usr/bin/lesspipe %s'), ('USER', 'robohub'), ('SSH_AGENT_PID', '1554'), ('XDG_SESSION_TYPE', 'x11'), ('GIT_ASKPASS', '/snap/code/57/usr/share/code/resources/app/extensions/git/dist/askpass.sh'), ('SHLVL', '1'), ('LD_LIBRARY_PATH', '/opt/ros/foxy/opt/yaml_cpp_vendor/lib:/opt/ros/foxy/opt/rviz_ogre_vendor/lib:/opt/ros/foxy/lib/x86_64-linux-gnu:/opt/ros/foxy/lib'), ('HOME', '/home/robohub'), ('CHROME_DESKTOP', 'code-url-handler.desktop'), ('TERM_PROGRAM_VERSION', '1.54.1'), ('DESKTOP_SESSION', 'ubuntu'), ('GIO_LAUNCHED_DESKTOP_FILE', '/var/lib/snapd/desktop/applications/code_code.desktop'), ('APPLICATION_INSIGHTS_NO_DIAGNOSTIC_CHANNEL', 'true'), ('ROS_PYTHON_VERSION', '3'), ('GNOME_SHELL_SESSION_MODE', 'ubuntu'), ('GTK_MODULES', 'gail:atk-bridge'), ('VSCODE_GIT_ASKPASS_MAIN', '/snap/code/57/usr/share/code/resources/app/extensions/git/dist/askpass-main.js'), ('VSCODE_GIT_ASKPASS_NODE', '/snap/code/57/usr/share/code/code'), ('MANAGERPID', '1378'), ('DBUS_SESSION_BUS_ADDRESS', 'unix:path=/run/user/1000/bus'), ('COLORTERM', 'truecolor'), ('GIO_LAUNCHED_DESKTOP_FILE_PID', '2484'), ('_colcon_cd_root', '/home/robohub/ros2_install'), ('IM_CONFIG_PHASE', '1'), ('ROS_DISTRO', 'foxy'), ('LOGNAME', 'robohub'), ('JOURNAL_STREAM', '8:49733'), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('XDG_SESSION_CLASS', 'user'), ('GIT_BRANCH', 'master'), ('USERNAME', 'robohub'), ('TERM', 'xterm-256color'), ('GNOME_DESKTOP_SESSION_ID', 'this-is-deprecated'), ('ROS_LOCALHOST_ONLY', '0'), ('WINDOWPATH', '2'), ('PATH', '/home/robohub/.local/bin:/opt/ros/foxy/bin:/home/robohub/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin'), ('SESSION_MANAGER', 'local/ubuntu:@/tmp/.ICE-unix/1589,unix/ubuntu:/tmp/.ICE-unix/1589'), ('INVOCATION_ID', 'ee5126d193544a5c8081ff02799d977c'), ('XDG_MENU_PREFIX', 'gnome-'), ('BAMF_DESKTOP_FILE_HINT', '/var/lib/snapd/desktop/applications/code_code.desktop'), ('XDG_RUNTIME_DIR', '/run/user/1000'), ('DISPLAY', ':0'), ('LANG', 'en_US.UTF-8'), ('XDG_CURRENT_DESKTOP', 'Unity'), ('XMODIFIERS', '@im=ibus'), ('XDG_SESSION_DESKTOP', 'ubuntu'), ('XAUTHORITY', '/run/user/1000/gdm/Xauthority'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('VSCODE_GIT_IPC_HANDLE', '/run/user/1000/vscode-git-1fb999ea60.sock'), ('TERM_PROGRAM', 'vscode'), ('SSH_AUTH_SOCK', '/run/user/1000/keyring/ssh'), ('GSETTINGS_SCHEMA_DIR', '/snap/code/57/usr/share/glib-2.0/schemas'), ('AMENT_PREFIX_PATH', '/opt/ros/foxy'), ('ORIGINAL_XDG_CURRENT_DESKTOP', 'ubuntu:GNOME'), ('SHELL', '/bin/bash'), ('DISABLE_WAYLAND', '1'), ('QT_ACCESSIBILITY', '1'), ('GDMSESSION', 'ubuntu'), ('LESSCLOSE', '/usr/bin/lesspipe %s %s'), ('__GIT_PROMPT_SHOW_UNTRACKED_FILES', ''), ('GPG_AGENT_INFO', '/run/user/1000/gnupg/S.gpg-agent:0:1'), ('GJS_DEBUG_OUTPUT', 'stderr'), ('QT_IM_MODULE', 'ibus'), ('PWD', '/home/robohub/dev_ws/src/vision_3d_test/build/vision_3d_test'), ('LC_ALL', 'en_US.UTF-8'), ('XDG_CONFIG_DIRS', '/etc/xdg/xdg-ubuntu:/etc/xdg'), ('XDG_DATA_DIRS', '/usr/share/ubuntu:/usr/local/share/:/usr/share/:/var/lib/snapd/desktop'), ('PYTHONPATH', '/opt/ros/foxy/lib/python3.8/site-packages'), ('COLCON', '1')]), 'shell': False}
+[0.071282] (vision_3d_test) StdoutLine: {'line': b'-- Found ament_cmake: 0.9.8 (/opt/ros/foxy/share/ament_cmake/cmake)\n'}
+[0.099690] (-) TimerEvent: {}
+[0.104730] (vision_3d_test) StdoutLine: {'line': b'-- Using PYTHON_EXECUTABLE: /usr/bin/python3\n'}
+[0.199836] (-) TimerEvent: {}
+[0.301146] (-) TimerEvent: {}
+[0.378964] (vision_3d_test) StdoutLine: {'line': b'-- Found rclcpp: 2.3.0 (/opt/ros/foxy/share/rclcpp/cmake)\n'}
+[0.401866] (-) TimerEvent: {}
+[0.424767] (vision_3d_test) StdoutLine: {'line': b'-- Using all available rosidl_typesupport_c: rosidl_typesupport_fastrtps_c;rosidl_typesupport_introspection_c\n'}
+[0.429753] (vision_3d_test) StdoutLine: {'line': b'-- Found rosidl_adapter: 1.2.0 (/opt/ros/foxy/share/rosidl_adapter/cmake)\n'}
+[0.502036] (-) TimerEvent: {}
+[0.596490] (vision_3d_test) StdoutLine: {'line': b'-- Using all available rosidl_typesupport_cpp: rosidl_typesupport_fastrtps_cpp;rosidl_typesupport_introspection_cpp\n'}
+[0.602320] (-) TimerEvent: {}
+[0.670292] (vision_3d_test) StdoutLine: {'line': b'-- Found rmw_implementation_cmake: 1.0.2 (/opt/ros/foxy/share/rmw_implementation_cmake/cmake)\n'}
+[0.672095] (vision_3d_test) StdoutLine: {'line': b"-- Using RMW implementation 'rmw_fastrtps_cpp' as default\n"}
+[0.703049] (-) TimerEvent: {}
+[0.803815] (-) TimerEvent: {}
+[0.882720] (vision_3d_test) StdoutLine: {'line': b'-- Found rclpy: 1.0.5 (/opt/ros/foxy/share/rclpy/cmake)\n'}
+[0.897772] (vision_3d_test) StdoutLine: {'line': b'-- Eigen found (include: /usr/include/eigen3, version: 3.3.7)\n'}
+[0.904647] (-) TimerEvent: {}
+[1.005431] (-) TimerEvent: {}
+[1.022963] (vision_3d_test) StdoutLine: {'line': b'-- The imported target "vtkParseOGLExt" references the file\n'}
+[1.023189] (vision_3d_test) StdoutLine: {'line': b'   "/usr/bin/vtkParseOGLExt-7.1"\n'}
+[1.023331] (vision_3d_test) StdoutLine: {'line': b'but this file does not exist.  Possible reasons include:\n'}
+[1.023426] (vision_3d_test) StdoutLine: {'line': b'* The file was deleted, renamed, or moved to another location.\n'}
+[1.023514] (vision_3d_test) StdoutLine: {'line': b'* An install or uninstall procedure did not complete successfully.\n'}
+[1.023601] (vision_3d_test) StdoutLine: {'line': b'* The installation package was faulty and contained\n'}
+[1.023685] (vision_3d_test) StdoutLine: {'line': b'   "/usr/lib/cmake/vtk-7.1/VTKTargets.cmake"\n'}
+[1.023769] (vision_3d_test) StdoutLine: {'line': b'but not all the files it references.\n'}
+[1.023853] (vision_3d_test) StdoutLine: {'line': b'\n'}
+[1.024339] (vision_3d_test) StdoutLine: {'line': b'-- The imported target "vtkRenderingPythonTkWidgets" references the file\n'}
+[1.024468] (vision_3d_test) StdoutLine: {'line': b'   "/usr/lib/x86_64-linux-gnu/libvtkRenderingPythonTkWidgets.so"\n'}
+[1.024563] (vision_3d_test) StdoutLine: {'line': b'but this file does not exist.  Possible reasons include:\n'}
+[1.024665] (vision_3d_test) StdoutLine: {'line': b'* The file was deleted, renamed, or moved to another location.\n'}
+[1.024752] (vision_3d_test) StdoutLine: {'line': b'* An install or uninstall procedure did not complete successfully.\n'}
+[1.024838] (vision_3d_test) StdoutLine: {'line': b'* The installation package was faulty and contained\n'}
+[1.024923] (vision_3d_test) StdoutLine: {'line': b'   "/usr/lib/cmake/vtk-7.1/VTKTargets.cmake"\n'}
+[1.025007] (vision_3d_test) StdoutLine: {'line': b'but not all the files it references.\n'}
+[1.025091] (vision_3d_test) StdoutLine: {'line': b'\n'}
+[1.025413] (vision_3d_test) StdoutLine: {'line': b'-- The imported target "vtk" references the file\n'}
+[1.025536] (vision_3d_test) StdoutLine: {'line': b'   "/usr/bin/vtk"\n'}
+[1.025626] (vision_3d_test) StdoutLine: {'line': b'but this file does not exist.  Possible reasons include:\n'}
+[1.025829] (vision_3d_test) StdoutLine: {'line': b'* The file was deleted, renamed, or moved to another location.\n'}
+[1.025932] (vision_3d_test) StdoutLine: {'line': b'* An install or uninstall procedure did not complete successfully.\n'}
+[1.026021] (vision_3d_test) StdoutLine: {'line': b'* The installation package was faulty and contained\n'}
+[1.026107] (vision_3d_test) StdoutLine: {'line': b'   "/usr/lib/cmake/vtk-7.1/VTKTargets.cmake"\n'}
+[1.026194] (vision_3d_test) StdoutLine: {'line': b'but not all the files it references.\n'}
+[1.026318] (vision_3d_test) StdoutLine: {'line': b'\n'}
+[1.026406] (vision_3d_test) StdoutLine: {'line': b'-- The imported target "pvtk" references the file\n'}
+[1.026490] (vision_3d_test) StdoutLine: {'line': b'   "/usr/bin/pvtk"\n'}
+[1.026573] (vision_3d_test) StdoutLine: {'line': b'but this file does not exist.  Possible reasons include:\n'}
+[1.026657] (vision_3d_test) StdoutLine: {'line': b'* The file was deleted, renamed, or moved to another location.\n'}
+[1.026742] (vision_3d_test) StdoutLine: {'line': b'* An install or uninstall procedure did not complete successfully.\n'}
+[1.026826] (vision_3d_test) StdoutLine: {'line': b'* The installation package was faulty and contained\n'}
+[1.026915] (vision_3d_test) StdoutLine: {'line': b'   "/usr/lib/cmake/vtk-7.1/VTKTargets.cmake"\n'}
+[1.026999] (vision_3d_test) StdoutLine: {'line': b'but not all the files it references.\n'}
+[1.027083] (vision_3d_test) StdoutLine: {'line': b'\n'}
+[1.056614] (vision_3d_test) StdoutLine: {'line': b"-- Checking for module 'libusb-1.0'\n"}
+[1.061302] (vision_3d_test) StdoutLine: {'line': b"--   No package 'libusb-1.0' found\n"}
+[1.064938] (vision_3d_test) StdoutLine: {'line': b'-- Could NOT find USB_10 (missing: USB_10_LIBRARY USB_10_INCLUDE_DIR) \n'}
+[1.065094] (vision_3d_test) StdoutLine: {'line': b'-- OpenNI disabled because libusb-1.0 not found.\n'}
+[1.065421] (vision_3d_test) StderrLine: {'line': b'** WARNING ** io features related to openni will be disabled\n'}
+[1.071225] (vision_3d_test) StdoutLine: {'line': b"-- Checking for module 'libusb-1.0'\n"}
+[1.074899] (vision_3d_test) StdoutLine: {'line': b"--   No package 'libusb-1.0' found\n"}
+[1.078488] (vision_3d_test) StdoutLine: {'line': b'-- Could NOT find USB_10 (missing: USB_10_LIBRARY USB_10_INCLUDE_DIR) \n'}
+[1.078676] (vision_3d_test) StdoutLine: {'line': b'-- OpenNI 2 disabled because libusb-1.0 not found.\n'}
+[1.078845] (vision_3d_test) StderrLine: {'line': b'** WARNING ** io features related to openni2 will be disabled\n'}
+[1.078977] (vision_3d_test) StderrLine: {'line': b'** WARNING ** io features related to pcap will be disabled\n'}
+[1.079149] (vision_3d_test) StderrLine: {'line': b'** WARNING ** io features related to png will be disabled\n'}
+[1.097972] (vision_3d_test) StdoutLine: {'line': b'-- LIBUSB_1_LIBRARY (missing: LIBUSB_1_INCLUDE_DIR) \n'}
+[1.098225] (vision_3d_test) StderrLine: {'line': b'** WARNING ** io features related to libusb-1.0 will be disabled\n'}
+[1.103994] (vision_3d_test) StdoutLine: {'line': b"-- Checking for module 'libusb-1.0'\n"}
+[1.105930] (-) TimerEvent: {}
+[1.108452] (vision_3d_test) StdoutLine: {'line': b"--   No package 'libusb-1.0' found\n"}
+[1.112210] (vision_3d_test) StdoutLine: {'line': b'-- Could NOT find USB_10 (missing: USB_10_LIBRARY USB_10_INCLUDE_DIR) \n'}
+[1.112387] (vision_3d_test) StdoutLine: {'line': b'-- OpenNI disabled because libusb-1.0 not found.\n'}
+[1.112581] (vision_3d_test) StderrLine: {'line': b'** WARNING ** visualization features related to openni will be disabled\n'}
+[1.119679] (vision_3d_test) StdoutLine: {'line': b"-- Checking for module 'libusb-1.0'\n"}
+[1.123393] (vision_3d_test) StdoutLine: {'line': b"--   No package 'libusb-1.0' found\n"}
+[1.127688] (vision_3d_test) StdoutLine: {'line': b'-- Could NOT find USB_10 (missing: USB_10_LIBRARY USB_10_INCLUDE_DIR) \n'}
+[1.127897] (vision_3d_test) StdoutLine: {'line': b'-- OpenNI 2 disabled because libusb-1.0 not found.\n'}
+[1.128095] (vision_3d_test) StderrLine: {'line': b'** WARNING ** visualization features related to openni2 will be disabled\n'}
+[1.147539] (vision_3d_test) StdoutLine: {'line': b'-- QHULL found (include: /usr/include, lib: optimized;/usr/lib/x86_64-linux-gnu/libqhull.so;debug;/usr/lib/x86_64-linux-gnu/libqhull.so)\n'}
+[1.153715] (vision_3d_test) StdoutLine: {'line': b"-- Checking for module 'libusb-1.0'\n"}
+[1.157351] (vision_3d_test) StdoutLine: {'line': b"--   No package 'libusb-1.0' found\n"}
+[1.161247] (vision_3d_test) StdoutLine: {'line': b'-- Could NOT find USB_10 (missing: USB_10_LIBRARY USB_10_INCLUDE_DIR) \n'}
+[1.161438] (vision_3d_test) StdoutLine: {'line': b'-- OpenNI disabled because libusb-1.0 not found.\n'}
+[1.161601] (vision_3d_test) StderrLine: {'line': b'** WARNING ** apps features related to openni will be disabled\n'}
+[1.184081] (vision_3d_test) StdoutLine: {'line': b'-- looking for PCL_COMMON\n'}
+[1.184822] (vision_3d_test) StdoutLine: {'line': b'-- looking for PCL_KDTREE\n'}
+[1.185578] (vision_3d_test) StdoutLine: {'line': b'-- looking for PCL_OCTREE\n'}
+[1.186368] (vision_3d_test) StdoutLine: {'line': b'-- looking for PCL_SEARCH\n'}
+[1.187159] (vision_3d_test) StdoutLine: {'line': b'-- looking for PCL_SAMPLE_CONSENSUS\n'}
+[1.187940] (vision_3d_test) StdoutLine: {'line': b'-- looking for PCL_FILTERS\n'}
+[1.188759] (vision_3d_test) StdoutLine: {'line': b'-- looking for PCL_2D\n'}
+[1.189529] (vision_3d_test) StdoutLine: {'line': b'-- looking for PCL_GEOMETRY\n'}
+[1.190054] (vision_3d_test) StdoutLine: {'line': b'-- looking for PCL_IO\n'}
+[1.190920] (vision_3d_test) StdoutLine: {'line': b'-- looking for PCL_FEATURES\n'}
+[1.191841] (vision_3d_test) StdoutLine: {'line': b'-- looking for PCL_ML\n'}
+[1.192610] (vision_3d_test) StdoutLine: {'line': b'-- looking for PCL_SEGMENTATION\n'}
+[1.193658] (vision_3d_test) StdoutLine: {'line': b'-- looking for PCL_VISUALIZATION\n'}
+[1.194656] (vision_3d_test) StdoutLine: {'line': b'-- looking for PCL_SURFACE\n'}
+[1.195563] (vision_3d_test) StdoutLine: {'line': b'-- looking for PCL_REGISTRATION\n'}
+[1.196576] (vision_3d_test) StdoutLine: {'line': b'-- looking for PCL_KEYPOINTS\n'}
+[1.197678] (vision_3d_test) StdoutLine: {'line': b'-- looking for PCL_TRACKING\n'}
+[1.198600] (vision_3d_test) StdoutLine: {'line': b'-- looking for PCL_RECOGNITION\n'}
+[1.199708] (vision_3d_test) StdoutLine: {'line': b'-- looking for PCL_STEREO\n'}
+[1.200571] (vision_3d_test) StdoutLine: {'line': b'-- looking for PCL_APPS\n'}
+[1.202233] (vision_3d_test) StdoutLine: {'line': b'-- looking for PCL_IN_HAND_SCANNER\n'}
+[1.202927] (vision_3d_test) StdoutLine: {'line': b'-- looking for PCL_POINT_CLOUD_EDITOR\n'}
+[1.203594] (vision_3d_test) StdoutLine: {'line': b'-- looking for PCL_OUTOFCORE\n'}
+[1.204550] (vision_3d_test) StdoutLine: {'line': b'-- looking for PCL_PEOPLE\n'}
+[1.206839] (-) TimerEvent: {}
+[1.227337] (vision_3d_test) StderrLine: {'line': b'CMake Error at /opt/ros/foxy/share/ament_cmake_target_dependencies/cmake/ament_target_dependencies.cmake:77 (message):\n'}
+[1.227558] (vision_3d_test) StderrLine: {'line': b'  ament_target_dependencies() the passed package name\n'}
+[1.227656] (vision_3d_test) StderrLine: {'line': b"  'realsense2::realsense2' was not found before\n"}
+[1.227788] (vision_3d_test) StderrLine: {'line': b'Call Stack (most recent call first):\n'}
+[1.227889] (vision_3d_test) StderrLine: {'line': b'  CMakeLists.txt:29 (ament_target_dependencies)\n'}
+[1.227973] (vision_3d_test) StderrLine: {'line': b'\n'}
+[1.228057] (vision_3d_test) StderrLine: {'line': b'\n'}
+[1.229337] (vision_3d_test) StdoutLine: {'line': b'-- Configuring incomplete, errors occurred!\n'}
+[1.229479] (vision_3d_test) StdoutLine: {'line': b'See also "/home/robohub/dev_ws/src/vision_3d_test/build/vision_3d_test/CMakeFiles/CMakeOutput.log".\n'}
+[1.229576] (vision_3d_test) StdoutLine: {'line': b'See also "/home/robohub/dev_ws/src/vision_3d_test/build/vision_3d_test/CMakeFiles/CMakeError.log".\n'}
+[1.241708] (vision_3d_test) StderrLine: {'line': b'make: *** [Makefile:446: cmake_check_build_system] Error 1\n'}
+[1.244409] (vision_3d_test) CommandEnded: {'returncode': 2}
+[1.307552] (-) TimerEvent: {}
+[1.335350] (vision_3d_test) JobEnded: {'identifier': 'vision_3d_test', 'rc': 2}
+[1.341838] (-) EventReactorShutdown: {}

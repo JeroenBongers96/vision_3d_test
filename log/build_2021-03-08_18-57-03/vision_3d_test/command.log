@@ -1,0 +1,2 @@
+Invoking command in '/home/robohub/dev_ws/src/vision_3d_test/build/vision_3d_test': /usr/bin/cmake --build /home/robohub/dev_ws/src/vision_3d_test/build/vision_3d_test -- -j2 -l2
+Invoked command in '/home/robohub/dev_ws/src/vision_3d_test/build/vision_3d_test' returned '2': /usr/bin/cmake --build /home/robohub/dev_ws/src/vision_3d_test/build/vision_3d_test -- -j2 -l2

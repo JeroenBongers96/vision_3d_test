@@ -1,0 +1,114 @@
+[0.037s] Invoking command in '/home/robohub/dev_ws/src/vision_3d_test/build/vision_3d_test': /usr/bin/cmake --build /home/robohub/dev_ws/src/vision_3d_test/build/vision_3d_test -- -j2 -l2
+[0.082s] -- Found ament_cmake: 0.9.8 (/opt/ros/foxy/share/ament_cmake/cmake)
+[0.123s] -- Using PYTHON_EXECUTABLE: /usr/bin/python3
+[0.387s] -- Found rclcpp: 2.3.0 (/opt/ros/foxy/share/rclcpp/cmake)
+[0.437s] -- Using all available rosidl_typesupport_c: rosidl_typesupport_fastrtps_c;rosidl_typesupport_introspection_c
+[0.445s] -- Found rosidl_adapter: 1.2.0 (/opt/ros/foxy/share/rosidl_adapter/cmake)
+[0.623s] -- Using all available rosidl_typesupport_cpp: rosidl_typesupport_fastrtps_cpp;rosidl_typesupport_introspection_cpp
+[0.698s] -- Found rmw_implementation_cmake: 1.0.2 (/opt/ros/foxy/share/rmw_implementation_cmake/cmake)
+[0.700s] -- Using RMW implementation 'rmw_fastrtps_cpp' as default
+[0.916s] -- Found rclpy: 1.0.5 (/opt/ros/foxy/share/rclpy/cmake)
+[0.932s] -- Eigen found (include: /usr/include/eigen3, version: 3.3.7)
+[1.063s] -- The imported target "vtkParseOGLExt" references the file
+[1.064s]    "/usr/bin/vtkParseOGLExt-7.1"
+[1.064s] but this file does not exist.  Possible reasons include:
+[1.064s] * The file was deleted, renamed, or moved to another location.
+[1.064s] * An install or uninstall procedure did not complete successfully.
+[1.064s] * The installation package was faulty and contained
+[1.064s]    "/usr/lib/cmake/vtk-7.1/VTKTargets.cmake"
+[1.064s] but not all the files it references.
+[1.064s] 
+[1.065s] -- The imported target "vtkRenderingPythonTkWidgets" references the file
+[1.065s]    "/usr/lib/x86_64-linux-gnu/libvtkRenderingPythonTkWidgets.so"
+[1.065s] but this file does not exist.  Possible reasons include:
+[1.065s] * The file was deleted, renamed, or moved to another location.
+[1.065s] * An install or uninstall procedure did not complete successfully.
+[1.065s] * The installation package was faulty and contained
+[1.065s]    "/usr/lib/cmake/vtk-7.1/VTKTargets.cmake"
+[1.066s] but not all the files it references.
+[1.066s] 
+[1.069s] -- The imported target "vtk" references the file
+[1.069s]    "/usr/bin/vtk"
+[1.069s] but this file does not exist.  Possible reasons include:
+[1.069s] * The file was deleted, renamed, or moved to another location.
+[1.069s] * An install or uninstall procedure did not complete successfully.
+[1.069s] * The installation package was faulty and contained
+[1.070s]    "/usr/lib/cmake/vtk-7.1/VTKTargets.cmake"
+[1.070s] but not all the files it references.
+[1.070s] 
+[1.070s] -- The imported target "pvtk" references the file
+[1.070s]    "/usr/bin/pvtk"
+[1.070s] but this file does not exist.  Possible reasons include:
+[1.070s] * The file was deleted, renamed, or moved to another location.
+[1.070s] * An install or uninstall procedure did not complete successfully.
+[1.070s] * The installation package was faulty and contained
+[1.070s]    "/usr/lib/cmake/vtk-7.1/VTKTargets.cmake"
+[1.070s] but not all the files it references.
+[1.071s] 
+[1.096s] -- Checking for module 'libusb-1.0'
+[1.129s] --   Found libusb-1.0, version 1.0.23
+[1.181s] -- Found USB_10: /usr/lib/x86_64-linux-gnu/libusb-1.0.so  
+[1.273s] -- Found OpenNI: /usr/lib/libOpenNI.so  
+[1.276s] -- OpenNI found (include: /usr/include/ni, lib: /usr/lib/libOpenNI.so)
+[1.373s] -- Found OpenNI2: /usr/lib/libOpenNI2.so  
+[1.373s] -- OpenNI2 found (include: /usr/include/openni2, lib: /usr/lib/libOpenNI2.so)
+[1.373s] ** WARNING ** io features related to pcap will be disabled
+[1.373s] ** WARNING ** io features related to png will be disabled
+[1.391s] -- Found libusb-1.0: /usr/include  
+[1.391s] ** WARNING ** io features related to libusb-1.0 will be disabled
+[1.402s] -- OpenNI found (include: /usr/include/ni, lib: /usr/lib/libOpenNI.so)
+[1.413s] -- OpenNI2 found (include: /usr/include/openni2, lib: /usr/lib/libOpenNI2.so)
+[1.434s] -- QHULL found (include: /usr/include, lib: optimized;/usr/lib/x86_64-linux-gnu/libqhull.so;debug;/usr/lib/x86_64-linux-gnu/libqhull.so)
+[1.445s] -- OpenNI found (include: /usr/include/ni, lib: /usr/lib/libOpenNI.so)
+[1.464s] -- looking for PCL_COMMON
+[1.466s] -- looking for PCL_KDTREE
+[1.467s] -- looking for PCL_OCTREE
+[1.469s] -- looking for PCL_SEARCH
+[1.470s] -- looking for PCL_SAMPLE_CONSENSUS
+[1.471s] -- looking for PCL_FILTERS
+[1.473s] -- looking for PCL_2D
+[1.474s] -- looking for PCL_GEOMETRY
+[1.475s] -- looking for PCL_IO
+[1.477s] -- looking for PCL_FEATURES
+[1.478s] -- looking for PCL_ML
+[1.479s] -- looking for PCL_SEGMENTATION
+[1.480s] -- looking for PCL_VISUALIZATION
+[1.481s] -- looking for PCL_SURFACE
+[1.482s] -- looking for PCL_REGISTRATION
+[1.484s] -- looking for PCL_KEYPOINTS
+[1.485s] -- looking for PCL_TRACKING
+[1.486s] -- looking for PCL_RECOGNITION
+[1.488s] -- looking for PCL_STEREO
+[1.489s] -- looking for PCL_APPS
+[1.492s] -- looking for PCL_IN_HAND_SCANNER
+[1.493s] -- looking for PCL_POINT_CLOUD_EDITOR
+[1.494s] -- looking for PCL_OUTOFCORE
+[1.496s] -- looking for PCL_PEOPLE
+[1.499s] -- Found PCL: pcl_common;pcl_kdtree;pcl_octree;pcl_search;pcl_sample_consensus;pcl_filters;pcl_io;pcl_features;pcl_ml;pcl_segmentation;pcl_visualization;pcl_surface;pcl_registration;pcl_keypoints;pcl_tracking;pcl_recognition;pcl_stereo;pcl_apps;pcl_outofcore;pcl_people;/usr/lib/x86_64-linux-gnu/libboost_system.so;/usr/lib/x86_64-linux-gnu/libboost_filesystem.so;/usr/lib/x86_64-linux-gnu/libboost_date_time.so;/usr/lib/x86_64-linux-gnu/libboost_iostreams.so;/usr/lib/x86_64-linux-gnu/libboost_regex.so;optimized;/usr/lib/x86_64-linux-gnu/libqhull.so;debug;/usr/lib/x86_64-linux-gnu/libqhull.so;/usr/lib/libOpenNI.so;/usr/lib/libOpenNI2.so;vtkChartsCore;vtkCommonColor;vtkCommonCore;vtksys;vtkCommonDataModel;vtkCommonMath;vtkCommonMisc;vtkCommonSystem;vtkCommonTransforms;vtkCommonExecutionModel;vtkFiltersGeneral;vtkCommonComputationalGeometry;vtkFiltersCore;vtkInfovisCore;vtkFiltersExtraction;vtkFiltersStatistics;vtkImagingFourier;vtkImagingCore;vtkalglib;vtkRenderingContext2D;vtkRenderingCore;vtkFiltersGeometry;vtkFiltersSources;vtkRenderingFreeType;/usr/lib/x86_64-linux-gnu/libfreetype.so;/usr/lib/x86_64-linux-gnu/libz.so;vtkFiltersModeling;vtkImagingSources;vtkInteractionStyle;vtkInteractionWidgets;vtkFiltersHybrid;vtkImagingColor;vtkImagingGeneral;vtkImagingHybrid;vtkIOImage;vtkDICOMParser;vtkmetaio;/usr/lib/x86_64-linux-gnu/libjpeg.so;/usr/lib/x86_64-linux-gnu/libpng.so;/usr/lib/x86_64-linux-gnu/libtiff.so;vtkRenderingAnnotation;vtkRenderingVolume;vtkIOXML;vtkIOCore;vtkIOXMLParser;/usr/lib/x86_64-linux-gnu/libexpat.so;vtkIOGeometry;vtkIOLegacy;vtkIOPLY;vtkRenderingLOD;vtkViewsContext2D;vtkViewsCore;vtkRenderingContextOpenGL2;vtkRenderingOpenGL2;FLANN::FLANN (Required is at least version "1.8") 
+[1.610s] -- Configuring done
+[1.701s] -- Generating done
+[1.706s] -- Build files have been written to: /home/robohub/dev_ws/src/vision_3d_test/build/vision_3d_test
+[1.756s] [35m[1mScanning dependencies of target cpp_executable[0m
+[1.781s] [ 12%] [32mBuilding CXX object CMakeFiles/cpp_executable.dir/src/GetData.cpp.o[0m
+[1.786s] [ 25%] [32mBuilding CXX object CMakeFiles/cpp_executable.dir/src/GetRoi.cpp.o[0m
+[2.026s] In file included from [01m[K/home/robohub/dev_ws/src/vision_3d_test/src/GetRoi.cpp:1[m[K:
+[2.026s] [01m[K/home/robohub/dev_ws/src/vision_3d_test/include/GetRoi.h:6:10:[m[K [01;31m[Kfatal error: [m[Kros/ros.h: No such file or directory
+[2.027s]     6 | #include [01;31m[K<ros/ros.h>[m[K
+[2.027s]       |          [01;31m[K^~~~~~~~~~~[m[K
+[2.027s] compilation terminated.
+[2.030s] make[2]: *** [CMakeFiles/cpp_executable.dir/build.make:76: CMakeFiles/cpp_executable.dir/src/GetRoi.cpp.o] Error 1
+[2.030s] make[2]: *** Waiting for unfinished jobs....
+[13.394s] [01m[K/home/robohub/dev_ws/src/vision_3d_test/src/GetData.cpp:[m[K In member function ‘[01m[Kvoid GetData::pclConversion(const rs2::points&, const rs2::video_frame&, pcl::PointCloud<pcl::PointXYZRGB>::Ptr&)[m[K’:
+[13.394s] [01m[K/home/robohub/dev_ws/src/vision_3d_test/src/GetData.cpp:74:23:[m[K [01;35m[Kwarning: [m[Kcomparison of integer expressions of different signedness: ‘[01m[Kint[m[K’ and ‘[01m[Ksize_t[m[K’ {aka ‘[01m[Klong unsigned int[m[K’} [[01;35m[K-Wsign-compare[m[K]
+[13.394s]    74 |     for (int i = 0; [01;35m[Ki < points.size()[m[K; i++)
+[13.395s]       |                     [01;35m[K~~^~~~~~~~~~~~~~~[m[K
+[13.402s] [01m[K/home/robohub/dev_ws/src/vision_3d_test/src/GetData.cpp:[m[K In member function ‘[01m[Kcv::Mat GetData::cvFromPcl(const Ptr&)[m[K’:
+[13.402s] [01m[K/home/robohub/dev_ws/src/vision_3d_test/src/GetData.cpp:183:22:[m[K [01;35m[Kwarning: [m[Kcomparison of integer expressions of different signedness: ‘[01m[Kint[m[K’ and ‘[01m[Kuint32_t[m[K’ {aka ‘[01m[Kunsigned int[m[K’} [[01;35m[K-Wsign-compare[m[K]
+[13.402s]   183 |     for(int y = 0; [01;35m[Ky < cloud->height[m[K; ++y)
+[13.402s]       |                    [01;35m[K~~^~~~~~~~~~~~~~~[m[K
+[13.403s] [01m[K/home/robohub/dev_ws/src/vision_3d_test/src/GetData.cpp:185:26:[m[K [01;35m[Kwarning: [m[Kcomparison of integer expressions of different signedness: ‘[01m[Kint[m[K’ and ‘[01m[Kuint32_t[m[K’ {aka ‘[01m[Kunsigned int[m[K’} [[01;35m[K-Wsign-compare[m[K]
+[13.403s]   185 |         for(int x = 0; [01;35m[Kx < cloud->width[m[K; ++x)
+[13.403s]       |                        [01;35m[K~~^~~~~~~~~~~~~~[m[K
+[21.065s] make[1]: *** [CMakeFiles/Makefile2:78: CMakeFiles/cpp_executable.dir/all] Error 2
+[21.065s] make: *** [Makefile:141: all] Error 2
+[21.068s] Invoked command in '/home/robohub/dev_ws/src/vision_3d_test/build/vision_3d_test' returned '2': /usr/bin/cmake --build /home/robohub/dev_ws/src/vision_3d_test/build/vision_3d_test -- -j2 -l2

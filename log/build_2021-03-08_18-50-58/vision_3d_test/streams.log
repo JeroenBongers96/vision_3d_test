@@ -1,0 +1,32 @@
+[0.037s] Invoking command in '/home/robohub/dev_ws/src/vision_3d_test/build/vision_3d_test': /usr/bin/cmake --build /home/robohub/dev_ws/src/vision_3d_test/build/vision_3d_test -- -j2 -l2
+[0.077s] -- Found ament_cmake: 0.9.8 (/opt/ros/foxy/share/ament_cmake/cmake)
+[0.115s] -- Using PYTHON_EXECUTABLE: /usr/bin/python3
+[0.370s] -- Found rclcpp: 2.3.0 (/opt/ros/foxy/share/rclcpp/cmake)
+[0.419s] -- Using all available rosidl_typesupport_c: rosidl_typesupport_fastrtps_c;rosidl_typesupport_introspection_c
+[0.425s] -- Found rosidl_adapter: 1.2.0 (/opt/ros/foxy/share/rosidl_adapter/cmake)
+[0.589s] -- Using all available rosidl_typesupport_cpp: rosidl_typesupport_fastrtps_cpp;rosidl_typesupport_introspection_cpp
+[0.664s] -- Found rmw_implementation_cmake: 1.0.2 (/opt/ros/foxy/share/rmw_implementation_cmake/cmake)
+[0.667s] -- Using RMW implementation 'rmw_fastrtps_cpp' as default
+[0.878s] -- Found rclpy: 1.0.5 (/opt/ros/foxy/share/rclpy/cmake)
+[0.975s] -- Configuring done
+[0.995s] -- Generating done
+[1.000s] -- Build files have been written to: /home/robohub/dev_ws/src/vision_3d_test/build/vision_3d_test
+[1.045s] [35m[1mScanning dependencies of target cpp_executable[0m
+[1.095s] [ 14%] [32mBuilding CXX object CMakeFiles/cpp_executable.dir/src/GetData.cpp.o[0m
+[1.109s] [ 28%] [32mBuilding CXX object CMakeFiles/cpp_executable.dir/src/GetRoi.cpp.o[0m
+[1.169s] In file included from [01m[K/home/robohub/dev_ws/src/vision_3d_test/src/GetRoi.cpp:1[m[K:
+[1.169s] [01m[K/home/robohub/dev_ws/src/vision_3d_test/include/GetRoi.h:5:10:[m[K [01;31m[Kfatal error: [m[Kopencv2/opencv.hpp: No such file or directory
+[1.169s]     5 | #include [01;31m[K<opencv2/opencv.hpp>[m[K
+[1.170s]       |          [01;31m[K^~~~~~~~~~~~~~~~~~~~[m[K
+[1.171s] compilation terminated.
+[1.173s] make[2]: *** [CMakeFiles/cpp_executable.dir/build.make:76: CMakeFiles/cpp_executable.dir/src/GetRoi.cpp.o] Error 1
+[1.173s] make[2]: *** Waiting for unfinished jobs....
+[1.188s] In file included from [01m[K/home/robohub/dev_ws/src/vision_3d_test/src/GetData.cpp:1[m[K:
+[1.188s] [01m[K/home/robohub/dev_ws/src/vision_3d_test/include/GetData.h:5:10:[m[K [01;31m[Kfatal error: [m[Kpcl/io/pcd_io.h: No such file or directory
+[1.188s]     5 | #include [01;31m[K<pcl/io/pcd_io.h>[m[K
+[1.189s]       |          [01;31m[K^~~~~~~~~~~~~~~~~[m[K
+[1.189s] compilation terminated.
+[1.192s] make[2]: *** [CMakeFiles/cpp_executable.dir/build.make:63: CMakeFiles/cpp_executable.dir/src/GetData.cpp.o] Error 1
+[1.192s] make[1]: *** [CMakeFiles/Makefile2:78: CMakeFiles/cpp_executable.dir/all] Error 2
+[1.192s] make: *** [Makefile:141: all] Error 2
+[1.199s] Invoked command in '/home/robohub/dev_ws/src/vision_3d_test/build/vision_3d_test' returned '2': /usr/bin/cmake --build /home/robohub/dev_ws/src/vision_3d_test/build/vision_3d_test -- -j2 -l2

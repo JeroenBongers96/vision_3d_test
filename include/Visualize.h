@@ -5,6 +5,8 @@
 #include <opencv2/opencv.hpp>
 #include <pcl/common/common_headers.h>
 #include <pcl/visualization/pcl_visualizer.h>
+#include <chrono>
+#include <thread>
 
 using namespace std;
 

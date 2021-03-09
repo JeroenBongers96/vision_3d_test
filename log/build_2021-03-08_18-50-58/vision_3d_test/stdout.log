@@ -1,0 +1,15 @@
+-- Found ament_cmake: 0.9.8 (/opt/ros/foxy/share/ament_cmake/cmake)
+-- Using PYTHON_EXECUTABLE: /usr/bin/python3
+-- Found rclcpp: 2.3.0 (/opt/ros/foxy/share/rclcpp/cmake)
+-- Using all available rosidl_typesupport_c: rosidl_typesupport_fastrtps_c;rosidl_typesupport_introspection_c
+-- Found rosidl_adapter: 1.2.0 (/opt/ros/foxy/share/rosidl_adapter/cmake)
+-- Using all available rosidl_typesupport_cpp: rosidl_typesupport_fastrtps_cpp;rosidl_typesupport_introspection_cpp
+-- Found rmw_implementation_cmake: 1.0.2 (/opt/ros/foxy/share/rmw_implementation_cmake/cmake)
+-- Using RMW implementation 'rmw_fastrtps_cpp' as default
+-- Found rclpy: 1.0.5 (/opt/ros/foxy/share/rclpy/cmake)
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /home/robohub/dev_ws/src/vision_3d_test/build/vision_3d_test
+[35m[1mScanning dependencies of target cpp_executable[0m
+[ 14%] [32mBuilding CXX object CMakeFiles/cpp_executable.dir/src/GetData.cpp.o[0m
+[ 28%] [32mBuilding CXX object CMakeFiles/cpp_executable.dir/src/GetRoi.cpp.o[0m

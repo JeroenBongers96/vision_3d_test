@@ -1,0 +1,58 @@
+[0.058s] Invoking command in '/home/robohub/dev_ws/src/vision_3d_test/build/vision_3d_test': /usr/bin/cmake /home/robohub/dev_ws/src/vision_3d_test -DCATKIN_INSTALL_INTO_PREFIX_ROOT=0 -DCMAKE_INSTALL_PREFIX=/home/robohub/dev_ws/src/vision_3d_test/install/vision_3d_test
+[0.614s] -- The C compiler identification is GNU 9.3.0
+[0.824s] -- The CXX compiler identification is GNU 9.3.0
+[0.842s] -- Check for working C compiler: /usr/bin/cc
+[0.951s] -- Check for working C compiler: /usr/bin/cc -- works
+[0.960s] -- Detecting C compiler ABI info
+[1.061s] -- Detecting C compiler ABI info - done
+[1.073s] -- Detecting C compile features
+[1.075s] -- Detecting C compile features - done
+[1.082s] -- Check for working CXX compiler: /usr/bin/c++
+[1.215s] -- Check for working CXX compiler: /usr/bin/c++ -- works
+[1.215s] -- Detecting CXX compiler ABI info
+[1.353s] -- Detecting CXX compiler ABI info - done
+[1.370s] -- Detecting CXX compile features
+[1.371s] -- Detecting CXX compile features - done
+[1.383s] -- Found ament_cmake: 0.9.8 (/opt/ros/foxy/share/ament_cmake/cmake)
+[1.432s] -- Found PythonInterp: /usr/bin/python3 (found suitable version "3.8.5", minimum required is "3") 
+[1.432s] -- Using PYTHON_EXECUTABLE: /usr/bin/python3
+[1.799s] -- Found rclcpp: 2.3.0 (/opt/ros/foxy/share/rclcpp/cmake)
+[1.913s] -- Using all available rosidl_typesupport_c: rosidl_typesupport_fastrtps_c;rosidl_typesupport_introspection_c
+[1.931s] -- Found rosidl_adapter: 1.2.0 (/opt/ros/foxy/share/rosidl_adapter/cmake)
+[2.091s] -- Found OpenSSL: /usr/lib/x86_64-linux-gnu/libcrypto.so (found version "1.1.1f")  
+[2.138s] -- Found FastRTPS: /opt/ros/foxy/include  
+[2.281s] -- Using all available rosidl_typesupport_cpp: rosidl_typesupport_fastrtps_cpp;rosidl_typesupport_introspection_cpp
+[2.402s] -- Found rmw_implementation_cmake: 1.0.2 (/opt/ros/foxy/share/rmw_implementation_cmake/cmake)
+[2.409s] -- Using RMW implementation 'rmw_fastrtps_cpp' as default
+[2.413s] -- Looking for pthread.h
+[2.569s] -- Looking for pthread.h - found
+[2.569s] -- Performing Test CMAKE_HAVE_LIBC_PTHREAD
+[2.696s] -- Performing Test CMAKE_HAVE_LIBC_PTHREAD - Failed
+[2.696s] -- Looking for pthread_create in pthreads
+[2.795s] -- Looking for pthread_create in pthreads - not found
+[2.795s] -- Looking for pthread_create in pthread
+[2.909s] -- Looking for pthread_create in pthread - found
+[2.909s] -- Found Threads: TRUE  
+[3.197s] -- Found rclpy: 1.0.5 (/opt/ros/foxy/share/rclpy/cmake)
+[3.295s] -- Configuring done
+[3.305s] -- Generating done
+[3.308s] CMake Warning:
+[3.308s]   Manually-specified variables were not used by the project:
+[3.308s] 
+[3.308s]     CATKIN_INSTALL_INTO_PREFIX_ROOT
+[3.308s] 
+[3.308s] 
+[3.309s] -- Build files have been written to: /home/robohub/dev_ws/src/vision_3d_test/build/vision_3d_test
+[3.316s] Invoked command in '/home/robohub/dev_ws/src/vision_3d_test/build/vision_3d_test' returned '0': /usr/bin/cmake /home/robohub/dev_ws/src/vision_3d_test -DCATKIN_INSTALL_INTO_PREFIX_ROOT=0 -DCMAKE_INSTALL_PREFIX=/home/robohub/dev_ws/src/vision_3d_test/install/vision_3d_test
+[3.322s] Invoking command in '/home/robohub/dev_ws/src/vision_3d_test/build/vision_3d_test': /usr/bin/cmake --build /home/robohub/dev_ws/src/vision_3d_test/build/vision_3d_test -- -j2 -l2
+[3.409s] [35m[1mScanning dependencies of target cpp_executable[0m
+[3.440s] [ 50%] [32mBuilding CXX object CMakeFiles/cpp_executable.dir/src/GetData.cpp.o[0m
+[3.637s] In file included from [01m[K/home/robohub/dev_ws/src/vision_3d_test/src/GetData.cpp:1[m[K:
+[3.637s] [01m[K/home/robohub/dev_ws/src/vision_3d_test/include/GetData.h:5:10:[m[K [01;31m[Kfatal error: [m[Kpcl/io/pcd_io.h: No such file or directory
+[3.637s]     5 | #include [01;31m[K<pcl/io/pcd_io.h>[m[K
+[3.637s]       |          [01;31m[K^~~~~~~~~~~~~~~~~[m[K
+[3.637s] compilation terminated.
+[3.645s] make[2]: *** [CMakeFiles/cpp_executable.dir/build.make:63: CMakeFiles/cpp_executable.dir/src/GetData.cpp.o] Error 1
+[3.645s] make[1]: *** [CMakeFiles/Makefile2:78: CMakeFiles/cpp_executable.dir/all] Error 2
+[3.645s] make: *** [Makefile:141: all] Error 2
+[3.646s] Invoked command in '/home/robohub/dev_ws/src/vision_3d_test/build/vision_3d_test' returned '2': /usr/bin/cmake --build /home/robohub/dev_ws/src/vision_3d_test/build/vision_3d_test -- -j2 -l2

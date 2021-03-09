@@ -17,8 +17,6 @@
 #include <pcl/features/moment_of_inertia_estimation.h>
 #include <pcl/visualization/cloud_viewer.h>
 #include <pcl/common/io.h>
-#include <tf_conversions/tf_eigen.h>
-#include <tf/transform_broadcaster.h>
 
 class Process3dData
 {

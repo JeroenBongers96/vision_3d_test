@@ -1,0 +1,32 @@
+[0.016s] Invoking command in '/home/robohub/dev_ws/src/vision_3d_test/build/vision_3d_test': /usr/bin/cmake --build /home/robohub/dev_ws/src/vision_3d_test/build/vision_3d_test -- -j2 -l2
+[0.061s] -- Found ament_cmake: 0.9.8 (/opt/ros/foxy/share/ament_cmake/cmake)
+[0.084s] -- Using PYTHON_EXECUTABLE: /usr/bin/python3
+[0.247s] -- Found rclcpp: 2.3.0 (/opt/ros/foxy/share/rclcpp/cmake)
+[0.275s] -- Using all available rosidl_typesupport_c: rosidl_typesupport_fastrtps_c;rosidl_typesupport_introspection_c
+[0.278s] -- Found rosidl_adapter: 1.2.0 (/opt/ros/foxy/share/rosidl_adapter/cmake)
+[0.384s] -- Using all available rosidl_typesupport_cpp: rosidl_typesupport_fastrtps_cpp;rosidl_typesupport_introspection_cpp
+[0.431s] -- Found rmw_implementation_cmake: 1.0.2 (/opt/ros/foxy/share/rmw_implementation_cmake/cmake)
+[0.437s] -- Using RMW implementation 'rmw_fastrtps_cpp' as default
+[0.566s] -- Found rclpy: 1.0.5 (/opt/ros/foxy/share/rclpy/cmake)
+[0.576s] CMake Error at CMakeLists.txt:18 (find_package):
+[0.576s]   By not providing "Findroscpp.cmake" in CMAKE_MODULE_PATH this project has
+[0.576s]   asked CMake to find a package configuration file provided by "roscpp", but
+[0.576s]   CMake did not find one.
+[0.576s] 
+[0.576s]   Could not find a package configuration file provided by "roscpp" with any
+[0.576s]   of the following names:
+[0.576s] 
+[0.576s]     roscppConfig.cmake
+[0.576s]     roscpp-config.cmake
+[0.576s] 
+[0.576s]   Add the installation prefix of "roscpp" to CMAKE_PREFIX_PATH or set
+[0.576s]   "roscpp_DIR" to a directory containing one of the above files.  If "roscpp"
+[0.577s]   provides a separate development package or SDK, be sure it has been
+[0.577s]   installed.
+[0.577s] 
+[0.577s] 
+[0.580s] -- Configuring incomplete, errors occurred!
+[0.580s] See also "/home/robohub/dev_ws/src/vision_3d_test/build/vision_3d_test/CMakeFiles/CMakeOutput.log".
+[0.580s] See also "/home/robohub/dev_ws/src/vision_3d_test/build/vision_3d_test/CMakeFiles/CMakeError.log".
+[0.588s] make: *** [Makefile:446: cmake_check_build_system] Error 1
+[0.593s] Invoked command in '/home/robohub/dev_ws/src/vision_3d_test/build/vision_3d_test' returned '2': /usr/bin/cmake --build /home/robohub/dev_ws/src/vision_3d_test/build/vision_3d_test -- -j2 -l2

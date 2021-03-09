@@ -1,0 +1,27 @@
+[0.018s] Invoking command in '/home/robohub/dev_ws/src/vision_3d_test/build/vision_3d_test': /usr/bin/cmake --build /home/robohub/dev_ws/src/vision_3d_test/build/vision_3d_test -- -j2 -l2
+[0.073s] -- Found ament_cmake: 0.9.8 (/opt/ros/foxy/share/ament_cmake/cmake)
+[0.094s] -- Using PYTHON_EXECUTABLE: /usr/bin/python3
+[0.273s] -- Found rclcpp: 2.3.0 (/opt/ros/foxy/share/rclcpp/cmake)
+[0.302s] -- Using all available rosidl_typesupport_c: rosidl_typesupport_fastrtps_c;rosidl_typesupport_introspection_c
+[0.311s] -- Found rosidl_adapter: 1.2.0 (/opt/ros/foxy/share/rosidl_adapter/cmake)
+[0.415s] -- Using all available rosidl_typesupport_cpp: rosidl_typesupport_fastrtps_cpp;rosidl_typesupport_introspection_cpp
+[0.462s] -- Found rmw_implementation_cmake: 1.0.2 (/opt/ros/foxy/share/rmw_implementation_cmake/cmake)
+[0.463s] -- Using RMW implementation 'rmw_fastrtps_cpp' as default
+[0.598s] -- Found rclpy: 1.0.5 (/opt/ros/foxy/share/rclpy/cmake)
+[0.656s] -- Configuring done
+[0.658s] CMake Error at CMakeLists.txt:27 (add_executable):
+[0.658s]   Cannot find source file:
+[0.658s] 
+[0.658s]     SRC_FILES
+[0.658s] 
+[0.659s]   Tried extensions .c .C .c++ .cc .cpp .cxx .cu .m .M .mm .h .hh .h++ .hm
+[0.659s]   .hpp .hxx .in .txx
+[0.659s] 
+[0.659s] 
+[0.660s] CMake Error at CMakeLists.txt:27 (add_executable):
+[0.660s]   No SOURCES given to target: cpp_executable
+[0.661s] 
+[0.661s] 
+[0.661s] CMake Generate step failed.  Build files cannot be regenerated correctly.
+[0.670s] make: *** [Makefile:416: cmake_check_build_system] Error 1
+[0.674s] Invoked command in '/home/robohub/dev_ws/src/vision_3d_test/build/vision_3d_test' returned '2': /usr/bin/cmake --build /home/robohub/dev_ws/src/vision_3d_test/build/vision_3d_test -- -j2 -l2

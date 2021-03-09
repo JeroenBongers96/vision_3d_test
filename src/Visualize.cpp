@@ -90,7 +90,8 @@ void Visualize::visualizePCL(shared_ptr<pcl::visualization::PCLVisualizer> viewe
     while(!viewer->wasStopped ())
     {
         viewer->spinOnce(100);
-        boost::this_thread::sleep (boost::posix_time::microseconds (100000));        
+        // boost::this_thread::sleep (boost::posix_time::microseconds (100000));
+        std::this_thread::sleep_for(std::chrono::milliseconds(1000));
     }    
     viewer->close();
 }

@@ -1,0 +1,333 @@
+[0.000000] (-) TimerEvent: {}
+[0.001370] (vision_3d_test) JobQueued: {'identifier': 'vision_3d_test', 'dependencies': OrderedDict()}
+[0.002017] (vision_3d_test) JobStarted: {'identifier': 'vision_3d_test'}
+[0.020887] (vision_3d_test) JobProgress: {'identifier': 'vision_3d_test', 'progress': 'cmake'}
+[0.023537] (vision_3d_test) JobProgress: {'identifier': 'vision_3d_test', 'progress': 'build'}
+[0.025234] (vision_3d_test) Command: {'cmd': ['/usr/bin/cmake', '--build', '/home/robohub/dev_ws/src/vision_3d_test/build/vision_3d_test', '--', '-j2', '-l2'], 'cwd': '/home/robohub/dev_ws/src/vision_3d_test/build/vision_3d_test', 'env': OrderedDict([('GJS_DEBUG_TOPICS', 'JS ERROR;JS LOG'), ('LESSOPEN', '| /usr/bin/lesspipe %s'), ('USER', 'robohub'), ('SSH_AGENT_PID', '1554'), ('XDG_SESSION_TYPE', 'x11'), ('GIT_ASKPASS', '/snap/code/57/usr/share/code/resources/app/extensions/git/dist/askpass.sh'), ('SHLVL', '1'), ('LD_LIBRARY_PATH', '/opt/ros/foxy/opt/yaml_cpp_vendor/lib:/opt/ros/foxy/opt/rviz_ogre_vendor/lib:/opt/ros/foxy/lib/x86_64-linux-gnu:/opt/ros/foxy/lib'), ('HOME', '/home/robohub'), ('CHROME_DESKTOP', 'code-url-handler.desktop'), ('TERM_PROGRAM_VERSION', '1.54.1'), ('DESKTOP_SESSION', 'ubuntu'), ('GIO_LAUNCHED_DESKTOP_FILE', '/var/lib/snapd/desktop/applications/code_code.desktop'), ('APPLICATION_INSIGHTS_NO_DIAGNOSTIC_CHANNEL', 'true'), ('ROS_PYTHON_VERSION', '3'), ('GNOME_SHELL_SESSION_MODE', 'ubuntu'), ('GTK_MODULES', 'gail:atk-bridge'), ('VSCODE_GIT_ASKPASS_MAIN', '/snap/code/57/usr/share/code/resources/app/extensions/git/dist/askpass-main.js'), ('VSCODE_GIT_ASKPASS_NODE', '/snap/code/57/usr/share/code/code'), ('MANAGERPID', '1378'), ('DBUS_SESSION_BUS_ADDRESS', 'unix:path=/run/user/1000/bus'), ('COLORTERM', 'truecolor'), ('GIO_LAUNCHED_DESKTOP_FILE_PID', '2484'), ('_colcon_cd_root', '/home/robohub/ros2_install'), ('IM_CONFIG_PHASE', '1'), ('ROS_DISTRO', 'foxy'), ('LOGNAME', 'robohub'), ('JOURNAL_STREAM', '8:49733'), ('_', '/usr/bin/colcon'), ('ROS_VERSION', '2'), ('XDG_SESSION_CLASS', 'user'), ('GIT_BRANCH', 'master'), ('USERNAME', 'robohub'), ('TERM', 'xterm-256color'), ('GNOME_DESKTOP_SESSION_ID', 'this-is-deprecated'), ('ROS_LOCALHOST_ONLY', '0'), ('WINDOWPATH', '2'), ('PATH', '/home/robohub/.local/bin:/opt/ros/foxy/bin:/home/robohub/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin'), ('SESSION_MANAGER', 'local/ubuntu:@/tmp/.ICE-unix/1589,unix/ubuntu:/tmp/.ICE-unix/1589'), ('INVOCATION_ID', 'ee5126d193544a5c8081ff02799d977c'), ('XDG_MENU_PREFIX', 'gnome-'), ('BAMF_DESKTOP_FILE_HINT', '/var/lib/snapd/desktop/applications/code_code.desktop'), ('XDG_RUNTIME_DIR', '/run/user/1000'), ('DISPLAY', ':0'), ('LANG', 'en_US.UTF-8'), ('XDG_CURRENT_DESKTOP', 'Unity'), ('XMODIFIERS', '@im=ibus'), ('XDG_SESSION_DESKTOP', 'ubuntu'), ('XAUTHORITY', '/run/user/1000/gdm/Xauthority'), ('LS_COLORS', 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:mi=00:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arc=01;31:*.arj=01;31:*.taz=01;31:*.lha=01;31:*.lz4=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.tzo=01;31:*.t7z=01;31:*.zip=01;31:*.z=01;31:*.dz=01;31:*.gz=01;31:*.lrz=01;31:*.lz=01;31:*.lzo=01;31:*.xz=01;31:*.zst=01;31:*.tzst=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.alz=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.cab=01;31:*.wim=01;31:*.swm=01;31:*.dwm=01;31:*.esd=01;31:*.jpg=01;35:*.jpeg=01;35:*.mjpg=01;35:*.mjpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.m4a=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.oga=00;36:*.opus=00;36:*.spx=00;36:*.xspf=00;36:'), ('VSCODE_GIT_IPC_HANDLE', '/run/user/1000/vscode-git-1fb999ea60.sock'), ('TERM_PROGRAM', 'vscode'), ('SSH_AUTH_SOCK', '/run/user/1000/keyring/ssh'), ('GSETTINGS_SCHEMA_DIR', '/snap/code/57/usr/share/glib-2.0/schemas'), ('AMENT_PREFIX_PATH', '/opt/ros/foxy'), ('ORIGINAL_XDG_CURRENT_DESKTOP', 'ubuntu:GNOME'), ('SHELL', '/bin/bash'), ('DISABLE_WAYLAND', '1'), ('QT_ACCESSIBILITY', '1'), ('GDMSESSION', 'ubuntu'), ('LESSCLOSE', '/usr/bin/lesspipe %s %s'), ('__GIT_PROMPT_SHOW_UNTRACKED_FILES', ''), ('GPG_AGENT_INFO', '/run/user/1000/gnupg/S.gpg-agent:0:1'), ('GJS_DEBUG_OUTPUT', 'stderr'), ('QT_IM_MODULE', 'ibus'), ('PWD', '/home/robohub/dev_ws/src/vision_3d_test/build/vision_3d_test'), ('LC_ALL', 'en_US.UTF-8'), ('XDG_CONFIG_DIRS', '/etc/xdg/xdg-ubuntu:/etc/xdg'), ('XDG_DATA_DIRS', '/usr/share/ubuntu:/usr/local/share/:/usr/share/:/var/lib/snapd/desktop'), ('PYTHONPATH', '/opt/ros/foxy/lib/python3.8/site-packages'), ('COLCON', '1')]), 'shell': False}
+[0.101260] (-) TimerEvent: {}
+[0.111713] (vision_3d_test) StdoutLine: {'line': b'-- Found ament_cmake: 0.9.8 (/opt/ros/foxy/share/ament_cmake/cmake)\n'}
+[0.148051] (vision_3d_test) StdoutLine: {'line': b'-- Using PYTHON_EXECUTABLE: /usr/bin/python3\n'}
+[0.201934] (-) TimerEvent: {}
+[0.302663] (-) TimerEvent: {}
+[0.404427] (-) TimerEvent: {}
+[0.428171] (vision_3d_test) StdoutLine: {'line': b'-- Found rclcpp: 2.3.0 (/opt/ros/foxy/share/rclcpp/cmake)\n'}
+[0.473870] (vision_3d_test) StdoutLine: {'line': b'-- Using all available rosidl_typesupport_c: rosidl_typesupport_fastrtps_c;rosidl_typesupport_introspection_c\n'}
+[0.478675] (vision_3d_test) StdoutLine: {'line': b'-- Found rosidl_adapter: 1.2.0 (/opt/ros/foxy/share/rosidl_adapter/cmake)\n'}
+[0.505152] (-) TimerEvent: {}
+[0.605916] (-) TimerEvent: {}
+[0.648095] (vision_3d_test) StdoutLine: {'line': b'-- Using all available rosidl_typesupport_cpp: rosidl_typesupport_fastrtps_cpp;rosidl_typesupport_introspection_cpp\n'}
+[0.706644] (-) TimerEvent: {}
+[0.718897] (vision_3d_test) StdoutLine: {'line': b'-- Found rmw_implementation_cmake: 1.0.2 (/opt/ros/foxy/share/rmw_implementation_cmake/cmake)\n'}
+[0.720927] (vision_3d_test) StdoutLine: {'line': b"-- Using RMW implementation 'rmw_fastrtps_cpp' as default\n"}
+[0.807387] (-) TimerEvent: {}
+[0.908119] (-) TimerEvent: {}
+[0.929523] (vision_3d_test) StdoutLine: {'line': b'-- Found rclpy: 1.0.5 (/opt/ros/foxy/share/rclpy/cmake)\n'}
+[0.944458] (vision_3d_test) StdoutLine: {'line': b'-- Eigen found (include: /usr/include/eigen3, version: 3.3.7)\n'}
+[1.008849] (-) TimerEvent: {}
+[1.075361] (vision_3d_test) StdoutLine: {'line': b'-- The imported target "vtkParseOGLExt" references the file\n'}
+[1.075651] (vision_3d_test) StdoutLine: {'line': b'   "/usr/bin/vtkParseOGLExt-7.1"\n'}
+[1.075755] (vision_3d_test) StdoutLine: {'line': b'but this file does not exist.  Possible reasons include:\n'}
+[1.075848] (vision_3d_test) StdoutLine: {'line': b'* The file was deleted, renamed, or moved to another location.\n'}
+[1.075936] (vision_3d_test) StdoutLine: {'line': b'* An install or uninstall procedure did not complete successfully.\n'}
+[1.076023] (vision_3d_test) StdoutLine: {'line': b'* The installation package was faulty and contained\n'}
+[1.076110] (vision_3d_test) StdoutLine: {'line': b'   "/usr/lib/cmake/vtk-7.1/VTKTargets.cmake"\n'}
+[1.076195] (vision_3d_test) StdoutLine: {'line': b'but not all the files it references.\n'}
+[1.076281] (vision_3d_test) StdoutLine: {'line': b'\n'}
+[1.082809] (vision_3d_test) StdoutLine: {'line': b'-- The imported target "vtkRenderingPythonTkWidgets" references the file\n'}
+[1.082990] (vision_3d_test) StdoutLine: {'line': b'   "/usr/lib/x86_64-linux-gnu/libvtkRenderingPythonTkWidgets.so"\n'}
+[1.083089] (vision_3d_test) StdoutLine: {'line': b'but this file does not exist.  Possible reasons include:\n'}
+[1.083193] (vision_3d_test) StdoutLine: {'line': b'* The file was deleted, renamed, or moved to another location.\n'}
+[1.083282] (vision_3d_test) StdoutLine: {'line': b'* An install or uninstall procedure did not complete successfully.\n'}
+[1.083369] (vision_3d_test) StdoutLine: {'line': b'* The installation package was faulty and contained\n'}
+[1.083454] (vision_3d_test) StdoutLine: {'line': b'   "/usr/lib/cmake/vtk-7.1/VTKTargets.cmake"\n'}
+[1.083578] (vision_3d_test) StdoutLine: {'line': b'but not all the files it references.\n'}
+[1.083669] (vision_3d_test) StdoutLine: {'line': b'\n'}
+[1.084379] (vision_3d_test) StdoutLine: {'line': b'-- The imported target "vtk" references the file\n'}
+[1.084536] (vision_3d_test) StdoutLine: {'line': b'   "/usr/bin/vtk"\n'}
+[1.084789] (vision_3d_test) StdoutLine: {'line': b'but this file does not exist.  Possible reasons include:\n'}
+[1.085003] (vision_3d_test) StdoutLine: {'line': b'* The file was deleted, renamed, or moved to another location.\n'}
+[1.085206] (vision_3d_test) StdoutLine: {'line': b'* An install or uninstall procedure did not complete successfully.\n'}
+[1.085406] (vision_3d_test) StdoutLine: {'line': b'* The installation package was faulty and contained\n'}
+[1.085627] (vision_3d_test) StdoutLine: {'line': b'   "/usr/lib/cmake/vtk-7.1/VTKTargets.cmake"\n'}
+[1.085827] (vision_3d_test) StdoutLine: {'line': b'but not all the files it references.\n'}
+[1.086027] (vision_3d_test) StdoutLine: {'line': b'\n'}
+[1.092748] (vision_3d_test) StdoutLine: {'line': b'-- The imported target "pvtk" references the file\n'}
+[1.092900] (vision_3d_test) StdoutLine: {'line': b'   "/usr/bin/pvtk"\n'}
+[1.093002] (vision_3d_test) StdoutLine: {'line': b'but this file does not exist.  Possible reasons include:\n'}
+[1.093094] (vision_3d_test) StdoutLine: {'line': b'* The file was deleted, renamed, or moved to another location.\n'}
+[1.093181] (vision_3d_test) StdoutLine: {'line': b'* An install or uninstall procedure did not complete successfully.\n'}
+[1.093268] (vision_3d_test) StdoutLine: {'line': b'* The installation package was faulty and contained\n'}
+[1.093353] (vision_3d_test) StdoutLine: {'line': b'   "/usr/lib/cmake/vtk-7.1/VTKTargets.cmake"\n'}
+[1.093437] (vision_3d_test) StdoutLine: {'line': b'but not all the files it references.\n'}
+[1.093624] (vision_3d_test) StdoutLine: {'line': b'\n'}
+[1.109572] (-) TimerEvent: {}
+[1.117864] (vision_3d_test) StdoutLine: {'line': b"-- Checking for module 'libusb-1.0'\n"}
+[1.122624] (vision_3d_test) StdoutLine: {'line': b"--   No package 'libusb-1.0' found\n"}
+[1.127123] (vision_3d_test) StdoutLine: {'line': b'-- Could NOT find USB_10 (missing: USB_10_LIBRARY USB_10_INCLUDE_DIR) \n'}
+[1.127339] (vision_3d_test) StdoutLine: {'line': b'-- OpenNI disabled because libusb-1.0 not found.\n'}
+[1.128107] (vision_3d_test) StderrLine: {'line': b'** WARNING ** io features related to openni will be disabled\n'}
+[1.138171] (vision_3d_test) StdoutLine: {'line': b"-- Checking for module 'libusb-1.0'\n"}
+[1.143660] (vision_3d_test) StdoutLine: {'line': b"--   No package 'libusb-1.0' found\n"}
+[1.150077] (vision_3d_test) StdoutLine: {'line': b'-- Could NOT find USB_10 (missing: USB_10_LIBRARY USB_10_INCLUDE_DIR) \n'}
+[1.150362] (vision_3d_test) StdoutLine: {'line': b'-- OpenNI 2 disabled because libusb-1.0 not found.\n'}
+[1.150601] (vision_3d_test) StderrLine: {'line': b'** WARNING ** io features related to openni2 will be disabled\n'}
+[1.150754] (vision_3d_test) StderrLine: {'line': b'** WARNING ** io features related to pcap will be disabled\n'}
+[1.151087] (vision_3d_test) StderrLine: {'line': b'** WARNING ** io features related to png will be disabled\n'}
+[1.171888] (vision_3d_test) StdoutLine: {'line': b'-- LIBUSB_1_LIBRARY (missing: LIBUSB_1_INCLUDE_DIR) \n'}
+[1.172210] (vision_3d_test) StderrLine: {'line': b'** WARNING ** io features related to libusb-1.0 will be disabled\n'}
+[1.180171] (vision_3d_test) StdoutLine: {'line': b"-- Checking for module 'libusb-1.0'\n"}
+[1.185627] (vision_3d_test) StdoutLine: {'line': b"--   No package 'libusb-1.0' found\n"}
+[1.190486] (vision_3d_test) StdoutLine: {'line': b'-- Could NOT find USB_10 (missing: USB_10_LIBRARY USB_10_INCLUDE_DIR) \n'}
+[1.190785] (vision_3d_test) StdoutLine: {'line': b'-- OpenNI disabled because libusb-1.0 not found.\n'}
+[1.191052] (vision_3d_test) StderrLine: {'line': b'** WARNING ** visualization features related to openni will be disabled\n'}
+[1.206131] (vision_3d_test) StdoutLine: {'line': b"-- Checking for module 'libusb-1.0'\n"}
+[1.210225] (-) TimerEvent: {}
+[1.212012] (vision_3d_test) StdoutLine: {'line': b"--   No package 'libusb-1.0' found\n"}
+[1.215801] (vision_3d_test) StdoutLine: {'line': b'-- Could NOT find USB_10 (missing: USB_10_LIBRARY USB_10_INCLUDE_DIR) \n'}
+[1.216100] (vision_3d_test) StdoutLine: {'line': b'-- OpenNI 2 disabled because libusb-1.0 not found.\n'}
+[1.216380] (vision_3d_test) StderrLine: {'line': b'** WARNING ** visualization features related to openni2 will be disabled\n'}
+[1.243028] (vision_3d_test) StdoutLine: {'line': b'-- QHULL found (include: /usr/include, lib: optimized;/usr/lib/x86_64-linux-gnu/libqhull.so;debug;/usr/lib/x86_64-linux-gnu/libqhull.so)\n'}
+[1.250188] (vision_3d_test) StdoutLine: {'line': b"-- Checking for module 'libusb-1.0'\n"}
+[1.256284] (vision_3d_test) StdoutLine: {'line': b"--   No package 'libusb-1.0' found\n"}
+[1.259034] (vision_3d_test) StdoutLine: {'line': b'-- Could NOT find USB_10 (missing: USB_10_LIBRARY USB_10_INCLUDE_DIR) \n'}
+[1.259338] (vision_3d_test) StdoutLine: {'line': b'-- OpenNI disabled because libusb-1.0 not found.\n'}
+[1.259599] (vision_3d_test) StderrLine: {'line': b'** WARNING ** apps features related to openni will be disabled\n'}
+[1.280200] (vision_3d_test) StdoutLine: {'line': b'-- looking for PCL_COMMON\n'}
+[1.280955] (vision_3d_test) StdoutLine: {'line': b'-- looking for PCL_KDTREE\n'}
+[1.281712] (vision_3d_test) StdoutLine: {'line': b'-- looking for PCL_OCTREE\n'}
+[1.282459] (vision_3d_test) StdoutLine: {'line': b'-- looking for PCL_SEARCH\n'}
+[1.283232] (vision_3d_test) StdoutLine: {'line': b'-- looking for PCL_SAMPLE_CONSENSUS\n'}
+[1.284047] (vision_3d_test) StdoutLine: {'line': b'-- looking for PCL_FILTERS\n'}
+[1.284908] (vision_3d_test) StdoutLine: {'line': b'-- looking for PCL_2D\n'}
+[1.285588] (vision_3d_test) StdoutLine: {'line': b'-- looking for PCL_GEOMETRY\n'}
+[1.286181] (vision_3d_test) StdoutLine: {'line': b'-- looking for PCL_IO\n'}
+[1.287025] (vision_3d_test) StdoutLine: {'line': b'-- looking for PCL_FEATURES\n'}
+[1.287907] (vision_3d_test) StdoutLine: {'line': b'-- looking for PCL_ML\n'}
+[1.288694] (vision_3d_test) StdoutLine: {'line': b'-- looking for PCL_SEGMENTATION\n'}
+[1.289738] (vision_3d_test) StdoutLine: {'line': b'-- looking for PCL_VISUALIZATION\n'}
+[1.290702] (vision_3d_test) StdoutLine: {'line': b'-- looking for PCL_SURFACE\n'}
+[1.291599] (vision_3d_test) StdoutLine: {'line': b'-- looking for PCL_REGISTRATION\n'}
+[1.292586] (vision_3d_test) StdoutLine: {'line': b'-- looking for PCL_KEYPOINTS\n'}
+[1.293560] (vision_3d_test) StdoutLine: {'line': b'-- looking for PCL_TRACKING\n'}
+[1.294479] (vision_3d_test) StdoutLine: {'line': b'-- looking for PCL_RECOGNITION\n'}
+[1.295565] (vision_3d_test) StdoutLine: {'line': b'-- looking for PCL_STEREO\n'}
+[1.296412] (vision_3d_test) StdoutLine: {'line': b'-- looking for PCL_APPS\n'}
+[1.298092] (vision_3d_test) StdoutLine: {'line': b'-- looking for PCL_IN_HAND_SCANNER\n'}
+[1.298763] (vision_3d_test) StdoutLine: {'line': b'-- looking for PCL_POINT_CLOUD_EDITOR\n'}
+[1.299455] (vision_3d_test) StdoutLine: {'line': b'-- looking for PCL_OUTOFCORE\n'}
+[1.300395] (vision_3d_test) StdoutLine: {'line': b'-- looking for PCL_PEOPLE\n'}
+[1.310998] (-) TimerEvent: {}
+[1.402924] (vision_3d_test) StdoutLine: {'line': b'-- Configuring done\n'}
+[1.411698] (-) TimerEvent: {}
+[1.512526] (-) TimerEvent: {}
+[1.522580] (vision_3d_test) StdoutLine: {'line': b'-- Generating done\n'}
+[1.527567] (vision_3d_test) StdoutLine: {'line': b'-- Build files have been written to: /home/robohub/dev_ws/src/vision_3d_test/build/vision_3d_test\n'}
+[1.569877] (vision_3d_test) StdoutLine: {'line': b'\x1b[35m\x1b[1mScanning dependencies of target cpp_executable\x1b[0m\n'}
+[1.587655] (vision_3d_test) StdoutLine: {'line': b'[ 12%] \x1b[32mBuilding CXX object CMakeFiles/cpp_executable.dir/src/GetData.cpp.o\x1b[0m\n'}
+[1.590883] (vision_3d_test) StdoutLine: {'line': b'[ 25%] \x1b[32mBuilding CXX object CMakeFiles/cpp_executable.dir/src/GetRoi.cpp.o\x1b[0m\n'}
+[1.613252] (-) TimerEvent: {}
+[1.714972] (-) TimerEvent: {}
+[1.817524] (-) TimerEvent: {}
+[1.920332] (-) TimerEvent: {}
+[2.021914] (-) TimerEvent: {}
+[2.123856] (-) TimerEvent: {}
+[2.196424] (vision_3d_test) StderrLine: {'line': b'In file included from \x1b[01m\x1b[K/home/robohub/dev_ws/src/vision_3d_test/src/GetRoi.cpp:1\x1b[m\x1b[K:\n'}
+[2.197619] (vision_3d_test) StderrLine: {'line': b'\x1b[01m\x1b[K/home/robohub/dev_ws/src/vision_3d_test/include/GetRoi.h:6:10:\x1b[m\x1b[K \x1b[01;31m\x1b[Kfatal error: \x1b[m\x1b[Kros/ros.h: No such file or directory\n'}
+[2.197749] (vision_3d_test) StderrLine: {'line': b'    6 | #include \x1b[01;31m\x1b[K<ros/ros.h>\x1b[m\x1b[K\n'}
+[2.197842] (vision_3d_test) StderrLine: {'line': b'      |          \x1b[01;31m\x1b[K^~~~~~~~~~~\x1b[m\x1b[K\n'}
+[2.198165] (vision_3d_test) StderrLine: {'line': b'compilation terminated.\n'}
+[2.202892] (vision_3d_test) StderrLine: {'line': b'make[2]: *** [CMakeFiles/cpp_executable.dir/build.make:76: CMakeFiles/cpp_executable.dir/src/GetRoi.cpp.o] Error 1\n'}
+[2.203074] (vision_3d_test) StderrLine: {'line': b'make[2]: *** Waiting for unfinished jobs....\n'}
+[2.224436] (-) TimerEvent: {}
+[2.326204] (-) TimerEvent: {}
+[2.428493] (-) TimerEvent: {}
+[2.530024] (-) TimerEvent: {}
+[2.630920] (-) TimerEvent: {}
+[2.732640] (-) TimerEvent: {}
+[2.833882] (-) TimerEvent: {}
+[2.935786] (-) TimerEvent: {}
+[3.037249] (-) TimerEvent: {}
+[3.138603] (-) TimerEvent: {}
+[3.239335] (-) TimerEvent: {}
+[3.340065] (-) TimerEvent: {}
+[3.440958] (-) TimerEvent: {}
+[3.541678] (-) TimerEvent: {}
+[3.642404] (-) TimerEvent: {}
+[3.743261] (-) TimerEvent: {}
+[3.844006] (-) TimerEvent: {}
+[3.944777] (-) TimerEvent: {}
+[4.045941] (-) TimerEvent: {}
+[4.147002] (-) TimerEvent: {}
+[4.247740] (-) TimerEvent: {}
+[4.348472] (-) TimerEvent: {}
+[4.449209] (-) TimerEvent: {}
+[4.549933] (-) TimerEvent: {}
+[4.650669] (-) TimerEvent: {}
+[4.751039] (-) TimerEvent: {}
+[4.851993] (-) TimerEvent: {}
+[4.952398] (-) TimerEvent: {}
+[5.053164] (-) TimerEvent: {}
+[5.153718] (-) TimerEvent: {}
+[5.254496] (-) TimerEvent: {}
+[5.355230] (-) TimerEvent: {}
+[5.455957] (-) TimerEvent: {}
+[5.556849] (-) TimerEvent: {}
+[5.657305] (-) TimerEvent: {}
+[5.758583] (-) TimerEvent: {}
+[5.859033] (-) TimerEvent: {}
+[5.959465] (-) TimerEvent: {}
+[6.060720] (-) TimerEvent: {}
+[6.161135] (-) TimerEvent: {}
+[6.262523] (-) TimerEvent: {}
+[6.363297] (-) TimerEvent: {}
+[6.463980] (-) TimerEvent: {}
+[6.564459] (-) TimerEvent: {}
+[6.665169] (-) TimerEvent: {}
+[6.765890] (-) TimerEvent: {}
+[6.866662] (-) TimerEvent: {}
+[6.967349] (-) TimerEvent: {}
+[7.068082] (-) TimerEvent: {}
+[7.168817] (-) TimerEvent: {}
+[7.269569] (-) TimerEvent: {}
+[7.370278] (-) TimerEvent: {}
+[7.471146] (-) TimerEvent: {}
+[7.571875] (-) TimerEvent: {}
+[7.672632] (-) TimerEvent: {}
+[7.773349] (-) TimerEvent: {}
+[7.874070] (-) TimerEvent: {}
+[7.974799] (-) TimerEvent: {}
+[8.075536] (-) TimerEvent: {}
+[8.176263] (-) TimerEvent: {}
+[8.277004] (-) TimerEvent: {}
+[8.377733] (-) TimerEvent: {}
+[8.478456] (-) TimerEvent: {}
+[8.579190] (-) TimerEvent: {}
+[8.679916] (-) TimerEvent: {}
+[8.780628] (-) TimerEvent: {}
+[8.881361] (-) TimerEvent: {}
+[8.982086] (-) TimerEvent: {}
+[9.082816] (-) TimerEvent: {}
+[9.183609] (-) TimerEvent: {}
+[9.284280] (-) TimerEvent: {}
+[9.385154] (-) TimerEvent: {}
+[9.485883] (-) TimerEvent: {}
+[9.586611] (-) TimerEvent: {}
+[9.687349] (-) TimerEvent: {}
+[9.788077] (-) TimerEvent: {}
+[9.888812] (-) TimerEvent: {}
+[9.989542] (-) TimerEvent: {}
+[10.090277] (-) TimerEvent: {}
+[10.191222] (-) TimerEvent: {}
+[10.291895] (-) TimerEvent: {}
+[10.392628] (-) TimerEvent: {}
+[10.493421] (-) TimerEvent: {}
+[10.594084] (-) TimerEvent: {}
+[10.694807] (-) TimerEvent: {}
+[10.795532] (-) TimerEvent: {}
+[10.896278] (-) TimerEvent: {}
+[10.997031] (-) TimerEvent: {}
+[11.097772] (-) TimerEvent: {}
+[11.198500] (-) TimerEvent: {}
+[11.299227] (-) TimerEvent: {}
+[11.399998] (-) TimerEvent: {}
+[11.500691] (-) TimerEvent: {}
+[11.601571] (-) TimerEvent: {}
+[11.702290] (-) TimerEvent: {}
+[11.803019] (-) TimerEvent: {}
+[11.903756] (-) TimerEvent: {}
+[12.004557] (-) TimerEvent: {}
+[12.105235] (-) TimerEvent: {}
+[12.205956] (-) TimerEvent: {}
+[12.306713] (-) TimerEvent: {}
+[12.407416] (-) TimerEvent: {}
+[12.508151] (-) TimerEvent: {}
+[12.608878] (-) TimerEvent: {}
+[12.709616] (-) TimerEvent: {}
+[12.810361] (-) TimerEvent: {}
+[12.911064] (-) TimerEvent: {}
+[13.011892] (-) TimerEvent: {}
+[13.076130] (vision_3d_test) StderrLine: {'line': b'\x1b[01m\x1b[K/home/robohub/dev_ws/src/vision_3d_test/src/GetData.cpp:\x1b[m\x1b[K In member function \xe2\x80\x98\x1b[01m\x1b[Kvoid GetData::pclConversion(const rs2::points&, const rs2::video_frame&, pcl::PointCloud<pcl::PointXYZRGB>::Ptr&)\x1b[m\x1b[K\xe2\x80\x99:\n'}
+[13.076310] (vision_3d_test) StderrLine: {'line': b'\x1b[01m\x1b[K/home/robohub/dev_ws/src/vision_3d_test/src/GetData.cpp:74:23:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[Kcomparison of integer expressions of different signedness: \xe2\x80\x98\x1b[01m\x1b[Kint\x1b[m\x1b[K\xe2\x80\x99 and \xe2\x80\x98\x1b[01m\x1b[Ksize_t\x1b[m\x1b[K\xe2\x80\x99 {aka \xe2\x80\x98\x1b[01m\x1b[Klong unsigned int\x1b[m\x1b[K\xe2\x80\x99} [\x1b[01;35m\x1b[K-Wsign-compare\x1b[m\x1b[K]\n'}
+[13.076380] (vision_3d_test) StderrLine: {'line': b'   74 |     for (int i = 0; \x1b[01;35m\x1b[Ki < points.size()\x1b[m\x1b[K; i++)\n'}
+[13.076438] (vision_3d_test) StderrLine: {'line': b'      |                     \x1b[01;35m\x1b[K~~^~~~~~~~~~~~~~~\x1b[m\x1b[K\n'}
+[13.087733] (vision_3d_test) StderrLine: {'line': b'\x1b[01m\x1b[K/home/robohub/dev_ws/src/vision_3d_test/src/GetData.cpp:\x1b[m\x1b[K In member function \xe2\x80\x98\x1b[01m\x1b[Kcv::Mat GetData::cvFromPcl(const Ptr&)\x1b[m\x1b[K\xe2\x80\x99:\n'}
+[13.087888] (vision_3d_test) StderrLine: {'line': b'\x1b[01m\x1b[K/home/robohub/dev_ws/src/vision_3d_test/src/GetData.cpp:183:22:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[Kcomparison of integer expressions of different signedness: \xe2\x80\x98\x1b[01m\x1b[Kint\x1b[m\x1b[K\xe2\x80\x99 and \xe2\x80\x98\x1b[01m\x1b[Kuint32_t\x1b[m\x1b[K\xe2\x80\x99 {aka \xe2\x80\x98\x1b[01m\x1b[Kunsigned int\x1b[m\x1b[K\xe2\x80\x99} [\x1b[01;35m\x1b[K-Wsign-compare\x1b[m\x1b[K]\n'}
+[13.087956] (vision_3d_test) StderrLine: {'line': b'  183 |     for(int y = 0; \x1b[01;35m\x1b[Ky < cloud->height\x1b[m\x1b[K; ++y)\n'}
+[13.088013] (vision_3d_test) StderrLine: {'line': b'      |                    \x1b[01;35m\x1b[K~~^~~~~~~~~~~~~~~\x1b[m\x1b[K\n'}
+[13.088170] (vision_3d_test) StderrLine: {'line': b'\x1b[01m\x1b[K/home/robohub/dev_ws/src/vision_3d_test/src/GetData.cpp:185:26:\x1b[m\x1b[K \x1b[01;35m\x1b[Kwarning: \x1b[m\x1b[Kcomparison of integer expressions of different signedness: \xe2\x80\x98\x1b[01m\x1b[Kint\x1b[m\x1b[K\xe2\x80\x99 and \xe2\x80\x98\x1b[01m\x1b[Kuint32_t\x1b[m\x1b[K\xe2\x80\x99 {aka \xe2\x80\x98\x1b[01m\x1b[Kunsigned int\x1b[m\x1b[K\xe2\x80\x99} [\x1b[01;35m\x1b[K-Wsign-compare\x1b[m\x1b[K]\n'}
+[13.088256] (vision_3d_test) StderrLine: {'line': b'  185 |         for(int x = 0; \x1b[01;35m\x1b[Kx < cloud->width\x1b[m\x1b[K; ++x)\n'}
+[13.088313] (vision_3d_test) StderrLine: {'line': b'      |                        \x1b[01;35m\x1b[K~~^~~~~~~~~~~~~~\x1b[m\x1b[K\n'}
+[13.112531] (-) TimerEvent: {}
+[13.213271] (-) TimerEvent: {}
+[13.314025] (-) TimerEvent: {}
+[13.414724] (-) TimerEvent: {}
+[13.515460] (-) TimerEvent: {}
+[13.616196] (-) TimerEvent: {}
+[13.716883] (-) TimerEvent: {}
+[13.817895] (-) TimerEvent: {}
+[13.918552] (-) TimerEvent: {}
+[14.019309] (-) TimerEvent: {}
+[14.119771] (-) TimerEvent: {}
+[14.220703] (-) TimerEvent: {}
+[14.321062] (-) TimerEvent: {}
+[14.421771] (-) TimerEvent: {}
+[14.522500] (-) TimerEvent: {}
+[14.623204] (-) TimerEvent: {}
+[14.723937] (-) TimerEvent: {}
+[14.824664] (-) TimerEvent: {}
+[14.925390] (-) TimerEvent: {}
+[15.026113] (-) TimerEvent: {}
+[15.126850] (-) TimerEvent: {}
+[15.227622] (-) TimerEvent: {}
+[15.328320] (-) TimerEvent: {}
+[15.429055] (-) TimerEvent: {}
+[15.529747] (-) TimerEvent: {}
+[15.630735] (-) TimerEvent: {}
+[15.732436] (-) TimerEvent: {}
+[15.834069] (-) TimerEvent: {}
+[15.935714] (-) TimerEvent: {}
+[16.036447] (-) TimerEvent: {}
+[16.137293] (-) TimerEvent: {}
+[16.238055] (-) TimerEvent: {}
+[16.338772] (-) TimerEvent: {}
+[16.439528] (-) TimerEvent: {}
+[16.540236] (-) TimerEvent: {}
+[16.640966] (-) TimerEvent: {}
+[16.741752] (-) TimerEvent: {}
+[16.842431] (-) TimerEvent: {}
+[16.943168] (-) TimerEvent: {}
+[17.043904] (-) TimerEvent: {}
+[17.144652] (-) TimerEvent: {}
+[17.245361] (-) TimerEvent: {}
+[17.346081] (-) TimerEvent: {}
+[17.446823] (-) TimerEvent: {}
+[17.547552] (-) TimerEvent: {}
+[17.648379] (-) TimerEvent: {}
+[17.749018] (-) TimerEvent: {}
+[17.849756] (-) TimerEvent: {}
+[17.950475] (-) TimerEvent: {}
+[18.051206] (-) TimerEvent: {}
+[18.151933] (-) TimerEvent: {}
+[18.252673] (-) TimerEvent: {}
+[18.353453] (-) TimerEvent: {}
+[18.454264] (-) TimerEvent: {}
+[18.554866] (-) TimerEvent: {}
+[18.655590] (-) TimerEvent: {}
+[18.756350] (-) TimerEvent: {}
+[18.857045] (-) TimerEvent: {}
+[18.957785] (-) TimerEvent: {}
+[19.058543] (-) TimerEvent: {}
+[19.159243] (-) TimerEvent: {}
+[19.260008] (-) TimerEvent: {}
+[19.360881] (-) TimerEvent: {}
+[19.461573] (-) TimerEvent: {}
+[19.562302] (-) TimerEvent: {}
+[19.663045] (-) TimerEvent: {}
+[19.763772] (-) TimerEvent: {}
+[19.864505] (-) TimerEvent: {}
+[19.964932] (-) TimerEvent: {}
+[19.965917] (vision_3d_test) StderrLine: {'line': b'make[1]: *** [CMakeFiles/Makefile2:78: CMakeFiles/cpp_executable.dir/all] Error 2\n'}
+[19.966046] (vision_3d_test) StderrLine: {'line': b'make: *** [Makefile:141: all] Error 2\n'}
+[19.971860] (vision_3d_test) CommandEnded: {'returncode': 2}
+[20.029112] (vision_3d_test) JobEnded: {'identifier': 'vision_3d_test', 'rc': 2}
+[20.040531] (-) EventReactorShutdown: {}

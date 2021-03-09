@@ -5,7 +5,7 @@
 #include <iostream>
 #include "GetData.h"
 #include "ImageData.h"
-#include "GetRoi.h"
+// #include "GetRoi.h"
 #include "Process2dData.h"
 #include "Process3dData.h"
 #include "Visualize.h"
@@ -21,7 +21,8 @@ bool save_data = false;
 pcl::PointCloud<pcl::PointXYZRGB>::Ptr object (new pcl::PointCloud<pcl::PointXYZRGB>);
 pcl::PointCloud<pcl::PointXYZRGB>::Ptr table (new pcl::PointCloud<pcl::PointXYZRGB>);
 
-int main(int argc, char** argv)
+// int main(int argc, char** argv)
+int main()
 {
     cout << "main started" << endl;
     std::cout << "PCL version: " << PCL_VERSION << std::endl;
@@ -32,7 +33,7 @@ int main(int argc, char** argv)
     vector<pcl::PointXYZ> odom;
 
     ImageData my_data;
-    GetRoi img_roi;
+    // GetRoi img_roi;
     GetData get_data(debug, create_data, save_data);
     Process3dData process3d;
     Process2dData process2d;
@@ -66,7 +67,7 @@ int main(int argc, char** argv)
     std::tie(transform, rpy, q, odom) = process3d.momentOfInertia(object);
     
     // Ros quaternion transformation, this can be broadcaster
-    tf2::Quaternion q_tf(q.x(), q.y(), q.z(), q.w()); 
+    // tf2::Quaternion q_tf(q.x(), q.y(), q.z(), q.w()); 
 
     // Show result
     if(debug)
@@ -83,11 +84,11 @@ int main(int argc, char** argv)
             cout << "Rotation around Y axis (Pitch): " << rpy[1] << "°" << endl;
             cout << "Rotation around Z axis (Yaw): " << rpy[2] << "°" << endl << endl;
 
-            cout << "===Rotations in Quaternion==================" << endl;
-            cout << "Rotation quaternion x: " << q_tf[0] << endl;
-            cout << "Rotation quaternion y: " << q_tf[1] << endl;
-            cout << "Rotation quaternion z: " << q_tf[2] << endl;
-            cout << "Rotation quaternion w: " << q_tf[3] << endl;
+            // cout << "===Rotations in Quaternion==================" << endl;
+            // cout << "Rotation quaternion x: " << q_tf[0] << endl;
+            // cout << "Rotation quaternion y: " << q_tf[1] << endl;
+            // cout << "Rotation quaternion z: " << q_tf[2] << endl;
+            // cout << "Rotation quaternion w: " << q_tf[3] << endl;
 
             cout << "===Location matrix=====================" << endl << endl;
             cout << transform << endl;

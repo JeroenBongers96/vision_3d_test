@@ -1,0 +1,11 @@
+[ 12%] [32mBuilding CXX object CMakeFiles/cpp_executable.dir/src/GetRoi.cpp.o[0m
+[ 25%] [32mBuilding CXX object CMakeFiles/cpp_executable.dir/src/Process2dData.cpp.o[0m
+In file included from [01m[K/home/robohub/dev_ws/src/vision_3d_test/src/GetRoi.cpp:1[m[K:
+[01m[K/home/robohub/dev_ws/src/vision_3d_test/include/GetRoi.h:6:10:[m[K [01;31m[Kfatal error: [m[Kros/ros.h: No such file or directory
+    6 | #include [01;31m[K<ros/ros.h>[m[K
+      |          [01;31m[K^~~~~~~~~~~[m[K
+compilation terminated.
+make[2]: *** [CMakeFiles/cpp_executable.dir/build.make:76: CMakeFiles/cpp_executable.dir/src/GetRoi.cpp.o] Error 1
+make[2]: *** Waiting for unfinished jobs....
+make[1]: *** [CMakeFiles/Makefile2:78: CMakeFiles/cpp_executable.dir/all] Error 2
+make: *** [Makefile:141: all] Error 2

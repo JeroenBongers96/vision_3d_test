@@ -1,0 +1,15 @@
+In file included from [01m[K/home/robohub/dev_ws/src/vision_3d_test/src/GetRoi.cpp:1[m[K:
+[01m[K/home/robohub/dev_ws/src/vision_3d_test/include/GetRoi.h:5:10:[m[K [01;31m[Kfatal error: [m[Kopencv2/opencv.hpp: No such file or directory
+    5 | #include [01;31m[K<opencv2/opencv.hpp>[m[K
+      |          [01;31m[K^~~~~~~~~~~~~~~~~~~~[m[K
+compilation terminated.
+make[2]: *** [CMakeFiles/cpp_executable.dir/build.make:76: CMakeFiles/cpp_executable.dir/src/GetRoi.cpp.o] Error 1
+make[2]: *** Waiting for unfinished jobs....
+In file included from [01m[K/home/robohub/dev_ws/src/vision_3d_test/src/GetData.cpp:1[m[K:
+[01m[K/home/robohub/dev_ws/src/vision_3d_test/include/GetData.h:5:10:[m[K [01;31m[Kfatal error: [m[Kpcl/io/pcd_io.h: No such file or directory
+    5 | #include [01;31m[K<pcl/io/pcd_io.h>[m[K
+      |          [01;31m[K^~~~~~~~~~~~~~~~~[m[K
+compilation terminated.
+make[2]: *** [CMakeFiles/cpp_executable.dir/build.make:63: CMakeFiles/cpp_executable.dir/src/GetData.cpp.o] Error 1
+make[1]: *** [CMakeFiles/Makefile2:78: CMakeFiles/cpp_executable.dir/all] Error 2
+make: *** [Makefile:141: all] Error 2
