@@ -25,6 +25,8 @@ pcl::PointCloud<pcl::PointXYZRGB>::Ptr table (new pcl::PointCloud<pcl::PointXYZR
 int main()
 {
     cout << "main started" << endl;
+    cout << "-------" << endl;
+
     std::cout << "PCL version: " << PCL_VERSION << std::endl;
 
     Eigen::Matrix4f transform = Eigen::Matrix4f::Identity();

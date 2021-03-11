@@ -157,7 +157,7 @@ void GetData::loadData(ImageData &my_data)
 
     string file_name = "/cv_img.png";    
     string input = loading_name + file_name;
-    string test_img = "/home/jeroen/cv_img.png";
+    // string test_img = "/home/jeroen/cv_img.png";
     // my_data.cv_img = cv::imread(test_img, cv::IMREAD_UNCHANGED);
 
     pcl::PointCloud<pcl::PointXYZRGB>::Ptr cloud(new pcl::PointCloud<pcl::PointXYZRGB>);
@@ -220,7 +220,7 @@ void GetData::getData(ImageData &my_data)
     }
     else
     {
-        my_data.folder_path = "/home/jeroen/workspaces/vision_images";
+        my_data.folder_path = "/home/robohub/workspaces/vision_images";
         loadData(my_data);
     }
 }
