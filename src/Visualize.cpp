@@ -73,9 +73,16 @@ shared_ptr<pcl::visualization::PCLVisualizer> Visualize::addOriginalColorCloud(s
  */
 shared_ptr<pcl::visualization::PCLVisualizer> Visualize::addOdom(shared_ptr<pcl::visualization::PCLVisualizer> viewer, vector<pcl::PointXYZ> odom)
 {
-    viewer->addLine (odom.at(0), odom.at(1), 1.0f, 0.0f, 0.0f, "major eigen vector");
-    viewer->addLine (odom.at(0), odom.at(2), 0.0f, 1.0f, 0.0f, "middle eigen vector");
-    viewer->addLine (odom.at(0), odom.at(3), 0.0f, 0.0f, 1.0f, "minor eigen vector");
+    odom_counter++;
+    
+    string major = "major_eigen_vector_" + to_string(odom_counter);
+    string middle = "middle_eigen_vector_" + to_string(odom_counter);
+    string minor = "minor_eigen_vector_" + to_string(odom_counter);
+
+    viewer->addLine (odom.at(0), odom.at(1), 1.0f, 0.0f, 0.0f, major);
+    viewer->addLine (odom.at(0), odom.at(2), 0.0f, 1.0f, 0.0f, middle);
+    viewer->addLine (odom.at(0), odom.at(3), 0.0f, 0.0f, 1.0f, minor);
+    
     return viewer;
 }
 

@@ -242,6 +242,17 @@ std::tuple<Eigen::Matrix4f, Eigen::Vector3f, Eigen::Quaternionf, std::vector<pcl
     transform_1 (2,0) = rotational_matrix_OBB (2,0);  transform_1 (2,1) = rotational_matrix_OBB (2,1); transform_1 (2,2) = rotational_matrix_OBB (2,2); transform_1 (2,3) = center.z;
     transform_1 (3,0) = 0;  transform_1 (3,1) = 0; transform_1 (3,2) = 0; transform_1 (3,3) = 1;
 
+    transform_1 (0,0) = -0.999722;
+    transform_1 (2,0) = -0.0115021;
+
+    std::cout << "11: " << transform_1 (0,0) << std::endl;
+    // std::cout << "21: " << transform_1 (1,0) << std::endl;
+    // std::cout << "22: " << transform_1 (1,1) << std::endl;
+    // std::cout << "23: " << transform_1 (1,2) << std::endl;
+    std::cout << "31: " << transform_1 (2,0) << std::endl;
+
+    std::cout << transform_1 << std::endl;
+
     Eigen::Vector3f rpy;
     Eigen::Quaternionf q;
     std::tie(rpy, q) = getRotation(transform_1);   

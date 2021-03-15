@@ -30,9 +30,11 @@ int main()
     std::cout << "PCL version: " << PCL_VERSION << std::endl;
 
     Eigen::Matrix4f transform = Eigen::Matrix4f::Identity();
-    Eigen::Vector3f rpy;
-    Eigen::Quaternionf q;
-    vector<pcl::PointXYZ> odom;
+    Eigen::Matrix4f transform2 = Eigen::Matrix4f::Identity();
+
+    Eigen::Vector3f rpy, rpy2;
+    Eigen::Quaternionf q, q2;
+    vector<pcl::PointXYZ> odom, odom2;
 
     ImageData my_data;
     // GetRoi img_roi;
@@ -65,9 +67,33 @@ int main()
     // Get table cloud
     table = process3d.getPlainRANSAC(my_data.original_cloud);
 
-    // Get transformation
+    // Get object TF
     std::tie(transform, rpy, q, odom) = process3d.momentOfInertia(object);
+
+    // Get table TF
+    std::tie(transform2, rpy2, q2, odom2) = process3d.momentOfInertia(table);
     
+    std::cout << object->size() << std::endl;
+    std::cout << table->size() << std::endl;
+
+    // std::cout << "==============table===============" << std::endl;
+    // for (auto& point: *table)
+    // {
+    //     std::cout << "x: " << point.x << std::endl;
+    //     std::cout << "y: " << point.y << std::endl;
+    //     std::cout << "z: " << point.z << std::endl;
+    //     std::cout << "---" << std::endl;
+    // }
+
+    // std::cout << "==============object===============" << std::endl;
+    // for (auto& point: *object)
+    // {
+    //     std::cout << "x: " << point.x << std::endl;
+    //     std::cout << "y: " << point.y << std::endl;
+    //     std::cout << "z: " << point.z << std::endl;
+    //     std::cout << "---" << std::endl;
+    // }
+
     // Ros quaternion transformation, this can be broadcaster
     // tf2::Quaternion q_tf(q.x(), q.y(), q.z(), q.w()); 
 
@@ -99,9 +125,11 @@ int main()
             shared_ptr<pcl::visualization::PCLVisualizer> viewer = vis.createViewer();
             vis.visualizeCV(bin_img);
             // viewer = vis.addOriginalColorCloud(viewer, my_data.original_cloud);
-            // viewer = vis.addCustomColorCloud(viewer, table);
+            viewer = vis.addCustomColorCloud(viewer, my_data.original_cloud);
+            viewer = vis.addCustomColorCloud(viewer, table);
             viewer = vis.addCustomColorCloud(viewer, object);
             viewer = vis.addOdom(viewer, odom);
+            viewer = vis.addOdom(viewer, odom2);
             vis.visualizePCL(viewer);
         }
 
