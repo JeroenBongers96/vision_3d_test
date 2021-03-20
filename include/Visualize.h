@@ -15,6 +15,7 @@ class Visualize
     private:
         bool debug;       
         int cloud_counter = 0;
+        int odom_counter = 0;
         vector<int> color_changer(int count);
     public:
         Visualize(bool debug);
