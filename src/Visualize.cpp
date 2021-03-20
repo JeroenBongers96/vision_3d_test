@@ -73,9 +73,15 @@ shared_ptr<pcl::visualization::PCLVisualizer> Visualize::addOriginalColorCloud(s
  */
 shared_ptr<pcl::visualization::PCLVisualizer> Visualize::addOdom(shared_ptr<pcl::visualization::PCLVisualizer> viewer, vector<pcl::PointXYZ> odom)
 {
-    viewer->addLine (odom.at(0), odom.at(1), 1.0f, 0.0f, 0.0f, "major eigen vector");
-    viewer->addLine (odom.at(0), odom.at(2), 0.0f, 1.0f, 0.0f, "middle eigen vector");
-    viewer->addLine (odom.at(0), odom.at(3), 0.0f, 0.0f, 1.0f, "minor eigen vector");
+    odom_counter++;
+    string major_eigen_vector = "major_eigen_vector_" + to_string(odom_counter);
+    string middle_eigen_vector = "middle_eigen_vector_" + to_string(odom_counter);
+    string minor_eigen_vector = "minor_eigen_vector_" + to_string(odom_counter);
+
+    viewer->addLine (odom.at(0), odom.at(1), 1.0f, 0.0f, 0.0f, major_eigen_vector);
+    viewer->addLine (odom.at(0), odom.at(2), 0.0f, 1.0f, 0.0f, middle_eigen_vector);
+    viewer->addLine (odom.at(0), odom.at(3), 0.0f, 0.0f, 1.0f, minor_eigen_vector);
+
     return viewer;
 }
 
@@ -90,8 +96,7 @@ void Visualize::visualizePCL(shared_ptr<pcl::visualization::PCLVisualizer> viewe
     while(!viewer->wasStopped ())
     {
         viewer->spinOnce(100);
-        // boost::this_thread::sleep (boost::posix_time::microseconds (100000));
-        std::this_thread::sleep_for(std::chrono::milliseconds(1000));
+        std::this_thread::sleep_for(std::chrono::milliseconds(50));
     }    
     viewer->close();
 }

@@ -17,6 +17,8 @@
 #include <pcl/features/moment_of_inertia_estimation.h>
 #include <pcl/visualization/cloud_viewer.h>
 #include <pcl/common/io.h>
+#include <pcl/common/transforms.h> 
+#include <pcl/filters/statistical_outlier_removal.h>
 
 class Process3dData
 {
@@ -25,9 +27,13 @@ class Process3dData
     public:
         Process3dData();
         pcl::PointCloud<pcl::PointXYZRGB>::Ptr cutObj(const cv::Mat &cv_img, const pcl::PointCloud<pcl::PointXYZRGB>::Ptr &cloud);
-        pcl::PointCloud<pcl::PointXYZRGB>::Ptr cutROI(const ImageData &my_data, std::vector<int> roi_vec);
+        pcl::PointCloud<pcl::PointXYZRGB>::Ptr cutROI(const pcl::PointCloud<pcl::PointXYZRGB>::Ptr &cloud, std::vector<int> roi_vec);
         pcl::PointCloud<pcl::PointXYZRGB>::Ptr getPlainRANSAC(const pcl::PointCloud<pcl::PointXYZRGB>::Ptr &cloud);
         std::tuple<Eigen::Matrix4f, Eigen::Vector3f, Eigen::Quaternionf, std::vector<pcl::PointXYZ>> momentOfInertia(pcl::PointCloud<pcl::PointXYZRGB>::Ptr cloud);
+        pcl::PointCloud<pcl::PointXYZRGB>::Ptr transformSfuToCameraOdom(const pcl::PointCloud<pcl::PointXYZRGB>::Ptr &cloud, const Eigen::Matrix4f &mat);
+        pcl::PointCloud<pcl::PointXYZRGB>::Ptr transformSfuToOriginalOdom(const pcl::PointCloud<pcl::PointXYZRGB>::Ptr &cloud, const Eigen::Matrix4f &mat);
+        pcl::PointCloud<pcl::PointXYZRGB>::Ptr orFilter(const pcl::PointCloud<pcl::PointXYZRGB>::Ptr &cloud);
+
 };
 
 #endif

@@ -17,10 +17,6 @@ pcl::PointCloud<pcl::PointXYZRGB>::Ptr Process3dData::cutObj(const cv::Mat &cv_i
 
     pcl::PointCloud<pcl::PointXYZRGB>::Ptr object(new pcl::PointCloud<pcl::PointXYZRGB>);
 
-    // object->width = cols;
-    // object->height = rows;
-    // object->points.resize (object->width * object->height);
-    
     const float bad_point = std::numeric_limits<float>::quiet_NaN();
 
     for(int y = 0; y < rows; ++y)
@@ -42,60 +38,35 @@ pcl::PointCloud<pcl::PointXYZRGB>::Ptr Process3dData::cutObj(const cv::Mat &cv_i
 /**
  * Cut ROI of point clouds
  */
-pcl::PointCloud<pcl::PointXYZRGB>::Ptr Process3dData::cutROI(const ImageData &my_data, std::vector<int> roi_vec)
+pcl::PointCloud<pcl::PointXYZRGB>::Ptr Process3dData::cutROI(const pcl::PointCloud<pcl::PointXYZRGB>::Ptr &cloud, std::vector<int> roi_vec)
 {
     pcl::PointCloud<pcl::PointXYZRGB>::Ptr object (new pcl::PointCloud<pcl::PointXYZRGB>);
     
-    object->width = my_data.original_cloud->width;
-    object->height = my_data.original_cloud->height;
-    object->points.resize (object->width * object->height);
+    // object->width = cloud->width;
+    // object->height = cloud->height;
+    // object->points.resize (object->width * object->height);
 
-    cv::Mat cv_img = cv::Mat::zeros(cv::Size(object->width,object->height),CV_8UC3);
+    cv::Mat cv_img = cv::Mat::zeros(cv::Size(cloud->width,cloud->height),CV_8UC3);
 
     // int i = 0;
-    for(int y = 0; y < object->height; ++y)
+    for(int y = 0; y < cloud->height; ++y)
     {
-        for(int x = 0; x < object->width; ++x)
+        for(int x = 0; x < cloud->width; ++x)
         {
-            //
-            if(x >= roi_vec[0] && x <= roi_vec[2] && y >= roi_vec[1] && y <= roi_vec[3])
-            {
+            if(x >= roi_vec[0] && x <= roi_vec[2] && y >= roi_vec[1] && y <= roi_vec[3] && cloud->at(x, y).z < -0.006 && cloud->at(x, y).z > -0.05)
+            {                
+                // object->at(x, y).x = cloud->at(x, y).x;
+                // object->at(x, y).y = cloud->at(x, y).y;
+                // object->at(x, y).z = cloud->at(x, y).z;
+                // object->at(x, y).rgb = cloud->at(x, y).rgb;
 
-                
-                object->at(x, y).x = my_data.original_cloud->at(x, y).x;
-                object->at(x, y).y = my_data.original_cloud->at(x, y).y;
-                object->at(x, y).z = my_data.original_cloud->at(x, y).z;
-                object->at(x, y).rgb = my_data.original_cloud->at(x, y).rgb;
-
-                pcl::PointXYZRGB point = my_data.original_cloud->at(x, y);
-
-                // std::cout << "b [pcl] : " << (int)point.b << std::endl; 
-                // std::cout << "g [pcl] : " << (int)point.g << std::endl; 
-                // std::cout << "r [pcl] : " << (int)point.r << std::endl; 
+                // pcl::PointXYZRGB point = cloud->at(x, y);
+                object->push_back(cloud->at(x, y));
             }
-
-                // memcpy( &cv_img.at<cv::Vec3b>(y,x)[0], (int)point.b, sizeof(point.b) );
-            // cv_img.at<cv::Vec3b>(y,x)[0] = (int)point.b;
-            // cv_img.at<cv::Vec3b>(y,x)[1] = (int)point.g;
-            // cv_img.at<cv::Vec3b>(y,x)[2] = (int)point.r;
-
-                // std::cout << "b [cv] : " << (int)cv_img.at<cv::Vec3b>(y,x)[0] << std::endl; 
-                // std::cout << "g [cv] : " << (int)cv_img.at<cv::Vec3b>(y,x)[1] << std::endl; 
-                // std::cout << "r [cv] : " << (int)cv_img.at<cv::Vec3b>(y,x)[2] << std::endl; 
-                // }
         }
     }
 
-    // cv::namedWindow("PCL image", cv::WINDOW_AUTOSIZE );
-    // cv::imshow("PCL image", cv_img);
-    // cv::waitKey(0);
-
-    // std::vector<int> compression_params;
-    // compression_params.push_back(cv::IMWRITE_PNG_COMPRESSION);
-    // compression_params.push_back(9);
-    // std::string save_name = "/home/jeroen/cv_img.png";
-    // cv::imwrite(save_name, cv_img, compression_params);
-
+    std::cout << object->size() << std::endl;
 
 	return object;
 }
@@ -246,29 +217,57 @@ std::tuple<Eigen::Matrix4f, Eigen::Vector3f, Eigen::Quaternionf, std::vector<pcl
     Eigen::Quaternionf q;
     std::tie(rpy, q) = getRotation(transform_1);   
 
-    // bool debug = true; //Just comment when visualizer is required
-    // if(debug)
-    // {
-    //     pcl::visualization::PCLVisualizer::Ptr viewer (new pcl::visualization::PCLVisualizer ("3D Viewer"));
-    //     viewer->setBackgroundColor (0, 0, 0);
-    //     viewer->addCoordinateSystem (1.0);
-    //     viewer->initCameraParameters ();
-    //     viewer->addPointCloud<pcl::PointXYZ> (cloud, "sample cloud");
-
-    //     Eigen::Vector3f position (position_OBB.x, position_OBB.y, position_OBB.z);
-    //     Eigen::Quaternionf quat (rotational_matrix_OBB);
-    //     viewer->addCube (position, quat, max_point_OBB.x - min_point_OBB.x, max_point_OBB.y - min_point_OBB.y, max_point_OBB.z - min_point_OBB.z, "OBB");
-    //     viewer->setShapeRenderingProperties(pcl::visualization::PCL_VISUALIZER_REPRESENTATION, pcl::visualization::PCL_VISUALIZER_REPRESENTATION_WIREFRAME, "OBB");
-
-    //     viewer->addLine (center, x_axis, 1.0f, 0.0f, 0.0f, "major eigen vector");
-    //     viewer->addLine (center, y_axis, 0.0f, 1.0f, 0.0f, "middle eigen vector");
-    //     viewer->addLine (center, z_axis, 0.0f, 0.0f, 1.0f, "minor eigen vector");
-
-    //     while(!viewer->wasStopped())
-    //     {
-    //         viewer->spinOnce (100);
-    //     }
-    // }
-
     return(std::make_tuple(transform_1, rpy, q, visualizer_odom));
+}
+
+
+// ----------------------------------------------------------------------------------------------------
+
+/**
+ * Transform a point cloud parallel to the camera using inverse matrices 
+ */
+pcl::PointCloud<pcl::PointXYZRGB>::Ptr Process3dData::transformSfuToCameraOdom(const pcl::PointCloud<pcl::PointXYZRGB>::Ptr &cloud, const Eigen::Matrix4f &mat)
+{    
+    //Take inverse from original transformation to set it paralel to the camera frame which is the origin
+    Eigen::Matrix4f inverse = mat.inverse();
+
+    // Executing the transformation to set the cloud parallel to the camera
+    pcl::PointCloud<pcl::PointXYZRGB>::Ptr transformed_cloud (new pcl::PointCloud<pcl::PointXYZRGB> ());
+    pcl::transformPointCloud (*cloud, *transformed_cloud, inverse);
+
+    return (transformed_cloud);
+}
+
+// ----------------------------------------------------------------------------------------------------
+
+/**
+ * Transform a point cloud back to the original matrix 
+ */
+pcl::PointCloud<pcl::PointXYZRGB>::Ptr Process3dData::transformSfuToOriginalOdom(const pcl::PointCloud<pcl::PointXYZRGB>::Ptr &cloud, const Eigen::Matrix4f &mat)
+{    
+    // Executing the transformation to set the cloud parallel to the camera
+    pcl::PointCloud<pcl::PointXYZRGB>::Ptr transformed_cloud (new pcl::PointCloud<pcl::PointXYZRGB> ());
+    pcl::transformPointCloud (*cloud, *transformed_cloud, mat);
+
+    return (transformed_cloud);
+}
+
+// ----------------------------------------------------------------------------------------------------
+
+/**
+ * Filter outlier from PC by using Outlier Removal filter
+ */
+pcl::PointCloud<pcl::PointXYZRGB>::Ptr Process3dData::orFilter(const pcl::PointCloud<pcl::PointXYZRGB>::Ptr &cloud)
+{
+    pcl::PointCloud<pcl::PointXYZRGB>::Ptr pc_filtered (new pcl::PointCloud<pcl::PointXYZRGB>);
+
+    double meanK = 30.0, mulThresh = 0.1; 
+
+    pcl::StatisticalOutlierRemoval<pcl::PointXYZRGB> sor;
+    sor.setInputCloud (cloud);
+    sor.setMeanK (meanK);
+    sor.setStddevMulThresh (mulThresh);
+    sor.filter (*pc_filtered);
+
+    return pc_filtered;
 }

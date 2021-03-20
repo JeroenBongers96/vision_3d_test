@@ -29,10 +29,11 @@ int main()
 
     std::cout << "PCL version: " << PCL_VERSION << std::endl;
 
-    Eigen::Matrix4f transform = Eigen::Matrix4f::Identity();
-    Eigen::Vector3f rpy;
-    Eigen::Quaternionf q;
-    vector<pcl::PointXYZ> odom;
+    Eigen::Matrix4f transform_table = Eigen::Matrix4f::Identity();
+    Eigen::Matrix4f transform_object = Eigen::Matrix4f::Identity();
+    Eigen::Vector3f rpy_table, rpy_object;
+    Eigen::Quaternionf q_table, q_object;
+    vector<pcl::PointXYZ> odom_table, odom_object;
 
     ImageData my_data;
     // GetRoi img_roi;
@@ -43,12 +44,28 @@ int main()
     // Get data
     get_data.getData(my_data);
 
-    // Get binary image of object
+    // Test ROI
     vector<int> roi_vect{250, 100, 400, 300};
-    cv::Mat bin_img = process2d.getBinaryImg(my_data.cv_img, roi_vect);
 
-    // Get point cloud of object
-    object = process3d.cutObj(bin_img, my_data.original_cloud);
+    // Get table cloud
+    table = process3d.getPlainRANSAC(my_data.original_cloud);
+
+    // Get table transformation
+    std::tie(transform_table, rpy_table, q_table, odom_table) = process3d.momentOfInertia(table);
+
+    // Transform cloud to camera odom
+    pcl::PointCloud<pcl::PointXYZRGB>::Ptr cloud_on_origin = process3d.transformSfuToCameraOdom(my_data.original_cloud, transform_table);
+    
+    // Cut out object
+    object = process3d.cutROI(cloud_on_origin, roi_vect); 
+
+    // Transform object back to its original position
+    object = process3d.transformSfuToOriginalOdom(object, transform_table);
+
+    // object = process3d.orFilter(object);
+
+    // Get table transformation
+    std::tie(transform_object, rpy_object, q_object, odom_object) = process3d.momentOfInertia(object);
 
     // Use Yolo and draw rectangle around ROI
     // roi_vect = img_roi.Yolo(argc, argv, my_data.cv_img, debug);
@@ -62,11 +79,7 @@ int main()
     // Cut out ROI
     // object = process.cutROI(my_data, roi_vect);
 
-    // Get table cloud
-    table = process3d.getPlainRANSAC(my_data.original_cloud);
 
-    // Get transformation
-    std::tie(transform, rpy, q, odom) = process3d.momentOfInertia(object);
     
     // Ros quaternion transformation, this can be broadcaster
     // tf2::Quaternion q_tf(q.x(), q.y(), q.z(), q.w()); 
@@ -77,14 +90,14 @@ int main()
             cout << endl;
 
             cout << "===Position==================" << endl;
-            cout << "X axis: " << transform(0,3) << endl;
-            cout << "Y axis: " << transform(1,3) << endl;
-            cout << "Z axis: " << transform(2,3) << endl << endl;
+            cout << "X axis: " << transform_table(0,3) << endl;
+            cout << "Y axis: " << transform_table(1,3) << endl;
+            cout << "Z axis: " << transform_table(2,3) << endl << endl;
             
             cout << "===Rotations in Euler==================" << endl;
-            cout << "Rotation around X axis (Roll): " << rpy[0] << "°" << endl;
-            cout << "Rotation around Y axis (Pitch): " << rpy[1] << "°" << endl;
-            cout << "Rotation around Z axis (Yaw): " << rpy[2] << "°" << endl << endl;
+            cout << "Rotation around X axis (Roll): " << rpy_table[0] << "°" << endl;
+            cout << "Rotation around Y axis (Pitch): " << rpy_table[1] << "°" << endl;
+            cout << "Rotation around Z axis (Yaw): " << rpy_table[2] << "°" << endl << endl;
 
             // cout << "===Rotations in Quaternion==================" << endl;
             // cout << "Rotation quaternion x: " << q_tf[0] << endl;
@@ -93,15 +106,16 @@ int main()
             // cout << "Rotation quaternion w: " << q_tf[3] << endl;
 
             cout << "===Location matrix=====================" << endl << endl;
-            cout << transform << endl;
+            cout << transform_table << endl;
 
             Visualize vis(debug);
             shared_ptr<pcl::visualization::PCLVisualizer> viewer = vis.createViewer();
-            vis.visualizeCV(bin_img);
-            // viewer = vis.addOriginalColorCloud(viewer, my_data.original_cloud);
-            // viewer = vis.addCustomColorCloud(viewer, table);
+            // vis.visualizeCV(bin_img);
+            viewer = vis.addOriginalColorCloud(viewer, table);
             viewer = vis.addCustomColorCloud(viewer, object);
-            viewer = vis.addOdom(viewer, odom);
+            // viewer = vis.addCustomColorCloud(viewer, object);
+            // viewer = vis.addOdom(viewer, odom_table);
+            viewer = vis.addOdom(viewer, odom_object);
             vis.visualizePCL(viewer);
         }
 
