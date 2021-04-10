@@ -20,6 +20,12 @@ find_package(rclpy REQUIRED)
 find_package(PCL 1.8 REQUIRED)
 find_package(realsense2 REQUIRED)
 find_package(OpenCV REQUIRED)
+#find_package(rosidl_default_generators REQUIRED)
+find_package(suii_communication REQUIRED)
+
+#rosidl_generate_interfaces(${PROJECT_NAME}
+#  "srv/AddThreeInts.srv"
+# )
 
 # Include Cpp "include" directory
 include_directories(include)
@@ -27,13 +33,13 @@ include_directories(include)
 FILE(GLOB_RECURSE SRC_FILES src/*.cpp)   
 
 # Create Cpp executable
-add_executable(vision_run ${SRC_FILES})
-target_link_libraries(vision_run ${catkin_LIBRARIES} ${realsense2_LIBRARY} ${OpenCV_LIBS} ${PCL_LIBRARIES})
-ament_target_dependencies(vision_run rclcpp)
+add_executable(vision_server ${SRC_FILES})
+target_link_libraries(vision_server ${catkin_LIBRARIES} ${realsense2_LIBRARY} ${OpenCV_LIBS} ${PCL_LIBRARIES})
+ament_target_dependencies(vision_server rclcpp suii_communication)
 
 # Install Cpp executables
 install(TARGETS
-  vision_run
+  vision_server
   DESTINATION lib/${PROJECT_NAME}
 )
 
