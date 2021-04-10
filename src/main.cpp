@@ -11,9 +11,10 @@
 #include "Visualize.h"
 #include <pcl/pcl_config.h>
 #include "rclcpp/rclcpp.hpp"
-// #include <tf2/LinearMath/Quaternion.h>
-// #include <tf2_ros/static_transform_broadcaster.h>
-// #include <geometry_msgs/TransformStamped.h>
+
+#include <tf2/LinearMath/Quaternion.h>
+#include <tf2_ros/transform_broadcaster.h>
+#include <geometry_msgs/msg/transform_stamped.hpp>
 
 #include "suii_communication/srv/vision_scan.hpp"  
 
@@ -27,24 +28,49 @@ pcl::PointCloud<pcl::PointXYZRGB>::Ptr table (new pcl::PointCloud<pcl::PointXYZR
 
 /**
  * Broadcasts box tf
+ * Check out: https://github.com/hadabot/hadabot_main/blob/master/content/p8/hadabot_ws/src/hadabot_tf2/src/hadabot_tf2_broadcaster.cpp
  */
 
 void rosBroadcaster(Eigen::Matrix4f transform, tf2::Quaternion q_tf)
 {
-    static tf2_ros::StaticTransformBroadcaster static_broadcaster;
-    geometry_msgs::TransformStamped static_transformStamped;
+    // static tf2_ros::StaticTransformBroadcaster static_broadcaster;
+    // geometry_msgs::TransformStamped static_transformStamped;
 
-    static_transformStamped.header.stamp = ros::Time::now();
-    static_transformStamped.header.frame_id = "Camera";
-    static_transformStamped.child_frame_id = "box";
-    static_transformStamped.transform.translation.x = transform(0,3);
-    static_transformStamped.transform.translation.y = transform(1,3);
-    static_transformStamped.transform.translation.z = transform(2,3);
-    static_transformStamped.transform.rotation.x = q_tf.x();
-    static_transformStamped.transform.rotation.y = q_tf.y();
-    static_transformStamped.transform.rotation.z = q_tf.z();
-    static_transformStamped.transform.rotation.w = q_tf.w();
-    static_broadcaster.sendTransform(static_transformStamped);
+    // static_transformStamped.header.stamp = ros::Time::now();
+    // static_transformStamped.header.frame_id = "Camera";
+    // static_transformStamped.child_frame_id = "box";
+    // static_transformStamped.transform.translation.x = transform(0,3);
+    // static_transformStamped.transform.translation.y = transform(1,3);
+    // static_transformStamped.transform.translation.z = transform(2,3);
+    // static_transformStamped.transform.rotation.x = q_tf.x();
+    // static_transformStamped.transform.rotation.y = q_tf.y();
+    // static_transformStamped.transform.rotation.z = q_tf.z();
+    // static_transformStamped.transform.rotation.w = q_tf.w();
+    // static_broadcaster.sendTransform(static_transformStamped);
+
+    rclcpp::Time now;
+        // RCLCPP_INFO(this->get_logger(), "Pose: '%f'", msg->x);
+
+    std::shared_ptr<tf2_ros::TransformBroadcaster> tf_broadcaster_;
+    // tf2_ros::TransformBroadcaster tf_broadcaster_; 
+
+    geometry_msgs::msg::TransformStamped odom_tf;
+    geometry_msgs::msg::TransformStamped base_link_tf;
+
+    base_link_tf.transform.translation.x = 0.0;
+    base_link_tf.transform.translation.y = 0.0;
+    base_link_tf.transform.translation.z = 0.0;
+    tf2::Quaternion q;
+    q.setRPY(0, 0, 1.0);
+    base_link_tf.transform.rotation.x = q.x();
+    base_link_tf.transform.rotation.y = q.y();
+    base_link_tf.transform.rotation.z = q.z();
+    base_link_tf.transform.rotation.w = q.w();
+
+    base_link_tf.header.frame_id = "odom";
+    base_link_tf.child_frame_id = "base_link";
+    base_link_tf.header.stamp = now;
+    tf_broadcaster_->sendTransform(base_link_tf);
 }
 
 std::vector<int> scan_all(bool debug, bool create_data, bool save_data)
@@ -92,8 +118,8 @@ std::vector<int> scan_all(bool debug, bool create_data, bool save_data)
     // Get table transformation
     std::tie(transform_object, rpy_object, q_object, odom_object) = process3d.momentOfInertia(object);
 
-    tf2::Quaternion q_tf(q_object.x(), q_object.y(), q_object.z(), q_object.w());
-    rosBroadcaster(transform_object, q_tf);
+    // tf2::Quaternion q_tf(q_object.x(), q_object.y(), q_object.z(), q_object.w());
+    // rosBroadcaster(transform_object, q_tf);
 
     // Use Yolo and draw rectangle around ROI
     // roi_vect = img_roi.Yolo(argc, argv, my_data.cv_img, debug);
