@@ -22,6 +22,8 @@ find_package(realsense2 REQUIRED)
 find_package(OpenCV REQUIRED)
 #find_package(rosidl_default_generators REQUIRED)
 find_package(suii_communication REQUIRED)
+find_package(geometry_msgs REQUIRED)
+
 
 #rosidl_generate_interfaces(${PROJECT_NAME}
 #  "srv/AddThreeInts.srv"
@@ -35,7 +37,7 @@ FILE(GLOB_RECURSE SRC_FILES src/*.cpp)
 # Create Cpp executable
 add_executable(vision_server ${SRC_FILES})
 target_link_libraries(vision_server ${catkin_LIBRARIES} ${realsense2_LIBRARY} ${OpenCV_LIBS} ${PCL_LIBRARIES})
-ament_target_dependencies(vision_server rclcpp suii_communication)
+ament_target_dependencies(vision_server rclcpp geometry_msgs suii_communication)
 
 # Install Cpp executables
 install(TARGETS
