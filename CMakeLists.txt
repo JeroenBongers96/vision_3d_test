@@ -28,10 +28,6 @@ find_package(tf2_ros REQUIRED)
 find_package(tf2_msgs REQUIRED)
 find_package(geometry_msgs REQUIRED)
 
-#rosidl_generate_interfaces(${PROJECT_NAME}
-#  "srv/AddThreeInts.srv"
-# )
-
 # Include Cpp "include" directory
 include_directories(include)
 
