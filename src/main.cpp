@@ -22,7 +22,10 @@
 // #include "tf2_ros/transform_broadcaster.h"
 #include <tf2_ros/transform_listener.h>
 
+#include <cv_bridge/cv_bridge.h>
+
 #include "suii_communication/srv/vision_scan.hpp"  
+#include "suii_communication/srv/yolo_service.hpp"  
 
 using namespace std;
 
@@ -80,6 +83,15 @@ std::vector<int> scan_all(bool debug, bool create_data, bool save_data)
 
     // Get data
     get_data.getData(my_data);
+
+    //https://stackoverflow.com/questions/27080085/how-to-convert-a-cvmat-into-a-sensor-msgs-in-ros
+    cv::Mat img; // << image MUST be contained here
+    cv_bridge::CvImage img_bridge;
+    sensor_msgs::msg::Image img_msg;
+    std_msgs::msg::Header header;
+    img_bridge = cv_bridge::CvImage(header, sensor_msgs::image_encodings::RGB8, img);
+    img_bridge.toImageMsg(img_msg); // from cv_bridge to sensor_msgs::Image
+    // sensor_msgs::msg::Image msg = cv_bridge::CvImage(std_msgs::msg::Header(), "bgr8", my_data.cv_img).toImageMsg();
 
     // Use Yolo and draw rectangle around ROI
     // roi_vect = img_roi.Yolo(argc, argv, my_data.cv_img, debug);

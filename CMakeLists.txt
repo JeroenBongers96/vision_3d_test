@@ -27,6 +27,8 @@ find_package(tf2 REQUIRED)
 find_package(tf2_ros REQUIRED)
 find_package(tf2_msgs REQUIRED)
 find_package(geometry_msgs REQUIRED)
+find_package(sensor_msgs REQUIRED)
+find_package(cv_bridge REQUIRED)
 
 # Include Cpp "include" directory
 include_directories(include)
@@ -36,15 +38,12 @@ FILE(GLOB_RECURSE SRC_FILES src/*.cpp)
 # Create Cpp executable
 add_executable(vision_server ${SRC_FILES})
 target_link_libraries(vision_server ${catkin_LIBRARIES} ${realsense2_LIBRARY} ${OpenCV_LIBS} ${PCL_LIBRARIES})
-ament_target_dependencies(vision_server rclcpp suii_communication tf2 tf2_ros tf2_msgs geometry_msgs )
+ament_target_dependencies(vision_server rclcpp suii_communication tf2 tf2_ros tf2_msgs geometry_msgs cv_bridge)
 
 # Install Cpp executables
 install(TARGETS
   vision_server
   DESTINATION lib/${PROJECT_NAME}
 )
-
-# Install Python modules
-#ament_python_install_package(${PROJECT_NAME})
 
 ament_package()
