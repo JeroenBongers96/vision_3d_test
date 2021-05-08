@@ -81,8 +81,16 @@ std::vector<int> scan_all(bool debug, bool create_data, bool save_data)
     // Get data
     get_data.getData(my_data);
 
-    // Test ROI
+    // Use Yolo and draw rectangle around ROI
+    // roi_vect = img_roi.Yolo(argc, argv, my_data.cv_img, debug);
+    // print(roi_vect);
+
+    // Create own rectangle to bypass Yolo. Purely for testing.
     vector<int> roi_vect{250, 100, 400, 300};
+    cv::rectangle(my_data.cv_img, cv::Point(roi_vect[0], roi_vect[1]), cv::Point(roi_vect[2], roi_vect[3]), (0,255,0), 3);
+
+    // Cut out ROI
+    // object = process.cutROI(my_data, roi_vect);
 
     // Get table cloud
     table = process3d.getPlainRANSAC(my_data.original_cloud);
@@ -108,24 +116,7 @@ std::vector<int> scan_all(bool debug, bool create_data, bool save_data)
 
     tf2::Quaternion q_tf(q_object.x(), q_object.y(), q_object.z(), q_object.w());
     rosBroadcaster(transform_object, q_tf);
-
-    // Use Yolo and draw rectangle around ROI
-    // roi_vect = img_roi.Yolo(argc, argv, my_data.cv_img, debug);
-    // print(roi_vect);
-
-    // Create own rectangle to bypass Yolo. Purely for testing.
-    // cout << "CV mat rows: " << my_data.cv_img.rows << endl;
-    // cout << "CV mat cols: " << my_data.cv_img.cols << endl;
-    // cv::rectangle(my_data.cv_img, cv::Point(roi_vect[0], roi_vect[1]), cv::Point(roi_vect[2], roi_vect[3]), (0,255,0), 3);s
-
-    // Cut out ROI
-    // object = process.cutROI(my_data, roi_vect);
-
-
     
-    // Ros quaternion transformation, this can be broadcaster
-    // tf2::Quaternion q_tf(q.x(), q.y(), q.z(), q.w()); 
-
     // Show result
     if(debug)
         {   
@@ -150,15 +141,15 @@ std::vector<int> scan_all(bool debug, bool create_data, bool save_data)
             cout << "===Location matrix=====================" << endl << endl;
             cout << transform_table << endl;
 
-            // Visualize vis(debug);
-            // shared_ptr<pcl::visualization::PCLVisualizer> viewer = vis.createViewer();
-            // vis.visualizeCV(bin_img);
-            // viewer = vis.addOriginalColorCloud(viewer, table);
+            Visualize vis(debug);
+            shared_ptr<pcl::visualization::PCLVisualizer> viewer = vis.createViewer();
+            viewer = vis.addOriginalColorCloud(viewer, table);
             // viewer = vis.addCustomColorCloud(viewer, object);
-            // viewer = vis.addCustomColorCloud(viewer, object);
-            // viewer = vis.addOdom(viewer, odom_table);
-            // viewer = vis.addOdom(viewer, odom_object);
-            // vis.visualizePCL(viewer);
+            viewer = vis.addCustomColorCloud(viewer, object);
+            viewer = vis.addOdom(viewer, odom_table);
+            viewer = vis.addOdom(viewer, odom_object);
+            vis.visualizeCV(my_data.cv_img);
+            vis.visualizePCL(viewer);
         }
 
     // CHANGE this return to yolo ID outcome
