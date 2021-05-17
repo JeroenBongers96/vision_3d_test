@@ -30,6 +30,13 @@ find_package(geometry_msgs REQUIRED)
 find_package(sensor_msgs REQUIRED)
 find_package(cv_bridge REQUIRED)
 
+# Find python before pybind11
+find_package(python_cmake_module REQUIRED)
+find_package(PythonExtra REQUIRED)
+
+# Install the python module for this package
+ament_python_install_package(${PROJECT_NAME})
+
 # Include Cpp "include" directory
 include_directories(include)
 
@@ -43,6 +50,15 @@ ament_target_dependencies(vision_server rclcpp suii_communication tf2 tf2_ros tf
 # Install Cpp executables
 install(TARGETS
   vision_server
+  DESTINATION lib/${PROJECT_NAME}
+)
+
+# Install Python modules
+ament_python_install_package(${PROJECT_NAME})
+
+# Install Python executables
+install(PROGRAMS
+  yolo/yolo_server_ros2.py
   DESTINATION lib/${PROJECT_NAME}
 )
 
