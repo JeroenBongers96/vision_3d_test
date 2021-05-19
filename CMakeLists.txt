@@ -15,12 +15,9 @@ find_package(ament_cmake REQUIRED)
 find_package(ament_cmake_python REQUIRED)
 find_package(rclcpp REQUIRED)
 find_package(rclpy REQUIRED)
-#find_package(roscpp REQUIRED)
-#find_package(rospy REQUIRED)
 find_package(PCL 1.8 REQUIRED)
 find_package(realsense2 REQUIRED)
 find_package(OpenCV REQUIRED)
-#find_package(rosidl_default_generators REQUIRED)
 find_package(suii_communication REQUIRED)
 
 find_package(tf2 REQUIRED)
@@ -33,9 +30,6 @@ find_package(cv_bridge REQUIRED)
 # Find python before pybind11
 find_package(python_cmake_module REQUIRED)
 find_package(PythonExtra REQUIRED)
-
-# Install the python module for this package
-ament_python_install_package(${PROJECT_NAME})
 
 # Include Cpp "include" directory
 include_directories(include)
@@ -58,7 +52,7 @@ ament_python_install_package(${PROJECT_NAME})
 
 # Install Python executables
 install(PROGRAMS
-  vision_3d_test/py_node.py
+  vision_3d_test/yolo_server.py
   DESTINATION lib/${PROJECT_NAME}
 )
 
