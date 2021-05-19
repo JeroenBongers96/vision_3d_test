@@ -58,7 +58,7 @@ ament_python_install_package(${PROJECT_NAME})
 
 # Install Python executables
 install(PROGRAMS
-  yolo/yolo_server_ros2.py
+  vision_3d_test/py_node.py
   DESTINATION lib/${PROJECT_NAME}
 )
 
