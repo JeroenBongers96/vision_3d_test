@@ -194,12 +194,12 @@ int main(int argc, char **argv)
 {
     rclcpp::init(argc, argv);
 
-    node = rclcpp::Node::make_shared("vision_server");  // CHANGE
+    node = rclcpp::Node::make_shared("vision_server");  
 
-    rclcpp::Service<suii_communication::srv::VisionScan>::SharedPtr service =                 // CHANGE
-        node->create_service<suii_communication::srv::VisionScan>("vision_scan",  &scan_service);     // CHANGE
+    rclcpp::Service<suii_communication::srv::VisionScan>::SharedPtr service =                 
+        node->create_service<suii_communication::srv::VisionScan>("vision_scan",  &scan_service);     
 
-    RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "Ready to scan objects.");      // CHANGE
+    RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "Ready to scan objects.");      
 
     // std::cout << rclcpp::Time() << std::endl;
 
