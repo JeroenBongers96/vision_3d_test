@@ -9,6 +9,7 @@
 #include "Process2dData.h"
 #include "Process3dData.h"
 #include "Visualize.h"
+#include "IDtoObject.h"
 #include <pcl/pcl_config.h>
 #include "rclcpp/rclcpp.hpp"
 
@@ -77,6 +78,7 @@ std::vector<int> scan_all(bool debug, bool create_data, bool save_data)
     GetData get_data(debug, create_data, save_data);
     Process3dData process3d;
     Process2dData process2d;
+    IDtoObject ObjectID;
 
     // Get data
     get_data.getData(my_data);
@@ -84,6 +86,10 @@ std::vector<int> scan_all(bool debug, bool create_data, bool save_data)
     // Use Yolo and draw rectangle around ROI
     // roi_vect = img_roi.Yolo(argc, argv, my_data.cv_img, debug);
     // print(roi_vect);
+
+    //YOLO output will be an Object ID int. This is converted to the object string with ConvertIDtoObject. like below.
+    //std::string ObjName = IDconvObj.ConvertIDtoObject(ObjID);
+    //std::cout << "Object name: " << ObjName << std::endl;
 
     // Create own rectangle to bypass Yolo. Purely for testing.
     vector<int> roi_vect{250, 100, 400, 300};
