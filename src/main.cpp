@@ -189,6 +189,33 @@ void scan_service(const std::shared_ptr<suii_communication::srv::VisionScan::Req
     }
 }
 
+
+void node_test_service(const std::shared_ptr<suii_communication::srv::VisionScan::Request> request,     // CHANGE
+          std::shared_ptr<suii_communication::srv::VisionScan::Response>       response)  // CHANGE
+{
+    
+    std::cout << "Debug: " << request->debug << std::endl;
+    std::cout << "Create data: " << request->create_data << std::endl;
+    std::cout << "Save data: " << request->save_data << std::endl;
+
+    // Scan all objects
+    std::vector<int> item_ids = scan_all(request->debug, request->create_data, request->save_data);
+
+    // Convert vector to response array
+    response->detected_objects.resize(item_ids.size()); 
+
+    for(int i = 0; i < item_ids.size(); i++)
+    {
+        response->detected_objects[i] = item_ids[i];
+    }
+}
+
+void node_tester(std::shared_ptr<rclcpp::Node> node)
+{
+    rclcpp::Service<suii_communication::srv::VisionScan>::SharedPtr service_2 =                 
+        node->create_service<suii_communication::srv::VisionScan>("node_test",  &node_test_service);
+}
+
 // int main(int argc, char** argv)
 int main(int argc, char **argv)
 {
@@ -198,6 +225,9 @@ int main(int argc, char **argv)
 
     rclcpp::Service<suii_communication::srv::VisionScan>::SharedPtr service =                 
         node->create_service<suii_communication::srv::VisionScan>("vision_scan",  &scan_service);     
+
+    
+    node_tester(node);
 
     RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "Ready to scan objects.");      
 
