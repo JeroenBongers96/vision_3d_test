@@ -50,20 +50,26 @@ target_link_libraries(vision_server ${OpenCV_LIBS})
 ament_target_dependencies(yolo_client
   rclcpp example_interfaces suii_communication cv_bridge sensor_msgs)
 
+add_executable(img_publisher scritps/img_publisher.cpp)
+target_link_libraries(img_publisher ${OpenCV_LIBS})
+ament_target_dependencies(img_publisher rclcpp std_msgs sensor_msgs)
+
 # Install Cpp executables
 install(TARGETS
   vision_server
   yolo_client
+  img_publisher
   DESTINATION lib/${PROJECT_NAME}
 )
 
 # Install Python modules
-#ament_python_install_package(${PROJECT_NAME})
+ament_python_install_package(${PROJECT_NAME})
 
 # Install Python executables
-#install(PROGRAMS
+install(PROGRAMS
 #  vision_3d_test/yolo_server.py
-#  DESTINATION lib/${PROJECT_NAME}
-#)
+  vision_3d_test/img_subscriber.py
+  DESTINATION lib/${PROJECT_NAME}
+)
 
 ament_package()
