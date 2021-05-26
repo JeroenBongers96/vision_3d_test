@@ -45,8 +45,8 @@ add_executable(vision_server ${SRC_FILES})
 target_link_libraries(vision_server ${catkin_LIBRARIES} ${realsense2_LIBRARY} ${OpenCV_LIBS} ${PCL_LIBRARIES})
 ament_target_dependencies(vision_server rclcpp suii_communication tf2 tf2_ros tf2_msgs geometry_msgs cv_bridge sensor_msgs)
 
-add_executable(yolo_client scritps/add_two_ints_client.cpp)
-target_link_libraries(vision_server ${OpenCV_LIBS})
+add_executable(yolo_client scritps/yolo_client.cpp)
+target_link_libraries(yolo_client ${OpenCV_LIBS})
 ament_target_dependencies(yolo_client
   rclcpp example_interfaces suii_communication cv_bridge sensor_msgs)
 
@@ -54,11 +54,16 @@ add_executable(img_publisher scritps/img_publisher.cpp)
 target_link_libraries(img_publisher ${OpenCV_LIBS})
 ament_target_dependencies(img_publisher rclcpp std_msgs sensor_msgs)
 
+add_executable(add_two_ints_client scritps/add_two_ints_client.cpp)
+target_link_libraries(add_two_ints_client ${OpenCV_LIBS})
+ament_target_dependencies(add_two_ints_client rclcpp std_msgs sensor_msgs suii_communication cv_bridge)
+
 # Install Cpp executables
 install(TARGETS
   vision_server
   yolo_client
   img_publisher
+  add_two_ints_client
   DESTINATION lib/${PROJECT_NAME}
 )
 
@@ -67,7 +72,8 @@ ament_python_install_package(${PROJECT_NAME})
 
 # Install Python executables
 install(PROGRAMS
-#  vision_3d_test/yolo_server.py
+  vision_3d_test/add_two_ints_server.py
+  vision_3d_test/yolo_server.py
   vision_3d_test/img_subscriber.py
   DESTINATION lib/${PROJECT_NAME}
 )

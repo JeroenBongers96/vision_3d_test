@@ -13,7 +13,7 @@ class MinimalService(Node):
 
     def __init__(self):
         super().__init__('yolo_server')
-        self.srv = self.create_service(YoloService, 'yolo_server_service', self.add_two_ints_callback)
+        self.srv = self.create_service(YoloService, 'yolo_service', self.add_two_ints_callback)
 
     def add_two_ints_callback(self, request, response):
         # response.sum = request.a + request.b
