@@ -23,7 +23,10 @@
 // #include "tf2_ros/transform_broadcaster.h"
 #include <tf2_ros/transform_listener.h>
 
+#include <cv_bridge/cv_bridge.h>
+
 #include "suii_communication/srv/vision_scan.hpp"  
+#include "suii_communication/srv/yolo_service.hpp"  
 
 using namespace std;
 
@@ -82,6 +85,15 @@ std::vector<int> scan_all(bool debug, bool create_data, bool save_data)
 
     // Get data
     get_data.getData(my_data);
+
+    //https://stackoverflow.com/questions/27080085/how-to-convert-a-cvmat-into-a-sensor-msgs-in-ros
+    cv::Mat img; // << image MUST be contained here
+    cv_bridge::CvImage img_bridge;
+    sensor_msgs::msg::Image img_msg;
+    std_msgs::msg::Header header;
+    img_bridge = cv_bridge::CvImage(header, sensor_msgs::image_encodings::RGB8, img);
+    img_bridge.toImageMsg(img_msg); // from cv_bridge to sensor_msgs::Image
+    // sensor_msgs::msg::Image msg = cv_bridge::CvImage(std_msgs::msg::Header(), "bgr8", my_data.cv_img).toImageMsg();
 
     // Use Yolo and draw rectangle around ROI
     // roi_vect = img_roi.Yolo(argc, argv, my_data.cv_img, debug);
@@ -183,17 +195,47 @@ void scan_service(const std::shared_ptr<suii_communication::srv::VisionScan::Req
     }
 }
 
+
+void node_test_service(const std::shared_ptr<suii_communication::srv::VisionScan::Request> request,     // CHANGE
+          std::shared_ptr<suii_communication::srv::VisionScan::Response>       response)  // CHANGE
+{
+    
+    std::cout << "Debug: " << request->debug << std::endl;
+    std::cout << "Create data: " << request->create_data << std::endl;
+    std::cout << "Save data: " << request->save_data << std::endl;
+
+    // Scan all objects
+    std::vector<int> item_ids = scan_all(request->debug, request->create_data, request->save_data);
+
+    // Convert vector to response array
+    response->detected_objects.resize(item_ids.size()); 
+
+    for(int i = 0; i < item_ids.size(); i++)
+    {
+        response->detected_objects[i] = item_ids[i];
+    }
+}
+
+void node_tester(std::shared_ptr<rclcpp::Node> node)
+{
+    rclcpp::Service<suii_communication::srv::VisionScan>::SharedPtr service_2 =                 
+        node->create_service<suii_communication::srv::VisionScan>("node_test",  &node_test_service);
+}
+
 // int main(int argc, char** argv)
 int main(int argc, char **argv)
 {
     rclcpp::init(argc, argv);
 
-    node = rclcpp::Node::make_shared("vision_server");  // CHANGE
+    node = rclcpp::Node::make_shared("vision_server");  
 
-    rclcpp::Service<suii_communication::srv::VisionScan>::SharedPtr service =                 // CHANGE
-        node->create_service<suii_communication::srv::VisionScan>("vision_scan",  &scan_service);     // CHANGE
+    rclcpp::Service<suii_communication::srv::VisionScan>::SharedPtr service =                 
+        node->create_service<suii_communication::srv::VisionScan>("vision_scan",  &scan_service);     
 
-    RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "Ready to scan objects.");      // CHANGE
+    
+    node_tester(node);
+
+    RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "Ready to scan objects.");      
 
     // std::cout << rclcpp::Time() << std::endl;
 

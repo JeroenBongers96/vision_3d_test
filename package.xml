@@ -11,6 +11,8 @@
   <depend>rclcpp</depend>
   <depend>rclpy</depend>
   <depend>tf2</depend>
+  <depend>sensor_msgs</depend>
+  <depend>cv_bridge</depend>
   <depend>suii_communication</depend>
   <test_depend>ament_lint_auto</test_depend>
   <test_depend>ament_lint_common</test_depend>
