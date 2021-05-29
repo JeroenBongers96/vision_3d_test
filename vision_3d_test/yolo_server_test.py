@@ -20,17 +20,14 @@ class MinimalService(Node):
         self.srv = self.create_service(YoloService, 'yolo_service_msg', self.add_two_ints_callback)
 
     def add_two_ints_callback(self, request, response):
-        # response.sum = request.a + request.b
-        # self.get_logger().info('Incoming request\na: %d b: %d' % (request.a, request.b))
         self.get_logger().info('Incoming request successful')
         
         bridge = CvBridge()
-        cv_image = bridge.imgmsg_to_cv2(request.img, desired_encoding='passthrough')
-        # cv_image = bridge.imgmsg_to_cv2(request.img, desired_encoding='bgr8')
 
-        # cv_image = cv_bridge.imgmsg_to_cv2(request.img, "bgr8")
-
-        cv2.imshow("test img", cv_image)
+        cv_image = bridge.imgmsg_to_cv2(request.img, desired_encoding='bgr8')
+        
+        cv2.imshow("test", cv_image)
+        cv2.waitKey(0)
 
         response.succes = True 
 
