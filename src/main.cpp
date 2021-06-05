@@ -9,6 +9,7 @@
 #include "Process2dData.h"
 #include "Process3dData.h"
 #include "Visualize.h"
+#include "IDtoObject.h"
 #include <pcl/pcl_config.h>
 #include "rclcpp/rclcpp.hpp"
 
@@ -80,6 +81,7 @@ std::vector<int> scan_all(bool debug, bool create_data, bool save_data)
     GetData get_data(debug, create_data, save_data);
     Process3dData process3d;
     Process2dData process2d;
+    IDtoObject ObjectID;
 
     // Get data
     get_data.getData(my_data);
@@ -96,6 +98,10 @@ std::vector<int> scan_all(bool debug, bool create_data, bool save_data)
     // Use Yolo and draw rectangle around ROI
     // roi_vect = img_roi.Yolo(argc, argv, my_data.cv_img, debug);
     // print(roi_vect);
+
+    //YOLO output will be an Object ID int. This is converted to the object string with ConvertIDtoObject. like below.
+    //std::string ObjName = IDconvObj.ConvertIDtoObject(ObjID);
+    //std::cout << "Object name: " << ObjName << std::endl;
 
     // Create own rectangle to bypass Yolo. Purely for testing.
     vector<int> roi_vect{250, 100, 400, 300};
@@ -189,34 +195,6 @@ void scan_service(const std::shared_ptr<suii_communication::srv::VisionScan::Req
     }
 }
 
-
-void node_test_service(const std::shared_ptr<suii_communication::srv::VisionScan::Request> request,     // CHANGE
-          std::shared_ptr<suii_communication::srv::VisionScan::Response>       response)  // CHANGE
-{
-    
-    std::cout << "Debug: " << request->debug << std::endl;
-    std::cout << "Create data: " << request->create_data << std::endl;
-    std::cout << "Save data: " << request->save_data << std::endl;
-
-    // Scan all objects
-    std::vector<int> item_ids = scan_all(request->debug, request->create_data, request->save_data);
-
-    // Convert vector to response array
-    response->detected_objects.resize(item_ids.size()); 
-
-    for(int i = 0; i < item_ids.size(); i++)
-    {
-        response->detected_objects[i] = item_ids[i];
-    }
-}
-
-void node_tester(std::shared_ptr<rclcpp::Node> node)
-{
-    rclcpp::Service<suii_communication::srv::VisionScan>::SharedPtr service_2 =                 
-        node->create_service<suii_communication::srv::VisionScan>("node_test",  &node_test_service);
-}
-
-// int main(int argc, char** argv)
 int main(int argc, char **argv)
 {
     rclcpp::init(argc, argv);
@@ -227,11 +205,7 @@ int main(int argc, char **argv)
         node->create_service<suii_communication::srv::VisionScan>("vision_scan",  &scan_service);     
 
     
-    node_tester(node);
-
     RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "Ready to scan objects.");      
-
-    // std::cout << rclcpp::Time() << std::endl;
 
     rclcpp::spin(node);
     rclcpp::shutdown();
