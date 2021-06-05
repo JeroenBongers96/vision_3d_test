@@ -88,18 +88,27 @@ bool yolo_client(cv::Mat img)
     }
 
     auto result = client->async_send_request(request);
+    
+    
+    std::cout << "printing object arr" << std::endl;
+
+    // int obj_roi_arr[10] = result.get()->obj_roi_arr; 
+    // std::cout << typeid(result.get()->obj_roi_arr).name() << std::endl;
+
+
     // Wait for the result.
     if (rclcpp::spin_until_future_complete(node_2, result) ==
         rclcpp::FutureReturnCode::SUCCESS)
     {
         RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "Request succeeded");
-        return true;
     }
     else 
     {
         RCLCPP_ERROR(rclcpp::get_logger("rclcpp"), "Failed to call service add_two_ints");
-        return false;
+        exit(0);
     }
+
+    return true;
 
 }
 
@@ -132,8 +141,20 @@ std::vector<int> scan_all(bool debug, bool create_data, bool save_data)
     get_data.getData(my_data);
 
     // Get object ROI from yolo
-    bool stat = yolo_client(my_data.cv_img);
+    // int* obj_roi_arr = yolo_client(my_data.cv_img);
 
+    bool obj_roi_arr = yolo_client(my_data.cv_img);
+
+    // for(int x = 0; x < ( sizeof(obj_roi_arr) / 5 ); x ++)
+    // {
+    //     cout << "ID: " << x << endl;
+    //     cout << "Top left X coordinate: " << x + 1 << endl;
+    //     cout << "Top left Y coordinate: " << x + 2 << endl;
+    //     cout << "Bottom right X coordinate: " << x + 3 << endl;
+    //     cout << "Bottom right Y coordinate: " << x + 4 << endl;
+
+    //     x += 4; 
+    // }
     // rclcpp::shutdown();
 
     // Use Yolo and draw rectangle around ROI
