@@ -1,5 +1,4 @@
 #include "rclcpp/rclcpp.hpp"
-#include "suii_communication/srv/add_two_ints.hpp"
 #include "suii_communication/srv/yolo_service.hpp"
 
 #include <chrono>
