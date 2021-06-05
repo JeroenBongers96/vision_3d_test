@@ -61,6 +61,60 @@ void rosBroadcaster(Eigen::Matrix4f transform, tf2::Quaternion q_tf)
 // ----------------------------------------------------------------------------------------------------
 
 /**
+ * Get the ROI's of objects from yolo_server
+ */
+bool yolo_client(cv::Mat img)
+{
+    std::shared_ptr<rclcpp::Node> node_2 = rclcpp::Node::make_shared("add_two_ints_client");
+    rclcpp::Client<suii_communication::srv::YoloService>::SharedPtr client =
+        node_2->create_client<suii_communication::srv::YoloService>("yolo_service_msg");
+
+    auto request = std::make_shared<suii_communication::srv::YoloService::Request>();
+
+    cv_bridge::CvImage cvi;
+    cvi.encoding = sensor_msgs::image_encodings::BGR8;
+    cvi.image = img;
+
+    sensor_msgs::msg::Image::SharedPtr img_msg = cvi.toImageMsg();
+
+    request->img = *img_msg; 
+
+    while (!client->wait_for_service(1s)) {
+        if (!rclcpp::ok()) {
+        RCLCPP_ERROR(rclcpp::get_logger("rclcpp"), "Interrupted while waiting for the service. Exiting.");
+        // return 0;
+        }
+        RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "service not available, waiting again...");
+    }
+
+    auto result = client->async_send_request(request);
+    
+    
+    std::cout << "printing object arr" << std::endl;
+
+    // int obj_roi_arr[10] = result.get()->obj_roi_arr; 
+    // std::cout << typeid(result.get()->obj_roi_arr).name() << std::endl;
+
+
+    // Wait for the result.
+    if (rclcpp::spin_until_future_complete(node_2, result) ==
+        rclcpp::FutureReturnCode::SUCCESS)
+    {
+        RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "Request succeeded");
+    }
+    else 
+    {
+        RCLCPP_ERROR(rclcpp::get_logger("rclcpp"), "Failed to call service add_two_ints");
+        exit(0);
+    }
+
+    return true;
+
+}
+
+// ----------------------------------------------------------------------------------------------------
+
+/**
  * Scan for area and publish all tf's of all found objects
  */
 std::vector<int> scan_all(bool debug, bool create_data, bool save_data)
@@ -86,14 +140,22 @@ std::vector<int> scan_all(bool debug, bool create_data, bool save_data)
     // Get data
     get_data.getData(my_data);
 
-    //https://stackoverflow.com/questions/27080085/how-to-convert-a-cvmat-into-a-sensor-msgs-in-ros
-    cv::Mat img; // << image MUST be contained here
-    cv_bridge::CvImage img_bridge;
-    sensor_msgs::msg::Image img_msg;
-    std_msgs::msg::Header header;
-    img_bridge = cv_bridge::CvImage(header, sensor_msgs::image_encodings::RGB8, img);
-    img_bridge.toImageMsg(img_msg); // from cv_bridge to sensor_msgs::Image
-    // sensor_msgs::msg::Image msg = cv_bridge::CvImage(std_msgs::msg::Header(), "bgr8", my_data.cv_img).toImageMsg();
+    // Get object ROI from yolo
+    // int* obj_roi_arr = yolo_client(my_data.cv_img);
+
+    bool obj_roi_arr = yolo_client(my_data.cv_img);
+
+    // for(int x = 0; x < ( sizeof(obj_roi_arr) / 5 ); x ++)
+    // {
+    //     cout << "ID: " << x << endl;
+    //     cout << "Top left X coordinate: " << x + 1 << endl;
+    //     cout << "Top left Y coordinate: " << x + 2 << endl;
+    //     cout << "Bottom right X coordinate: " << x + 3 << endl;
+    //     cout << "Bottom right Y coordinate: " << x + 4 << endl;
+
+    //     x += 4; 
+    // }
+    // rclcpp::shutdown();
 
     // Use Yolo and draw rectangle around ROI
     // roi_vect = img_roi.Yolo(argc, argv, my_data.cv_img, debug);

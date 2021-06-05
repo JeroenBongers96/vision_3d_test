@@ -11,7 +11,6 @@ from rclpy.node import Node
 
 from cv_bridge import CvBridge
 
-
 class MinimalService(Node):
 
     def __init__(self):
@@ -25,10 +24,16 @@ class MinimalService(Node):
 
         cv_image = bridge.imgmsg_to_cv2(request.img, desired_encoding='bgr8')
         
-        # cv2.imshow("test", cv_image)
-        # cv2.waitKey(0)
+        obj_roi_arr = []
 
-        response.succes = True 
+        for x in range(3):
+            obj_roi_arr.append(x) # add id
+            obj_roi_arr.append(x*10) # add top left X coordinate
+            obj_roi_arr.append(x*10) # add top left X coordinate
+            obj_roi_arr.append(x*10) # add top left X coordinate
+            obj_roi_arr.append(x*10) # add top left X coordinate
+
+        response.obj_roi_arr = obj_roi_arr
 
         print("sending response ... ")
 
