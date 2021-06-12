@@ -2,8 +2,8 @@ import os
 
 import torch.nn.functional as F
 
-from utils.parse_config import parse_data_cfg, parse_model_cfg
-from utils.utils import *
+from vision_3d_test.yolo.utils.parse_config import parse_data_cfg, parse_model_cfg
+from vision_3d_test.yolo.utils.utils import *
 
 ONNX_EXPORT = False
 

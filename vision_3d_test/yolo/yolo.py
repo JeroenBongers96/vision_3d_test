@@ -2,14 +2,14 @@ import time
 from sys import platform
 import numpy
 
-from models import *
-from utils.datasets import *
-from utils.utils import *
+from vision_3d_test.yolo.models import *
+from vision_3d_test.yolo.utils.datasets import *
+from vision_3d_test.yolo.utils.utils import *
 
 defaults_dict = {
-    "cfg": "/home/jeroen/workspaces/suii_yolo_files/v1_2.cfg", # Config file path
-    "data": "/home/jeroen/workspaces/suii_yolo_files/v1.data", # Data file path
-    "weights": "/home/jeroen/workspaces/suii_yolo_files/v1.backup", # Weights file path
+    "cfg": "/home/robohub/workspaces/suii_yolo_files/v1_2.cfg", # Config file path
+    "data": "/home/robohub/workspaces/suii_yolo_files/v1.data", # Data file path
+    "weights": "/home/robohub/workspaces/suii_yolo_files/v1.backup", # Weights file path
     "conf_thres": 0.6, # Confidence threshold (accuracy)
     "nms_thres": 0.5,  # Non-maximum supression threshold (compression, lower value = more compression)
     "size": 416 # DO NOT CHANGE!!!
