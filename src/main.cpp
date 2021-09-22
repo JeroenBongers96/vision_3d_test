@@ -240,20 +240,31 @@ std::vector<int> scan_all(bool debug, bool create_data, bool save_data)
 void scan_service(const std::shared_ptr<suii_communication::srv::VisionScan::Request> request,     // CHANGE
           std::shared_ptr<suii_communication::srv::VisionScan::Response>       response)  // CHANGE
 {
-    
+    int array_size = 20;
+
     std::cout << "Debug: " << request->debug << std::endl;
     std::cout << "Create data: " << request->create_data << std::endl;
     std::cout << "Save data: " << request->save_data << std::endl;
 
     // Scan all objects
-    std::vector<int> item_ids = scan_all(request->debug, request->create_data, request->save_data);
+    // std::vector<int> item_ids = scan_all(request->debug, request->create_data, request->save_data);
 
     // Convert vector to response array
-    response->detected_objects.resize(item_ids.size()); 
+    std::string detected_objects [array_size];
 
-    for(int i = 0; i < item_ids.size(); i++)
+    for(int i = 0; i < array_size; i++)
     {
-        response->detected_objects[i] = item_ids[i];
+        detected_objects[i] = "None";
+    }
+
+    for(int i = 0; i < 4; i++)
+    {
+        detected_objects[i] = "test_string";
+    }
+
+    for(int i = 0; i < 20; i++)
+    {
+        response->detected_objects[i] = detected_objects[i];
     }
 }
 
