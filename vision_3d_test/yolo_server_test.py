@@ -4,6 +4,7 @@
 from suii_communication.srv import YoloService
 from vision_3d_test.yolo.yolo import Yolo
 
+import numpy
 import rclpy
 import cv_bridge
 import cv2 
@@ -27,16 +28,16 @@ class MinimalService(Node):
         cv_image = bridge.imgmsg_to_cv2(request.img, desired_encoding='bgr8')
 
         names = self.yolo.run(cv_image, False)
-        print(names)
+        #names = self.yolo.run(numpy.asarray(cv_image), False)
+        print("Names: ", names)
         
         obj_roi_arr = []
 
-        for x in range(3):
-            obj_roi_arr.append(x) # add id
-            obj_roi_arr.append(x*10) # add top left X coordinate
-            obj_roi_arr.append(x*10) # add top left X coordinate
-            obj_roi_arr.append(x*10) # add top left X coordinate
-            obj_roi_arr.append(x*10) # add top left X coordinate
+        #for x in list_of_name:
+        #    #add start int
+        #    for y in x:
+        #        #add data
+        #        obj_roi_arr.append(y) 
 
         response.obj_roi_arr = obj_roi_arr
 

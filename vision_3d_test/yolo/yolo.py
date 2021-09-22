@@ -67,7 +67,6 @@ class Yolo(object):
                 roi = (int(xyxy[0]), int(xyxy[1]), int(xyxy[2]), int(xyxy[3]))
                 #rt.append((self._classes[int(cls)], roi))
                 rt.append((int(cls),roi[0],roi[1],roi[2],roi[3]))
-
                 # Print results to screen
                 if debug:
                     plot_one_box(xyxy, img_org, label=label, color=self._colors[int(cls)])

@@ -26,10 +26,10 @@ class PostProcessing:
         self.object_list = []
         self.debug = False
         # Camera calibration files
-        data = np.load('/home/jeroen/catkin_ws/src/suii_3d_vision_ros/yolo/config/mtx.npz')
-        self.mtx = data['mtx']
-        data = np.load('/home/jeroen/catkin_ws/src/suii_3d_vision_ros/yolo/config/dist.npz')
-        self.dist = data['dist'] 
+        #data = np.load('/home/jeroen/catkin_ws/src/suii_3d_vision_ros/yolo/config/mtx.npz')
+        #self.mtx = data['mtx']
+        #data = np.load('/home/jeroen/catkin_ws/src/suii_3d_vision_ros/yolo/config/dist.npz')
+        #self.dist = data['dist'] 
         self.mal_or_object = "object"
 
     def build_center(self, object_name, roi, img, debug):
