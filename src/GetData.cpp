@@ -157,8 +157,9 @@ void GetData::loadData(ImageData &my_data)
 
     string file_name = "/cv_img.png";    
     string input = loading_name + file_name;
+    
     // string test_img = "/home/jeroen/cv_img.png";
-    // my_data.cv_img = cv::imread(test_img, cv::IMREAD_UNCHANGED);
+    // my_data.cv_img = cv::imread(input, cv::IMREAD_UNCHANGED);
 
     pcl::PointCloud<pcl::PointXYZRGB>::Ptr cloud(new pcl::PointCloud<pcl::PointXYZRGB>);
     file_name = "/point_cloud.pcd";

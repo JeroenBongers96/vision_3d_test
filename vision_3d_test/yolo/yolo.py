@@ -76,6 +76,13 @@ class Yolo(object):
             cv2.imshow("capture frame", img_org)
             cv2.waitKey()
 
+        #for test purposes, REMOVE AFTER TESTING!!!!
+        #############################################
+        roi = (100,100,300,300)
+        rt.append((1, roi[0], roi[1], roi[2], roi[3]))
+        rt.append((3, roi[0], roi[2], roi[1], roi[3]))
+        print("rt: ", rt)
+        #############################################
         return rt
 
     # Mod raw image 

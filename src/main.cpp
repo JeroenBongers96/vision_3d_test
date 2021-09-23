@@ -89,18 +89,21 @@ bool yolo_client(cv::Mat img)
 
     auto result = client->async_send_request(request);
     
+    std::cout <<  "printing object arr" << std::endl;
     
-    std::cout << "printing object arr" << std::endl;
-    
-    //int obj_roi_arr[10] = {result.get()->obj_roi_arr}; 
+    //std::vector<long int> result_arr = result.get()->obj_roi_arr; 
     //std::cout << typeid(result.get()->obj_roi_arr).name() << std::endl;
-
+    //std::cout << result_arr[0] << std::endl;
 
     // Wait for the result.
     if (rclcpp::spin_until_future_complete(node_2, result) ==
         rclcpp::FutureReturnCode::SUCCESS)
     {
         RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "Request succeeded");
+
+        //Read result data and print size + some data
+        std::vector<long int> result_arr = result.get()->obj_roi_arr; 
+        std::cout << result_arr.size() << " = size, "  << result_arr[0] << ", " << result_arr[1] << ", " << result_arr[2] << ", " << result_arr[3] << ", " << result_arr[4] << std::endl;
     }
     else 
     {

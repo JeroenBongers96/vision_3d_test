@@ -27,18 +27,22 @@ class MinimalService(Node):
 
         cv_image = bridge.imgmsg_to_cv2(request.img, desired_encoding='bgr8')
 
-        names = self.yolo.run(cv_image, False)
-        #names = self.yolo.run(numpy.asarray(cv_image), False)
-        print("Names: ", names)
+        #Run yolo
+        result = self.yolo.run(cv_image, False)
+        print("result: ", result)
         
         obj_roi_arr = []
 
-        #for x in list_of_name:
-        #    #add start int
-        #    for y in x:
-        #        #add data
-        #        obj_roi_arr.append(y) 
+        #Pick all results out off the result array and put them in a new array
+        for x in result:
+            #add start int
+            for y in x:
+                #add data
+                obj_roi_arr.append(y) 
 
+        print("obj_roi_arr: ", obj_roi_arr)
+
+        #Send response back
         response.obj_roi_arr = obj_roi_arr
 
         print("sending response ... ")
