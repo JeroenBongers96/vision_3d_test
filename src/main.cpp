@@ -251,12 +251,6 @@ void scan_service(const std::shared_ptr<suii_communication::srv::VisionScan::Req
     // Scan all objects
     std::vector<std::string> scanned_items = scan_all(request->debug, request->create_data, request->save_data);
 
-    // Convert vector to response array
-    for(int i = 0; i < array_size; i++)
-    {
-        response->detected_objects[i] = "None";
-    }
-
     response->detected_objects[0] = scanned_items[0];
 }
 
