@@ -117,7 +117,7 @@ bool yolo_client(cv::Mat img)
 /**
  * Scan for area and publish all tf's of all found objects
  */
-std::vector<int> scan_all(bool debug, bool create_data, bool save_data)
+std::vector<std::string> scan_all(bool debug, bool create_data, bool save_data)
 {
     cout << "main started" << endl;
     cout << "-------" << endl;
@@ -143,7 +143,7 @@ std::vector<int> scan_all(bool debug, bool create_data, bool save_data)
     // Get object ROI from yolo
     // int* obj_roi_arr = yolo_client(my_data.cv_img);
 
-    bool obj_roi_arr = yolo_client(my_data.cv_img);
+    // bool obj_roi_arr = yolo_client(my_data.cv_img);
 
     // for(int x = 0; x < ( sizeof(obj_roi_arr) / 5 ); x ++)
     // {
@@ -233,28 +233,25 @@ std::vector<int> scan_all(bool debug, bool create_data, bool save_data)
         }
 
     // CHANGE this return to yolo ID outcome
-    std::vector<int> item_ids = {1, 2, 3};
+    std::vector<std::string> item_ids = {"F20_20_G"};
     return item_ids;
 } 
 
 void scan_service(const std::shared_ptr<suii_communication::srv::VisionScan::Request> request,     // CHANGE
           std::shared_ptr<suii_communication::srv::VisionScan::Response>       response)  // CHANGE
 {
-    
+
+    int array_size = response->detected_objects.size();
+
+    std::cout << "Array size: " << array_size << std::endl;
     std::cout << "Debug: " << request->debug << std::endl;
     std::cout << "Create data: " << request->create_data << std::endl;
     std::cout << "Save data: " << request->save_data << std::endl;
 
     // Scan all objects
-    std::vector<int> item_ids = scan_all(request->debug, request->create_data, request->save_data);
+    std::vector<std::string> scanned_items = scan_all(request->debug, request->create_data, request->save_data);
 
-    // Convert vector to response array
-    response->detected_objects.resize(item_ids.size()); 
-
-    for(int i = 0; i < item_ids.size(); i++)
-    {
-        response->detected_objects[i] = item_ids[i];
-    }
+    response->detected_objects[0] = scanned_items[0];
 }
 
 int main(int argc, char **argv)
