@@ -263,7 +263,6 @@ int main(int argc, char **argv)
     rclcpp::Service<suii_communication::srv::VisionScan>::SharedPtr service =                 
         node->create_service<suii_communication::srv::VisionScan>("vision_scan",  &scan_service);     
 
-    
     RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "Ready to scan objects.");      
 
     rclcpp::spin(node);

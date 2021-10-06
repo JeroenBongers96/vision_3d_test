@@ -149,7 +149,7 @@ void GetData::createData(ImageData &my_data)
  */
 void GetData::loadData(ImageData &my_data)
 {
-    string folder_name = "/g20x20/g20x20_6";
+    string folder_name = "/g20x20_6";
     // cout << "Please enter the name of desired folder: ";
     // cin >> folder_name;
 
@@ -220,7 +220,7 @@ void GetData::getData(ImageData &my_data)
     }
     else
     {
-        my_data.folder_path = "/home/robohub/workspaces/vision_images";
+        my_data.folder_path = "/home/robohub/colcon_ws/src/vision_3d_test/test_data";
         loadData(my_data);
     }
 }
