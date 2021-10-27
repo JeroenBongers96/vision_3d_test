@@ -62,6 +62,7 @@ ament_python_install_package(${PROJECT_NAME})
 # Install Python executables
 install(PROGRAMS
   vision_3d_test/yolo_server_test.py
+  vision_3d_test/yolov5_server.py
   DESTINATION lib/${PROJECT_NAME}
 )
 
