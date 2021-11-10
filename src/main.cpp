@@ -92,8 +92,15 @@ bool yolo_client(cv::Mat img)
     
     std::cout << "printing object arr" << std::endl;
 
-    // int obj_roi_arr[10] = result.get()->obj_roi_arr; 
-    // std::cout << typeid(result.get()->obj_roi_arr).name() << std::endl;
+    // std::vector<int> obj_roi_arr = result.get()->obj_roi_arr; 
+    
+    std::vector<int> obj_roi_arr = {1,2,3,4,5};
+    std::cout << "Vector size: " << obj_roi_arr.size() << std::endl;
+
+    for(int x = 0; x < obj_roi_arr.size(); x++)
+    {
+        std::cout << "Obj_roi_arr[" << x << "] = " << obj_roi_arr.at(x) << std::endl;
+    }
 
 
     // Wait for the result.
@@ -143,7 +150,7 @@ std::vector<std::string> scan_all(bool debug, bool create_data, bool save_data)
     // Get object ROI from yolo
     // int* obj_roi_arr = yolo_client(my_data.cv_img);
 
-    // bool obj_roi_arr = yolo_client(my_data.cv_img);
+    bool obj_roi_arr = yolo_client(my_data.cv_img);
 
     // for(int x = 0; x < ( sizeof(obj_roi_arr) / 5 ); x ++)
     // {

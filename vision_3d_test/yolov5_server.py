@@ -2,13 +2,12 @@
 ...
 
 from suii_communication.srv import YoloService
-from vision_3d_test import yolo
+# from vision_3d_test import yolo
 
 import rclpy
 import cv_bridge
 import cv2 
 from rclpy.node import Node
-
 from cv_bridge import CvBridge
 
 class MinimalService(Node):
@@ -16,7 +15,7 @@ class MinimalService(Node):
     def __init__(self):
         super().__init__('minimal_service')
         self.srv = self.create_service(YoloService, 'yolo_service_msg', self.add_two_ints_callback)
-        self.get_logger().info('Started yolov5 server')
+        self.get_logger().info('Started yolov5 server ...')
 
     def add_two_ints_callback(self, request, response):
         self.get_logger().info('Incoming request successful')
@@ -34,9 +33,9 @@ class MinimalService(Node):
             obj_roi_arr.append(x*10) # add top left X coordinate
             obj_roi_arr.append(x*10) # add top left X coordinate
 
-        response.obj_roi_arr = obj_roi_arr
+        print(len(obj_roi_arr))
 
-        print("sending response ... ")
+        response.obj_roi_arr = obj_roi_arr
 
         return response
 
