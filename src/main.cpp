@@ -66,7 +66,7 @@ void rosBroadcaster(Eigen::Matrix4f transform, tf2::Quaternion q_tf)
  */
 bool yolo_client(cv::Mat img)
 {
-    std::shared_ptr<rclcpp::Node> node_2 = rclcpp::Node::make_shared("add_two_ints_client");
+    std::shared_ptr<rclcpp::Node> node_2 = rclcpp::Node::make_shared("yolov5_client");
     rclcpp::Client<suii_communication::srv::YoloService>::SharedPtr client =
         node_2->create_client<suii_communication::srv::YoloService>("yolo_service_msg");
 
@@ -91,10 +91,6 @@ bool yolo_client(cv::Mat img)
     auto result = client->async_send_request(request);
     
     std::cout <<  "printing object arr" << std::endl;
-    
-    //std::vector<long int> result_arr = result.get()->obj_roi_arr; 
-    //std::cout << typeid(result.get()->obj_roi_arr).name() << std::endl;
-    //std::cout << result_arr[0] << std::endl;
 
     // Wait for the result.
     if (rclcpp::spin_until_future_complete(node_2, result) ==
@@ -103,8 +99,14 @@ bool yolo_client(cv::Mat img)
         RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "Request succeeded");
 
         //Read result data and print size + some data
-        std::vector<int> result_arr = result.get()->obj_roi_arr; 
-        std::cout << result_arr.size() << " = size, "  << result_arr[0] << ", " << result_arr[1] << ", " << result_arr[2] << ", " << result_arr[3] << ", " << result_arr[4] << std::endl;
+        std::vector<int> result_vec = result.get()->obj_roi_arr; 
+        std::cout << result_vec.size() << " = size, "  << result_vec[0] << ", " << result_vec[1] << ", " << result_vec[2] << ", " << result_vec[3] << ", " << result_vec[4] << std::endl;
+        for(int i = 0; i < result_vec.size(); i++)
+        {
+            std::cout << "Element[" << i << "]: " << result_vec[i] << std::endl;
+        }
+        std::cout << "-------------" << std::endl;
+
     }
     else 
     {
