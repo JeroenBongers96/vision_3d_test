@@ -13,7 +13,7 @@ from cv_bridge import CvBridge
 class MinimalService(Node):
 
     def __init__(self):
-        super().__init__('yolov5_server')
+        super().__init__('minimal_service')
         self.srv = self.create_service(YoloService, 'yolo_service_msg', self.add_two_ints_callback)
         self.get_logger().info('Started yolov5 server test ...')
 
@@ -24,8 +24,8 @@ class MinimalService(Node):
 
         cv_image = bridge.imgmsg_to_cv2(request.img, desired_encoding='bgr8')
         
-        cv2.imshow(cv_image)
-        cv2.waitKey(0)
+        # cv2.imshow(cv_image)
+        # cv2.waitKey(0)
 
         obj_roi_arr = []
 
@@ -37,10 +37,13 @@ class MinimalService(Node):
             obj_roi_arr.append(x*10) # add top left X coordinate
 
         print(len(obj_roi_arr))
+        print("obj_roi_arr: ", obj_roi_arr)
 
         response.obj_roi_arr = obj_roi_arr
 
-        print(type(response.obj_roi_arr))
+        print("sending response ... ")
+
+        # print(type(response.obj_roi_arr))
 
         return response
 

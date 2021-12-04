@@ -31,7 +31,7 @@
 using namespace std;
 
 std::shared_ptr<rclcpp::Node> node;
-rclcpp::Client<suii_communication::srv::YoloService>::SharedPtr client;
+// rclcpp::Client<suii_communication::srv::YoloService>::SharedPtr client;
 pcl::PointCloud<pcl::PointXYZRGB>::Ptr object (new pcl::PointCloud<pcl::PointXYZRGB>);
 pcl::PointCloud<pcl::PointXYZRGB>::Ptr table (new pcl::PointCloud<pcl::PointXYZRGB>);
 
@@ -66,8 +66,9 @@ void rosBroadcaster(Eigen::Matrix4f transform, tf2::Quaternion q_tf)
  */
 bool yolo_client(cv::Mat img)
 {
-    // std::shared_ptr<rclcpp::Node> node_2 = rclcpp::Node::make_shared("add_two_ints_client");
-    client = node->create_client<suii_communication::srv::YoloService>("yolo_service_msg");
+    std::shared_ptr<rclcpp::Node> node_2 = rclcpp::Node::make_shared("add_two_ints_client");
+    rclcpp::Client<suii_communication::srv::YoloService>::SharedPtr client =
+        node_2->create_client<suii_communication::srv::YoloService>("yolo_service_msg");
 
     auto request = std::make_shared<suii_communication::srv::YoloService::Request>();
 
@@ -89,39 +90,29 @@ bool yolo_client(cv::Mat img)
 
     auto result = client->async_send_request(request);
     
+    std::cout <<  "printing object arr" << std::endl;
     
-    std::cout << "printing object arr" << std::endl;
-    
-    // std::vector<int16_t> obj_roi_arr_test = {1,2,3,4,5};
-    
-    // std::cout << "type id test: " << typeid(obj_roi_arr_test).name() << std::endl;
-
-    std::array<int, 20> obj_roi_arr = result.get()->obj_roi_arr; 
-
-    std::cout << "print now" << std::endl;
-
-    std::cout << "type id: " << typeid(obj_roi_arr).name() << std::endl;
-
-
-    // std::cout << "Vector size: " << obj_roi_arr.size() << std::endl;
-
-    // for(int x = 0; x < obj_roi_arr.size(); x++)
-    // {
-    //     std::cout << "Obj_roi_arr[" << x << "] = " << obj_roi_arr.at(x) << std::endl;
-    // }
-
+    //std::vector<long int> result_arr = result.get()->obj_roi_arr; 
+    //std::cout << typeid(result.get()->obj_roi_arr).name() << std::endl;
+    //std::cout << result_arr[0] << std::endl;
 
     // Wait for the result.
-    if (rclcpp::spin_until_future_complete(node, result) ==
+    if (rclcpp::spin_until_future_complete(node_2, result) ==
         rclcpp::FutureReturnCode::SUCCESS)
     {
         RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "Request succeeded");
+
+        //Read result data and print size + some data
+        std::vector<int> result_arr = result.get()->obj_roi_arr; 
+        std::cout << result_arr.size() << " = size, "  << result_arr[0] << ", " << result_arr[1] << ", " << result_arr[2] << ", " << result_arr[3] << ", " << result_arr[4] << std::endl;
     }
     else 
     {
         RCLCPP_ERROR(rclcpp::get_logger("rclcpp"), "Failed to call service add_two_ints");
         exit(0);
     }
+
+    std::cout << "client succeeded" << std::endl;
 
     return true;
 
