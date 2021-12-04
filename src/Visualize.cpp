@@ -13,6 +13,7 @@ void Visualize::visualizeCV(cv::Mat img)
     cv::namedWindow( "Display window", cv::WINDOW_AUTOSIZE );
     cv::imshow( "Display window", img );
     cv::waitKey(0); //0 to wait for user input to proceed
+    cv::destroyWindow("Display window");
 }
 
 // ----------------------------------------------------------------------------------------------------

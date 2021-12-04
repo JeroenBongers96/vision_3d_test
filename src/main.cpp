@@ -149,7 +149,7 @@ std::vector<std::string> scan_all(bool debug, bool create_data, bool save_data)
     get_data.getData(my_data);
 
     // Get object ROI from yolo
-    // int* obj_roi_arr = yolo_client(my_data.cv_img);
+    // int* obj_roi_arr = yolo_client(my_data.cv_img);    
 
     bool obj_roi_arr = yolo_client(my_data.cv_img);
 
