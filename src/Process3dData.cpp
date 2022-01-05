@@ -41,10 +41,6 @@ pcl::PointCloud<pcl::PointXYZRGB>::Ptr Process3dData::cutObj(const cv::Mat &cv_i
 pcl::PointCloud<pcl::PointXYZRGB>::Ptr Process3dData::cutROI(const pcl::PointCloud<pcl::PointXYZRGB>::Ptr &cloud, std::vector<int> roi_vec)
 {
     pcl::PointCloud<pcl::PointXYZRGB>::Ptr object (new pcl::PointCloud<pcl::PointXYZRGB>);
-    
-    // object->width = cloud->width;
-    // object->height = cloud->height;
-    // object->points.resize (object->width * object->height);
 
     cv::Mat cv_img = cv::Mat::zeros(cv::Size(cloud->width,cloud->height),CV_8UC3);
 
@@ -55,12 +51,6 @@ pcl::PointCloud<pcl::PointXYZRGB>::Ptr Process3dData::cutROI(const pcl::PointClo
         {
             if(x >= roi_vec[0] && x <= roi_vec[2] && y >= roi_vec[1] && y <= roi_vec[3] && cloud->at(x, y).z < -0.006 && cloud->at(x, y).z > -0.05)
             {                
-                // object->at(x, y).x = cloud->at(x, y).x;
-                // object->at(x, y).y = cloud->at(x, y).y;
-                // object->at(x, y).z = cloud->at(x, y).z;
-                // object->at(x, y).rgb = cloud->at(x, y).rgb;
-
-                // pcl::PointXYZRGB point = cloud->at(x, y);
                 object->push_back(cloud->at(x, y));
             }
         }

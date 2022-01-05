@@ -192,10 +192,6 @@ cv::Mat GetData::cvFromPcl(const pcl::PointCloud<pcl::PointXYZRGB>::Ptr &cloud)
         }
     }
 
-    // cv::namedWindow("PCL image", cv::WINDOW_AUTOSIZE );
-    // cv::imshow("PCL image", cv_img);
-    // cv::waitKey(0);
-
     return cv_img;
 }
 

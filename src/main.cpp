@@ -5,7 +5,6 @@
 #include <iostream>
 #include "GetData.h"
 #include "ImageData.h"
-// #include "GetRoi.h"
 #include "Process2dData.h"
 #include "Process3dData.h"
 #include "Visualize.h"
@@ -14,24 +13,16 @@
 #include "rclcpp/rclcpp.hpp"
 
 #include <geometry_msgs/msg/transform_stamped.hpp>
-// #include <tf2/buffer_core.h>
-// #include <tf2/exceptions.h>
 #include <tf2/time.h>
-// #include <tf2_ros/buffer.h>
-// #include <tf2_ros/buffer_interface.h>
 #include <tf2_ros/static_transform_broadcaster.h>
-// #include "tf2_ros/transform_broadcaster.h"
 #include <tf2_ros/transform_listener.h>
-
 #include <cv_bridge/cv_bridge.h>
-
 #include "suii_communication/srv/vision_scan.hpp"  
 #include "suii_communication/srv/yolo_service.hpp"  
 
 using namespace std;
 
 std::shared_ptr<rclcpp::Node> node;
-// rclcpp::Client<suii_communication::srv::YoloService>::SharedPtr client;
 pcl::PointCloud<pcl::PointXYZRGB>::Ptr object (new pcl::PointCloud<pcl::PointXYZRGB>);
 pcl::PointCloud<pcl::PointXYZRGB>::Ptr table (new pcl::PointCloud<pcl::PointXYZRGB>);
 
@@ -141,7 +132,6 @@ std::vector<std::string> scan_all(bool debug, bool create_data, bool save_data)
     vector<pcl::PointXYZ> odom_table, odom_object;
 
     ImageData my_data;
-    // GetRoi img_roi;
     GetData get_data(debug, create_data, save_data);
     Process3dData process3d;
     Process2dData process2d;
@@ -151,10 +141,7 @@ std::vector<std::string> scan_all(bool debug, bool create_data, bool save_data)
     get_data.getData(my_data);
 
     // Get object ROI from yolo
-    // int* obj_roi_arr = yolo_client(my_data.cv_img);    
-
     std::vector<int> objects = yolo_client(my_data.cv_img);
-
     for(int x = 0; x < ( sizeof(objects) / 5 ); x ++)
     {
         cout << "ID: " << objects[x] << endl;
@@ -164,22 +151,9 @@ std::vector<std::string> scan_all(bool debug, bool create_data, bool save_data)
         cout << "Bottom right Y coordinate: " << objects[x + 4] << endl;
 
         x += 4; 
+
+        
     }
-    // rclcpp::shutdown();
-
-    // Use Yolo and draw rectangle around ROI
-    // roi_vect = img_roi.Yolo(argc, argv, my_data.cv_img, debug);
-    // print(roi_vect);
-
-    //YOLO output will be an Object ID int. This is converted to the object string with ConvertIDtoObject. like below.
-    //std::string ObjName = IDconvObj.ConvertIDtoObject(ObjID);
-    //std::cout << "Object name: " << ObjName << std::endl;
-
-    // Create own rectangle to bypass Yolo. Purely for testing.
-    cv::rectangle(my_data.cv_img, cv::Point(objects[1], objects[2]), cv::Point(objects[3], objects[4]), (0,255,0), 3);
-
-    // Cut out ROI
-    // object = process.cutROI(my_data, roi_vect);
 
     // Get table cloud
     table = process3d.getPlainRANSAC(my_data.original_cloud);
@@ -190,6 +164,9 @@ std::vector<std::string> scan_all(bool debug, bool create_data, bool save_data)
     // Transform cloud to camera odom
     pcl::PointCloud<pcl::PointXYZRGB>::Ptr cloud_on_origin = process3d.transformSfuToCameraOdom(my_data.original_cloud, transform_table);
     
+    // Create cv rectangle from Yolo data.
+    cv::rectangle(my_data.cv_img, cv::Point(objects[1], objects[2]), cv::Point(objects[3], objects[4]), (0,255,0), 3);
+
     // Cut out object
     vector<int> roi_vect{objects[1], objects[2], objects[3], objects[4]};
     object = process3d.cutROI(cloud_on_origin, roi_vect); 
@@ -197,17 +174,14 @@ std::vector<std::string> scan_all(bool debug, bool create_data, bool save_data)
     // Transform object back to its original position
     object = process3d.transformSfuToOriginalOdom(object, transform_table);
 
-    // object = process3d.orFilter(object);
-
     // Get table transformation
     std::tie(transform_object, rpy_object, q_object, odom_object) = process3d.momentOfInertia(object);
 
-    // tf_publisher.publish_tf();
-
+    // Broadcast transformation
     tf2::Quaternion q_tf(q_object.x(), q_object.y(), q_object.z(), q_object.w());
     rosBroadcaster(transform_object, q_tf);
     
-    // Show result
+    // Show results
     if(debug)
         {   
             cout << endl;
@@ -234,7 +208,6 @@ std::vector<std::string> scan_all(bool debug, bool create_data, bool save_data)
             Visualize vis(debug);
             shared_ptr<pcl::visualization::PCLVisualizer> viewer = vis.createViewer();
             viewer = vis.addOriginalColorCloud(viewer, table);
-            // viewer = vis.addCustomColorCloud(viewer, object);
             viewer = vis.addCustomColorCloud(viewer, object);
             viewer = vis.addOdom(viewer, odom_table);
             viewer = vis.addOdom(viewer, odom_object);
