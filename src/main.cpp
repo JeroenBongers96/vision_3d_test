@@ -176,7 +176,7 @@ std::vector<std::string> scan_all(bool debug, bool create_data, bool save_data)
     //std::cout << "Object name: " << ObjName << std::endl;
 
     // Create own rectangle to bypass Yolo. Purely for testing.
-    cv::rectangle(my_data.cv_img, cv::Point(objects[0], objects[1]), cv::Point(objects[2], objects[3]), (0,255,0), 3);
+    cv::rectangle(my_data.cv_img, cv::Point(objects[1], objects[2]), cv::Point(objects[3], objects[4]), (0,255,0), 3);
 
     // Cut out ROI
     // object = process.cutROI(my_data, roi_vect);
@@ -191,7 +191,7 @@ std::vector<std::string> scan_all(bool debug, bool create_data, bool save_data)
     pcl::PointCloud<pcl::PointXYZRGB>::Ptr cloud_on_origin = process3d.transformSfuToCameraOdom(my_data.original_cloud, transform_table);
     
     // Cut out object
-    vector<int> roi_vect{objects[0], objects[1], objects[2], objects[3]};
+    vector<int> roi_vect{objects[1], objects[2], objects[3], objects[4]};
     object = process3d.cutROI(cloud_on_origin, roi_vect); 
 
     // Transform object back to its original position
