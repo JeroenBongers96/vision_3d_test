@@ -5,7 +5,6 @@
 #include <iostream>
 #include "GetData.h"
 #include "ImageData.h"
-// #include "GetRoi.h"
 #include "Process2dData.h"
 #include "Process3dData.h"
 #include "Visualize.h"
@@ -14,17 +13,10 @@
 #include "rclcpp/rclcpp.hpp"
 
 #include <geometry_msgs/msg/transform_stamped.hpp>
-// #include <tf2/buffer_core.h>
-// #include <tf2/exceptions.h>
 #include <tf2/time.h>
-// #include <tf2_ros/buffer.h>
-// #include <tf2_ros/buffer_interface.h>
 #include <tf2_ros/static_transform_broadcaster.h>
-// #include "tf2_ros/transform_broadcaster.h"
 #include <tf2_ros/transform_listener.h>
-
 #include <cv_bridge/cv_bridge.h>
-
 #include "suii_communication/srv/vision_scan.hpp"  
 #include "suii_communication/srv/yolo_service.hpp"  
 
@@ -63,13 +55,15 @@ void rosBroadcaster(Eigen::Matrix4f transform, tf2::Quaternion q_tf)
 /**
  * Get the ROI's of objects from yolo_server
  */
-bool yolo_client(cv::Mat img)
+std::vector<int> yolo_client(cv::Mat img)
 {
-    std::shared_ptr<rclcpp::Node> node_2 = rclcpp::Node::make_shared("add_two_ints_client");
+    std::shared_ptr<rclcpp::Node> node_2 = rclcpp::Node::make_shared("yolov5_client");
     rclcpp::Client<suii_communication::srv::YoloService>::SharedPtr client =
         node_2->create_client<suii_communication::srv::YoloService>("yolo_service_msg");
 
     auto request = std::make_shared<suii_communication::srv::YoloService::Request>();
+
+    std::vector<int> result_vec;
 
     cv_bridge::CvImage cvi;
     cvi.encoding = sensor_msgs::image_encodings::BGR8;
@@ -89,18 +83,23 @@ bool yolo_client(cv::Mat img)
 
     auto result = client->async_send_request(request);
     
-    
-    std::cout << "printing object arr" << std::endl;
-
-    // int obj_roi_arr[10] = result.get()->obj_roi_arr; 
-    // std::cout << typeid(result.get()->obj_roi_arr).name() << std::endl;
-
+    std::cout <<  "printing object arr" << std::endl;
 
     // Wait for the result.
     if (rclcpp::spin_until_future_complete(node_2, result) ==
         rclcpp::FutureReturnCode::SUCCESS)
     {
         RCLCPP_INFO(rclcpp::get_logger("rclcpp"), "Request succeeded");
+
+        //Read result data and print size + some data
+        result_vec = result.get()->obj_roi_arr; 
+        std::cout << result_vec.size() << " = size, "  << result_vec[0] << ", " << result_vec[1] << ", " << result_vec[2] << ", " << result_vec[3] << ", " << result_vec[4] << std::endl;
+        for(int i = 0; i < result_vec.size(); i++)
+        {
+            std::cout << "Element[" << i << "]: " << result_vec[i] << std::endl;
+        }
+        std::cout << "-------------" << std::endl;
+
     }
     else 
     {
@@ -108,7 +107,9 @@ bool yolo_client(cv::Mat img)
         exit(0);
     }
 
-    return true;
+    std::cout << "client succeeded" << std::endl;
+
+    return result_vec;
 
 }
 
@@ -131,7 +132,6 @@ std::vector<std::string> scan_all(bool debug, bool create_data, bool save_data)
     vector<pcl::PointXYZ> odom_table, odom_object;
 
     ImageData my_data;
-    // GetRoi img_roi;
     GetData get_data(debug, create_data, save_data);
     Process3dData process3d;
     Process2dData process2d;
@@ -141,36 +141,19 @@ std::vector<std::string> scan_all(bool debug, bool create_data, bool save_data)
     get_data.getData(my_data);
 
     // Get object ROI from yolo
-    // int* obj_roi_arr = yolo_client(my_data.cv_img);
+    std::vector<int> objects = yolo_client(my_data.cv_img);
+    for(int x = 0; x < ( sizeof(objects) / 5 ); x ++)
+    {
+        cout << "ID: " << objects[x] << endl;
+        cout << "Top left X coordinate: " << objects[x + 1] << endl;
+        cout << "Top left Y coordinate: " << objects[x + 2] << endl;
+        cout << "Bottom right X coordinate: " << objects[x + 3] << endl;
+        cout << "Bottom right Y coordinate: " << objects[x + 4] << endl;
 
-    // bool obj_roi_arr = yolo_client(my_data.cv_img);
+        x += 4; 
 
-    // for(int x = 0; x < ( sizeof(obj_roi_arr) / 5 ); x ++)
-    // {
-    //     cout << "ID: " << x << endl;
-    //     cout << "Top left X coordinate: " << x + 1 << endl;
-    //     cout << "Top left Y coordinate: " << x + 2 << endl;
-    //     cout << "Bottom right X coordinate: " << x + 3 << endl;
-    //     cout << "Bottom right Y coordinate: " << x + 4 << endl;
-
-    //     x += 4; 
-    // }
-    // rclcpp::shutdown();
-
-    // Use Yolo and draw rectangle around ROI
-    // roi_vect = img_roi.Yolo(argc, argv, my_data.cv_img, debug);
-    // print(roi_vect);
-
-    //YOLO output will be an Object ID int. This is converted to the object string with ConvertIDtoObject. like below.
-    //std::string ObjName = IDconvObj.ConvertIDtoObject(ObjID);
-    //std::cout << "Object name: " << ObjName << std::endl;
-
-    // Create own rectangle to bypass Yolo. Purely for testing.
-    vector<int> roi_vect{250, 100, 400, 300};
-    cv::rectangle(my_data.cv_img, cv::Point(roi_vect[0], roi_vect[1]), cv::Point(roi_vect[2], roi_vect[3]), (0,255,0), 3);
-
-    // Cut out ROI
-    // object = process.cutROI(my_data, roi_vect);
+        
+    }
 
     // Get table cloud
     table = process3d.getPlainRANSAC(my_data.original_cloud);
@@ -181,23 +164,24 @@ std::vector<std::string> scan_all(bool debug, bool create_data, bool save_data)
     // Transform cloud to camera odom
     pcl::PointCloud<pcl::PointXYZRGB>::Ptr cloud_on_origin = process3d.transformSfuToCameraOdom(my_data.original_cloud, transform_table);
     
+    // Create cv rectangle from Yolo data.
+    cv::rectangle(my_data.cv_img, cv::Point(objects[1], objects[2]), cv::Point(objects[3], objects[4]), (0,255,0), 3);
+
     // Cut out object
+    vector<int> roi_vect{objects[1], objects[2], objects[3], objects[4]};
     object = process3d.cutROI(cloud_on_origin, roi_vect); 
 
     // Transform object back to its original position
     object = process3d.transformSfuToOriginalOdom(object, transform_table);
 
-    // object = process3d.orFilter(object);
-
     // Get table transformation
     std::tie(transform_object, rpy_object, q_object, odom_object) = process3d.momentOfInertia(object);
 
-    // tf_publisher.publish_tf();
-
+    // Broadcast transformation
     tf2::Quaternion q_tf(q_object.x(), q_object.y(), q_object.z(), q_object.w());
     rosBroadcaster(transform_object, q_tf);
     
-    // Show result
+    // Show results
     if(debug)
         {   
             cout << endl;
@@ -224,7 +208,6 @@ std::vector<std::string> scan_all(bool debug, bool create_data, bool save_data)
             Visualize vis(debug);
             shared_ptr<pcl::visualization::PCLVisualizer> viewer = vis.createViewer();
             viewer = vis.addOriginalColorCloud(viewer, table);
-            // viewer = vis.addCustomColorCloud(viewer, object);
             viewer = vis.addCustomColorCloud(viewer, object);
             viewer = vis.addOdom(viewer, odom_table);
             viewer = vis.addOdom(viewer, odom_object);
