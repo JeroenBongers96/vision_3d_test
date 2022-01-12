@@ -33,6 +33,16 @@ class Yolov5Service(Node):
 
         obj_roi_arr = detect.run(weights=WEIGHTS,source=SRC,conf_thres=CONF,nosave=True)
 
+        # Purely for testing handlinge multiple items
+        obj_roi_arr.append(0)
+        obj_roi_arr.append(300)
+        obj_roi_arr.append(100)
+        obj_roi_arr.append(400)
+        obj_roi_arr.append(400)
+
+        # Add int to show last element
+        # obj_roi_arr.append(999)
+
         print("result: {}".format(obj_roi_arr))
 
         response.obj_roi_arr = obj_roi_arr
