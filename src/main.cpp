@@ -145,7 +145,7 @@ std::vector<std::string> scan_all(bool debug, bool create_data, bool save_data)
     {
         viewer = vis.createViewer();
         viewer = vis.addOriginalColorCloud(viewer, table);
-        viewer = vis.addOdom(viewer, odom_table);
+        // viewer = vis.addOdom(viewer, odom_table); // Add table odometry
     }
 
     // Transform cloud to camera odom

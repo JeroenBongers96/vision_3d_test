@@ -133,13 +133,15 @@ void GetData::createData(ImageData &my_data)
 	auto color = frames.get_color_frame();
 
     //Create cv::Mat img
-    cv::Mat img(cv::Size(640, 480), CV_8UC3, (void*)color.get_data(), cv::Mat::AUTO_STEP);
-    my_data.cv_img = img.clone();
+    // cv::Mat img(cv::Size(640, 480), CV_8UC3, (void*)color.get_data(), cv::Mat::AUTO_STEP);
+    // my_data.cv_img = img.clone();
 
     //Create colored pc
     pc.map_to(color);
 	points = pc.calculate(depth);
     pclConversion(points, color, my_data.original_cloud);
+
+    my_data.cv_img = cvFromPcl(my_data.original_cloud);
 }
 
 // ----------------------------------------------------------------------------------------------------
@@ -159,6 +161,9 @@ void GetData::loadData(ImageData &my_data)
     string input = loading_name + file_name;
     // string test_img = "/home/jeroen/cv_img.png";
     // my_data.cv_img = cv::imread(test_img, cv::IMREAD_UNCHANGED);
+
+    // Temp image for D435 test
+    loading_name = "/home/robohub/workspaces/vision_images/D435/both/1_1";
 
     pcl::PointCloud<pcl::PointXYZRGB>::Ptr cloud(new pcl::PointCloud<pcl::PointXYZRGB>);
     file_name = "/point_cloud.pcd";

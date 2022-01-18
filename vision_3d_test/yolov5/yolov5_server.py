@@ -31,17 +31,10 @@ class Yolov5Service(Node):
 
         cv_image = bridge.imgmsg_to_cv2(request.img, desired_encoding='bgr8')
 
+        # Check if there is a faster way to send an image to yolov5
+        cv2.imwrite(SRC, cv_image)
+
         obj_roi_arr = detect.run(weights=WEIGHTS,source=SRC,conf_thres=CONF,nosave=True)
-
-        # Purely for testing handlinge multiple items
-        obj_roi_arr.append(0)
-        obj_roi_arr.append(300)
-        obj_roi_arr.append(100)
-        obj_roi_arr.append(400)
-        obj_roi_arr.append(400)
-
-        # Add int to show last element
-        # obj_roi_arr.append(999)
 
         print("result: {}".format(obj_roi_arr))
 
