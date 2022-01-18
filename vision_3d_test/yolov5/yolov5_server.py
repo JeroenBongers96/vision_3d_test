@@ -12,7 +12,7 @@ import cv2
 from rclpy.node import Node
 from cv_bridge import CvBridge
 
-WEIGHTS='/home/robohub/colcon_ws/src/vision_3d_test/weights/best.pt'
+WEIGHTS='/home/robohub/colcon_ws/src/vision_3d_test/weights/best_D435.pt'
 SRC='/home/robohub/colcon_ws/src/vision_3d_test/tmp/tmp.png'
 CONF=0.7
 
