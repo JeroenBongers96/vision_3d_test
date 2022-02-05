@@ -91,16 +91,8 @@ pcl::PointCloud<pcl::PointXYZRGB>::Ptr Process3dData::getPlainRANSAC(const pcl::
     // seg.setMaxIterations (100);
     seg.setDistanceThreshold (0.005); // Original: 0.02
 
-    // int i=0, nr_points = (int) cloud->points.size ();
-    // while (cloud->points.size () > 0.3 * nr_points)
-    // {
-    // Segment the largest planar component from the remaining cloud
     seg.setInputCloud (cloud);
     seg.segment (*inliers, *coefficients);
-    // if (inliers->indices.size () == 0)
-    // {
-    //     break;
-    // }
 
     // Extract the planar inliers from the input cloud
     pcl::ExtractIndices<pcl::PointXYZRGB> extract;

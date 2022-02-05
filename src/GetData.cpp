@@ -13,7 +13,7 @@ GetData::GetData(bool debug, bool create_data, bool save_data)
 // ----------------------------------------------------------------------------------------------------
 
 /**
- * 
+ * Get RGB texture
  */
 std::tuple<int, int, int>  GetData::rgbTexture(rs2::video_frame texture, rs2::texture_coordinate Texture_XY)
 {
@@ -48,7 +48,7 @@ std::tuple<int, int, int>  GetData::rgbTexture(rs2::video_frame texture, rs2::te
 // ----------------------------------------------------------------------------------------------------
 
 /**
- * 
+ * Convert data to point cloud
  */
 void GetData::pclConversion(const rs2::points& points, const rs2::video_frame& color, pcl::PointCloud<pcl::PointXYZRGB>::Ptr &original_cloud)
 {
@@ -108,7 +108,6 @@ void GetData::createData(ImageData &my_data)
 
     //Create a configuration for configuring the pipeline with a non default profile
     rs2::config cfg;
-
     rs2::pointcloud pc;
     rs2::points points;
 
@@ -132,14 +131,13 @@ void GetData::createData(ImageData &my_data)
     auto depth = frames.get_depth_frame();
 	auto color = frames.get_color_frame();
 
-    //Create cv::Mat img
-    cv::Mat img(cv::Size(640, 480), CV_8UC3, (void*)color.get_data(), cv::Mat::AUTO_STEP);
-    my_data.cv_img = img.clone();
-
     //Create colored pc
     pc.map_to(color);
 	points = pc.calculate(depth);
     pclConversion(points, color, my_data.original_cloud);
+
+    //Create cv image from point cloud
+    my_data.cv_img = cvFromPcl(my_data.original_cloud);
 }
 
 // ----------------------------------------------------------------------------------------------------
@@ -159,6 +157,9 @@ void GetData::loadData(ImageData &my_data)
     string input = loading_name + file_name;
     // string test_img = "/home/jeroen/cv_img.png";
     // my_data.cv_img = cv::imread(test_img, cv::IMREAD_UNCHANGED);
+
+    // Temp image for D435 test
+    loading_name = "/home/robohub/workspaces/vision_images/D435/both/1_1";
 
     pcl::PointCloud<pcl::PointXYZRGB>::Ptr cloud(new pcl::PointCloud<pcl::PointXYZRGB>);
     file_name = "/point_cloud.pcd";

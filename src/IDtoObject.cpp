@@ -9,71 +9,71 @@ std::string IDtoObject::ConvertIDtoObject(int ID)
 {
  switch(ID)
  {
-     case 1:
+     case 0:
         return "F20_20_B";
         break;
 
-     case 2:
+     case 1:
         return "F20_20_G";
         break;
 
-     case 3:
+     case 2:
         return "S40_40_B";
         break;
 
-     case 4:
+     case 3:
         return "S40_40_G";
         break;
 
-     case 5:
+     case 4:
         return "M20_100";
         break;
 
-     case 6:
+     case 5:
         return "M20";
         break;
 
-     case 7:
+     case 6:
         return "M30";
         break;
 
-     case 8:
+     case 7:
         return "R20";
         break;
 
-     case 9:
+     case 8:
         return "Bearing_Box";
         break;
 
-     case 10:
+     case 9:
         return "Bearing";
         break;
 
-     case 11:
+     case 10:
         return "Axis";
         break;
 
-     case 12:
+     case 11:
         return "Distance_Tube";
         break;
 
-     case 13:
+     case 12:
         return "Motor";
         break;
 
-     case 14:
+     case 13:
         return "Red_Container_Top";
         break;
 
-     case 15:
+     case 14:
         return "Blue_Container_Top";
         break;
 
-     case 16:
+     case 15:
         return "Red_Container_Front";
         break;
 
-     case 17:
+     case 16:
         return "Blue_Container_Front";
         break;
 
