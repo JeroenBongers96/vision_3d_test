@@ -36,6 +36,10 @@ void rosBroadcaster(Eigen::Matrix4f transform, tf2::Quaternion q_tf, std::string
     tf2_ros::StaticTransformBroadcaster stb(node);
     geometry_msgs::msg::TransformStamped ts;
 
+    cout << "----TF BROADCASTER---" << endl;
+    cout << name << endl;
+    cout << "-------" << endl;
+
     ts.header.frame_id = "Cam";
     ts.child_frame_id = name;
     ts.header.stamp = rclcpp::Time();
@@ -141,18 +145,18 @@ std::vector<std::string> scan_all(bool debug, bool create_data, bool save_data)
     // Get table transformation
     std::tie(transform_table, rpy_table, q_table, odom_table) = process3d.momentOfInertia(table);
 
+    // Show table cloud
     if(debug)
     {
         viewer = vis.createViewer();
         viewer = vis.addOriginalColorCloud(viewer, table);
-        // viewer = vis.addOdom(viewer, odom_table); // Add table odometry
+        viewer = vis.addOdom(viewer, odom_table); // Add table odometry
     }
 
-    // Transform cloud to camera odom
+    // Transform cloud to camera odometry
     pcl::PointCloud<pcl::PointXYZRGB>::Ptr cloud_on_origin = process3d.transformSfuToCameraOdom(my_data.original_cloud, transform_table);
 
     // Process all found objects
-
     std::cout << "Size of result: " << sizeof(objects) << std::endl;  
     for(int x = 0; x < objects.size(); x ++)
     {
@@ -161,9 +165,12 @@ std::vector<std::string> scan_all(bool debug, bool create_data, bool save_data)
         Eigen::Quaternionf q_object;
         std::vector<pcl::PointXYZ> odom_table, odom_object;
         
+        // Get object name
         std::string name = ObjectID.ConvertIDtoObject(objects[x]);
         item_list.push_back(name);
 
+        // Print object ID and ROI info
+        cout << "===============================================================" <<  name << endl;
         cout << "ID: " << objects[x] << " | name: " <<  name << endl;
         cout << "YOLO top left X coordinate: " << objects[x + 1] << endl;
         cout << "YOLO top left Y coordinate: " << objects[x + 2] << endl;
@@ -185,11 +192,32 @@ std::vector<std::string> scan_all(bool debug, bool create_data, bool save_data)
 
         // Broadcast transformation
         tf2::Quaternion q_tf(q_object.x(), q_object.y(), q_object.z(), q_object.w());
+        
+        // assign name for broadcaster
         name = name + "_" + to_string(x);
+
+        // Broadcast TF
         rosBroadcaster(transform_object, q_tf, name);
 
         if(debug)
         {
+            cout << name << endl;
+            cout << "===Position==================" << endl;
+            cout << "X axis: " << transform_object(0,3) << endl;
+            cout << "Y axis: " << transform_object(1,3) << endl;
+            cout << "Z axis: " << transform_object(2,3) << endl << endl;
+            
+            cout << "===Rotations in Euler==================" << endl;
+            cout << "Rotation around X axis (Roll): " << rpy_object[0] << "°" << endl;
+            cout << "Rotation around Y axis (Pitch): " << rpy_object[1] << "°" << endl;
+            cout << "Rotation around Z axis (Yaw): " << rpy_object[2] << "°" << endl << endl;
+
+            cout << "===Rotations in Quaternion==================" << endl;
+            cout << "Rotation quaternion x: " << q_tf[0] << endl;
+            cout << "Rotation quaternion y: " << q_tf[1] << endl;
+            cout << "Rotation quaternion z: " << q_tf[2] << endl;
+            cout << "Rotation quaternion w: " << q_tf[3] << endl; 
+
             viewer = vis.addCustomColorCloud(viewer, object);
             viewer = vis.addOdom(viewer, odom_object);
         }
@@ -200,33 +228,16 @@ std::vector<std::string> scan_all(bool debug, bool create_data, bool save_data)
     
     // Show results
     if(debug)
-        {   
-            // cout << "===Position==================" << endl;
-            // cout << "X axis: " << transform_table(0,3) << endl;
-            // cout << "Y axis: " << transform_table(1,3) << endl;
-            // cout << "Z axis: " << transform_table(2,3) << endl << endl;
-            
-            // cout << "===Rotations in Euler==================" << endl;
-            // cout << "Rotation around X axis (Roll): " << rpy_table[0] << "°" << endl;
-            // cout << "Rotation around Y axis (Pitch): " << rpy_table[1] << "°" << endl;
-            // cout << "Rotation around Z axis (Yaw): " << rpy_table[2] << "°" << endl << endl;
-
-            // cout << "===Rotations in Quaternion==================" << endl;
-            // cout << "Rotation quaternion x: " << q_tf[0] << endl;
-            // cout << "Rotation quaternion y: " << q_tf[1] << endl;
-            // cout << "Rotation quaternion z: " << q_tf[2] << endl;
-            // cout << "Rotation quaternion w: " << q_tf[3] << endl;
-
-            // cout << "===Location matrix=====================" << endl << endl;
-            // cout << transform_table << endl;
-            
+        {               
             vis.visualizeCV(my_data.cv_img);
             vis.visualizePCL(viewer);
         }
 
+    // Return item list containing object names
     return item_list;
 } 
 
+// Service to call via client
 void scan_service(const std::shared_ptr<suii_communication::srv::VisionScan::Request> request,     // CHANGE
           std::shared_ptr<suii_communication::srv::VisionScan::Response>       response)  // CHANGE
 {
@@ -241,13 +252,21 @@ void scan_service(const std::shared_ptr<suii_communication::srv::VisionScan::Req
     // Scan all objects
     std::vector<std::string> scanned_items = scan_all(request->debug, request->create_data, request->save_data);
 
-    response->detected_objects[0] = scanned_items[0];
+    std::string response_array[scanned_items.size()];
+    std::copy(scanned_items.begin(), scanned_items.end(), response_array);
+    // Return all objects
+    
+    for(int x = 0; x < scanned_items.size(); x++)
+    {
+        response->detected_objects[x] = scanned_items[x];
+    }
 }
 
 int main(int argc, char **argv)
 {
     rclcpp::init(argc, argv);
 
+    // Create vision_server node
     node = rclcpp::Node::make_shared("vision_server");  
 
     rclcpp::Service<suii_communication::srv::VisionScan>::SharedPtr service =                 
