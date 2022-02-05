@@ -1,6 +1,10 @@
 # vision_3d_test
 Repo to develop small vision tests quickly
 
+## Prerequirements
+Clone and build:
+`https://github.com/JeroenBongers96/suii_communication.git` 
+
 ## How to use
 * `cd colcon_ws`
 * `colcon build`
